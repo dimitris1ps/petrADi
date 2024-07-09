@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="el">
+	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-F1T20957YE"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', 'G-F1T20957YE');
+		</script>
+
+		<script>
+			!(function (d, s, id) {
+				var js,
+					fjs = d.getElementsByTagName(s)[0];
+				if (!d.getElementById(id)) {
+					js = d.createElement(s);
+					js.id = id;
+					js.src = 'https://weatherwidget.io/js/widget.min.js';
+					fjs.parentNode.insertBefore(js, fjs);
+				}
+			})(document, 'script', 'weatherwidget-io-js');
+		</script>
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>petrADI</title>
+		<link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../assets/css/slick.css" />
+		<link rel="stylesheet" href="../assets/css/slick-theme.css" />
+		<link rel="stylesheet" href="../assets/css/styles.css" />
+	</head>
+	<body>
+		<header><nav>
+	<ul class="nav-links">
+		<li>
+			<a href="#home">Αρχική</a>
+		</li>
+		<li>
+			<a href="#about">Σχετικά</a>
+		</li>
+		<li>
+			<a href="#services">Υπηρεσίες</a>
+		</li>
+		<li>
+			<a href="#gallery">Γκαλερί</a>
+		</li>
+		<li>
+			<a href="#seedo">Δείτε & Κάντε</a>
+		</li>
+		<li>
+			<a href="#contact">Επικοινωνία</a>
+		</li>
+	</ul>
+	<div id="customDropdown" class="custom-dropdown">
+		<div id="selectedLang" class="selected-lang">
+			<img 
+				src="../assets/images/el_flag.png" 
+				alt="Default" 
+				width="50" 
+				height="50" 
+			/>
+		</div>
+		<div class="options-container">
+			
+			<a class="dropdown-option" href="/en/">
+				<img
+					src="../assets/images/en_flag.png"
+					alt="English"
+					width="50"
+					height="50"
+				/>
+			</a>
+			
+			<a class="dropdown-option" href="/el/">
+				<img
+					src="../assets/images/el_flag.png"
+					alt="Ελληνικά"
+					width="50"
+					height="50"
+				/>
+			</a>
+			
+			<a class="dropdown-option" href="/de/">
+				<img
+					src="../assets/images/de_flag.png"
+					alt="Deutsch"
+					width="50"
+					height="50"
+				/>
+			</a>
+			
+			<a class="dropdown-option" href="/tr/">
+				<img
+					src="../assets/images/tr_flag.png"
+					alt="Türkçe"
+					width="50"
+					height="50"
+				/>
+			</a>
+			
+		</div>
+	</div>
+
+	<div class="burger">
+		<div class="line1"></div>
+		<div class="line2"></div>
+		<div class="line3"></div>
+	</div>
+</nav>
+</header>
+		<main>
+	<div class="social">
+		<a href="https://www.facebook.com/profile.php?id=61561197882948" target="_blank">
+			<img src="../assets/images/fb.webp" alt="facebook" width="30" height="30" />
+		</a>
+		<a href="#">
+			<img src="../assets/images/ig.webp" alt="instagram" width="30" height="30" />
+		</a>
+	</div>
+	<section id="home" class="hero">
+		<div class="container">
+			<div class="hero__content">
+				<h1 class="hero__content__title">
+					<strong>petr𝓐𝓓i</strong>
+				</h1>
+				<div class="hero__content__subtitle">
+					<span>Ένα ήσυχο ξενοδοχείο 5 δωματίων</span><br />
+					<span>στην Πέτρα της Λέσβου</span>
+				</div>
+			</div>
+			<div
+				class="parallax-window"
+				data-parallax="scroll"
+				data-image-src="../assets/images/section1.webp"
+			></div>
+		</div>
+	</section>
+	<section id="about" class="about">
+		<div class="container text-center">
+			<div class="about__content">
+				<h2 class="about__content__title fade-on-scroll">Σχετικά</h2>
+				<p class="about__content__text mx-auto fade-on-scroll transition-on-scroll">
+					Βρίσκεται σε μια ήσυχη περιοχή του χωριού, μόλις 5 λεπτά περπάτημα από την παραλία και το κέντρο του χωριού, το ξενοδοχείο petrADi της Πέτρας Λέσβου έχει ανακαινιστεί πρόσφατα (Ιούνιος 2024).
+				</p>
+			</div>
+			<div
+				class="parallax-window"
+				data-parallax="scroll"
+				data-image-src="../assets/images/section2.webp"
+			>
+				<div class="about__content__card fade-on-scroll">
+					<h2 class="about__content__title">
+						<strong>τα δωμάτιά μας</strong>
+					</h2>
+					<p class="about__content__text text-center">
+						<strong>Κάθε ένα από τα 5 δωμάτιά μας είναι σχεδιασμένο για την άνεσή σας, προσφέροντας μια ζεστή και φιλόξενη ατμόσφαιρα μετά από μια μέρα εξερεύνησης.</strong>
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<br />
+	<hr class="transparent-line" />
+
+	<div class="center-wrapper">
+		<select id="widgetSelector">
+			<option value="general">☼ Καιρός ☼</option>
+			<option value="detailed">☼ Αναλυτικά ☼</option>
+		</select>
+	</div>
+	<div id="generalWidget" class="center-wrapper widget show">
+		<a
+			class="weatherwidget-io"
+			href="https://forecast7.com/el/39d3326d18/petra/"
+			data-label_1="petrADi"
+			data-label_2="Καιρός"
+			data-icons="Climacons Animated"
+			data-theme="pure"
+			>ο καιρός στο petrADi</a
+		>
+	</div>
+	<div id="detailedWidget" class="center-wrapper widget">
+		<iframe
+			src="https://www.meteoblue.com/en/weather/widget/three/petras_greece_255439?geoloc=fixed&nocurrent=0&noforecast=0&days=7&tempunit=CELSIUS&windunit=BEAUFORT&layout=bright"
+			frameborder="0"
+			scrolling="NO"
+			allowtransparency="true"
+			sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
+			style="width: 805px; height: 613px"
+		></iframe>
+	</div>
+
+	<hr class="transparent-line" />
+
+	<section id="services" class="amenities">
+		<div class="container text-center">
+			<h2 class="amenities__title fade-on-scroll">Παροχές</h2>
+			<div class="amenities__cards">
+				
+				<div class="amenities__card text-center">
+					<div class="amenities__card__image fade-on-scroll">
+						<img src="../assets/images/beach.svg" alt="icon" width="45" height="38" />
+					</div>
+					<div class="transition-on-scroll">
+						<p>Παραλία</p>
+						<span>Μόλις 10 λεπτά περπάτημα για την Παραλία της Πέτρας, ή 25 λεπτά περπάτημα για την αμμώδη παραλία στον Άναξο</span>
+					</div>
+				</div>
+				
+				<div class="amenities__card text-center">
+					<div class="amenities__card__image fade-on-scroll">
+						<img src="../assets/images/garden.svg" alt="icon" width="45" height="38" />
+					</div>
+					<div class="transition-on-scroll">
+						<p>Κήπος</p>
+						<span>Όμορφη θέα στον κήπο, με πάρκινγκ σε ένα ήσυχο μέρος στην Πέτρα, μόλις 5 λεπτά περπάτημα από το κέντρο του χωριού.</span>
+					</div>
+				</div>
+				
+				<div class="amenities__card text-center">
+					<div class="amenities__card__image fade-on-scroll">
+						<img src="../assets/images/tv.svg" alt="icon" width="45" height="38" />
+					</div>
+					<div class="transition-on-scroll">
+						<p>Επίπεδη Τηλεόραση | Εσπρέσο | Σεσουάρ</p>
+						<span>Εξοπλισμένο με την τελευταία λέξη της τεχνολογίας επίπεδη τηλεόραση, για χαλαρωτικές νύχτες | Ένα σεσουάρ πριν την έξοδό σας | Εσπρέσο για να ξεκινήσετε τη μέρα σας</span>
+					</div>
+				</div>
+				
+				<div class="amenities__card text-center">
+					<div class="amenities__card__image fade-on-scroll">
+						<img src="../assets/images/wifi.svg" alt="icon" width="45" height="38" />
+					</div>
+					<div class="transition-on-scroll">
+						<p>Δωρεάν Wifi</p>
+						<span>Προσφέρουμε δωρεάν wifi. Παρακαλώ σημειώστε ότι η ταχύτητα του wifi της περιοχής δεν είναι ιδανική</span>
+					</div>
+				</div>
+				
+				<div class="amenities__card text-center">
+					<div class="amenities__card__image fade-on-scroll">
+						<img src="../assets/images/amenities.svg" alt="icon" width="45" height="38" />
+					</div>
+					<div class="transition-on-scroll">
+						<p>Παροχές Μπάνιου</p>
+						<span>Προσφέρουμε όλες τις συνήθεις παροχές μπάνιου, σαπούνι, αφρόλουτρο, σαμπουάν, σεσουάρ, πετσέτες κλπ.</span>
+					</div>
+				</div>
+				
+				<div class="amenities__card text-center">
+					<div class="amenities__card__image fade-on-scroll">
+						<img src="../assets/images/ac.svg" alt="icon" width="45" height="38" />
+					</div>
+					<div class="transition-on-scroll">
+						<p>Κλιματισμός</p>
+						<span>Διαθέτουμε τον τελευταίο κλιματισμό, με ελάχιστο θόρυβο, για να κάνουμε τις ζεστές καλοκαιρινές σας νύχτες... δροσερές</span>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</section>
+
+	<section id="gallery" class="gallery">
+		<div class="container gallery__slider-wrapper">
+			<h2 class="text-center">Gallery</h2>
+			<button class="arr-right" title="next">
+				<svg class="slideshow-arrow" style="transform: scaleX(1) scale(1)" width="23" height="39" viewBox="0 0 23 39">
+					<path
+						d="M857.005,231.479L858.5,230l18.124,18-18.127,18-1.49-1.48L873.638,248Z"
+						transform="translate(-855 -230)"
+					></path>
+				</svg>
+			</button>
+			<div class="gallery__cards"><div class="gallery__card card-1">
+					<p>Το Δωμάτιο με το Ρολόι</p>
+					<span></span>
+				</div><div class="gallery__card card-2">
+					<p>Το Δωμάτιο με το Δέντρο</p>
+					<span></span>
+				</div><div class="gallery__card card-3">
+					<p>Το Δωμάτιο με το King Size Κρεβάτι</p>
+					<span></span>
+				</div><div class="gallery__card card-4">
+					<p>Το Ευρύχωρο Δωμάτιο</p>
+					<span></span>
+				</div><div class="gallery__card card-5">
+					<p>Μέσα στο Μπάνιο</p>
+					<span></span>
+				</div><div class="gallery__card card-6">
+					<p>Βεράντα κάτω από το Δέντρο</p>
+					<span></span>
+				</div><div class="gallery__card card-7">
+					<p>Βεράντα με Θέα το Χωριό</p>
+					<span></span>
+				</div></div>
+			<button class="arr-left" title="prev">
+				<svg class="slideshow-arrow" style="transform: scaleX(-1) scale(1)" width="23" height="39" viewBox="0 0 23 39">
+					<path
+						d="M857.005,231.479L858.5,230l18.124,18-18.127,18-1.49-1.48L873.638,248Z"
+						transform="translate(-855 -230)"
+					></path>
+				</svg>
+			</button>
+		</div>
+	</section>
+
+	<section id="seedo" class="amenities">
+		<div class="container text-center">
+			<h2 class="amenities__title fade-on-scroll">Τι να κανετε στην περιοχή</h2>
+			<div class="amenities__cards"><div class="amenities__card text-center transition-on-scroll">
+					<p>Παραλίες</p>
+					<span>Πάρτε τη δόση σας της βιταμίνης D από την αμμώδη παραλία της Πέτρας, ή του Άναξου, και οι δύο σε απόσταση περπατήματος.</span>
+				</div><div class="amenities__card text-center transition-on-scroll">
+					<p>Πολιτιστικοί Χώροι</p>
+					<span>Ανεβείτε τα 114 σκαλιά για να επισκεφθείτε την ιστορική εκκλησία της Πέτρας για μια πανοραμική θέα της περιοχής.</span>
+				</div><div class="amenities__card text-center transition-on-scroll">
+					<p>Κάστρο του Μολύβου</p>
+					<span>Μόλις 10 λεπτά οδήγησης για το διπλανό χωριό του Μολύβου. Επισκεφθείτε το κάστρο το βράδυ για μια αξέχαστη εμπειρία.</span>
+				</div><div class="amenities__card text-center transition-on-scroll">
+					<p>Πεζοπορία</p>
+					<span>Η περιοχή γύρω από την Πέτρα είναι γεμάτη από κοιλάδες και διατηρεί, ιδανική για τους λάτρεις της φύσης.</span>
+				</div><div class="amenities__card text-center transition-on-scroll">
+					<p>Παρατήρηση Πουλιών</p>
+					<span>Μετά από 20 λεπτά οδήγησης μπορείτε να συνδεθείτε με άλλους παρατηρητές πουλιών στην Καλλονή και να απολαύσετε τα Φλαμίνγκο.</span>
+				</div><div class="amenities__card text-center transition-on-scroll">
+					<p>Χωριό της Πέτρας</p>
+					<span>Η Πέτρα έχει ατμοσφαιρικούς δρόμους όπου μπορείτε να περιηγηθείτε σε μικρά καταστήματα και να επισκεφθείτε ένα μικρό οικογενειακό αποστακτήριο ούζου.</span>
+				</div></div>
+		</div>
+	</section>
+
+	<section class="reviews">
+		<div class="container">
+			<div
+				class="parallax-window"
+				data-parallax="scroll"
+				data-image-src="../assets/images/review.webp"
+			>
+				<div class="reviews__card fade-on-scroll">
+					<h2 class="reviews__title">
+						<strong>κριτικές επισκεπτών</strong>
+					</h2>
+					<img src="../assets/images/quote.webp" alt="quote" width="21" height="25" />
+					<div class="reviews__texts"><p class="reviews__text text-center">
+							<strong>Έχουμε βαθμολογία 9.5 στο booking. Και προσπαθούμε να γίνουμε ακόμα καλύτεροι.</strong>
+						</p><p class="reviews__text text-center">
+							<strong>“Ωραίο και άνετο μέρος, πολύ ήσυχο”</strong>
+						</p><p class="reviews__text text-center">
+							<strong>“Ιδανικό για ζευγάρια που θέλουν να αποσυνδεθούν από την πόλη.”</strong>
+						</p></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="contact" class="contacts">
+		<div class="container">
+			<h2 class="contacts__title text-center">ΕΠΙΚΟΙΝΩΝΗΣΤΕ ΜΑΖΙ ΜΑΣ</h2>
+			<div class="contacts__details transition-on-scroll">
+				<a href="mailto:petradi.lesvos@gmail.com">petradi.lesvos@gmail.com</a>
+				<span class="slash">/</span>
+				<span>Πέτρα, Λέσβος</span>
+				<span class="slash">/</span>
+				<span>Τηλ: +30 6942997376</span>
+			</div>
+		</div>
+		<div class="container social-mobile">
+			<a href="https://www.facebook.com/profile.php?id=61561197882948" target="_blank">
+				<img src="../assets/images/fb.webp" alt="facebook" width="30" height="30" />
+			</a>
+			<a href="#">
+				<img src="../assets/images/ig.webp" alt="instagram" width="30" height="30" />
+			</a>
+		</div>
+	</section>
+
+	<section class="location">
+		<iframe
+			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3086.4282779093946!2d26.16794867646742!3d39.32388122142663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba91f375e70707%3A0x5eb5b685ae8251e3!2spetrADi!5e0!3m2!1sen!2sgr!4v1719917555515!5m2!1sen!2sgr"
+			width="600"
+			height="450"
+			style="border: 0"
+			allowfullscreen=""
+			loading="lazy"
+			referrerpolicy="no-referrer-when-downgrade"
+		></iframe>
+	</section>
+</main>
+
+		<script src="../assets/js/jquery-3.6.0.min.js"></script>
+		<script src="../assets/js/slick.min.js"></script>
+		<script src="../assets/js/parallax.min.js"></script>
+		<script src="../assets/js/scripts.js"></script>
+		<footer><footer class="footer">
+	<div class="container text-center">
+		<p class="footer__content">© 2024 by petrADi</p>
+	</div>
+</footer>
+</footer>
+	</body>
+</html>
