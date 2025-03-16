@@ -503,7 +503,7 @@ main .reviews__text {
 main .contacts {
   margin-top: 3rem;
   padding: 100px 0 20px 0;
-  background-color: #c8c8c8;
+  background-color: #FAF9F6;
 }
 main .contacts__details {
   display: flex;
@@ -794,3 +794,137 @@ main .location iframe {
 }
 
 /*# sourceMappingURL=styles.css.map */
+
+
+
+/* Add this at the end of your styles.css file */
+/* Replace the existing .lightbox-related styles in styles.css with this */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center; /* Center horizontally */
+  align-items: center;     /* Center vertically */
+  z-index: 1000;
+  overflow: auto;          /* Allow scrolling if image is too large */
+}
+
+.lightbox img {
+  max-width: 110%;
+  max-height: 110%;
+  object-fit: contain;
+  border: 5px solid white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  display: block;          /* Ensure it behaves as a block element */
+  margin: 0 auto;          /* Center horizontally within the flex container */
+}
+
+.lightbox-close {
+  position: fixed;         /* Changed to fixed so it stays in the viewport */
+  top: 20px;
+  right: 20px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close:hover {
+  color: #ccc;
+}
+
+
+
+/* Add this at the end of your styles.css file */
+
+.more-images-btn {
+  display: block;              /* Ensure it takes its own line */
+  margin: 20px auto;           /* Center it horizontally and add spacing */
+  padding: 8px 20px;           /* Comfortable padding */
+  font-size: 1.4rem;           /* Small text size */
+  font-family: "Brandon Grotesque", sans-serif; /* Match site typography */
+  font-weight: 100;            /* Light weight for a subtle look */
+  text-transform: lowercase;   /* Small letters */
+  color: #333;                 /* Dark text color */
+  background-color: #f5f5f5;   /* Light gray background */
+  border: 1px solid #ccc;      /* Subtle border */
+  border-radius: 20px;         /* Rounded edges for a cool look */
+  text-align: center;          /* Center the text */
+  text-decoration: none;       /* Remove underline */
+  transition: all 0.3s ease;   /* Smooth hover transition */
+  max-width: 200px;            /* Limit width for a compact button */
+}
+
+.more-images-btn:hover {
+  background-color: #242323;   /* Dark background on hover */
+  color: #fff;                 /* White text on hover */
+  border-color: #242323;       /* Match border to background */
+  transform: scale(1.05);      /* Slight grow effect */
+}
+
+.more-images-btn:active {
+  transform: scale(0.95);      /* Slight shrink on click */
+}
+
+
+
+/* Add this at the end of your styles.css file */
+
+/* Container for buttons */
+.gallery-buttons {
+  display: flex;
+  flex-direction: column;     /* Stack buttons vertically */
+  align-items: center;        /* Center them horizontally */
+  gap: 15px;                  /* Space between buttons */
+  margin-top: 20px;           /* Space below the carousel */
+  margin-bottom: 20px;        /* Space below the buttons */
+}
+
+/* Shared button styles */
+.more-images-btn,
+.layout-btn {
+  padding: 8px 20px;
+  font-size: 1.4rem;
+  font-family: "Brandon Grotesque", sans-serif;
+  font-weight: 100;
+  text-transform: lowercase;
+  color: #333;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;      /* For .more-images-btn */
+  transition: all 0.3s ease;
+  max-width: 200px;
+  cursor: pointer;            /* For .layout-btn */
+}
+
+.more-images-btn:hover,
+.layout-btn:hover {
+  background-color: #242323;
+  color: #fff;
+  border-color: #242323;
+  transform: scale(1.05);
+}
+
+.more-images-btn:active,
+.layout-btn:active {
+  transform: scale(0.95);
+}
+
+/* Override any previous conflicting styles */
+.more-images-btn {
+  display: inline-block;      /* Ensure it fits in the flex container */
+  margin: 0;                  /* Remove auto margins */
+}
+
+.layout-btn {
+  display: inline-block;      /* Ensure it fits in the flex container */
+  margin: 0;                  /* Remove auto margins */
+  background-color: #f5f5f5;  /* Match the other button */
+}
