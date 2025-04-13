@@ -1,466 +1,434 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-F1T20957YE"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
+    <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1T20957YE"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-			gtag('config', 'G-F1T20957YE');
-		</script>
+            gtag('config', 'G-F1T20957YE');
+        </script>
 
-		<script>
-			!(function (d, s, id) {
-				var js,
-					fjs = d.getElementsByTagName(s)[0];
-				if (!d.getElementById(id)) {
-					js = d.createElement(s);
-					js.id = id;
-					js.src = 'https://weatherwidget.io/js/widget.min.js';
-					fjs.parentNode.insertBefore(js, fjs);
-				}
-			})(document, 'script', 'weatherwidget-io-js');
-		</script>
+        <script>
+            !(function (d, s, id) {
+                var js,
+                    fjs = d.getElementsByTagName(s)[0];
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = 'https://weatherwidget.io/js/widget.min.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            })(document, 'script', 'weatherwidget-io-js');
+        </script>
 
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>petrADI</title>
-		<link rel="stylesheet" href="./assets/css/button.css" />
-		<link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="./assets/css/slick.css" />
-		<link rel="stylesheet" href="./assets/css/slick-theme.css" />
-		<link rel="stylesheet" href="./assets/css/styles.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!-- refresh this https://dash.elfsight.com/widget/aed513f0-a0f3-4443-9336-722fd9a34ebc -->
-		<!-- <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script> -->
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>petrADI</title>
+        <link rel="stylesheet" href="./assets/css/button.css" />
+        <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="./assets/css/slick.css" />
+        <link rel="stylesheet" href="./assets/css/slick-theme.css" />
+        <link rel="stylesheet" href="./assets/css/styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        </head>
+    <body>
+        <header>
+            <nav>
+                <ul class="nav-links">
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a href="#gallery">Gallery</a>
+                    </li>
+                    <li>
+                        <a href="#seedo">See & Do</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="./more.html">More</a>
+                    </li>
+                    </ul>
+                <div id="customDropdown" class="custom-dropdown">
+                    <div id="selectedLang" class="selected-lang">
+                        <img
+                            src="./assets/images/en_flag.png"
+                            alt="Default"
+                            width="50"
+                            height="50"
+                        />
+                    </div>
+                    <div class="options-container">
+                        <a class="dropdown-option" href="./en/">
+                            <img
+                                src="./assets/images/en_flag.png"
+                                alt="English"
+                                width="50"
+                                height="50"
+                            />
+                        </a>
+                        <a class="dropdown-option" href="./el/">
+                            <img
+                                src="./assets/images/el_flag.png"
+                                alt="Ελληνικά"
+                                width="50"
+                                height="50"
+                            />
+                        </a>
+                        <a class="dropdown-option" href="./de/">
+                            <img
+                                src="./assets/images/de_flag.png"
+                                alt="Deutsch"
+                                width="50"
+                                height="50"
+                            />
+                        </a>
+                        <a class="dropdown-option" href="./tr/">
+                            <img
+                                src="./assets/images/tr_flag.png"
+                                alt="Türkçe"
+                                width="50"
+                                height="50"
+                            />
+                        </a>
+                    </div>
+                </div>
 
+                <div class="burger">
+                    <div class="line1"></div>
+                    <div class="line2"></div>
+                    <div class="line3"></div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="social">
+                <a href="https://www.facebook.com/profile.php?id=61561197882948" target="_blank">
+                    <img src="./assets/images/fb.webp" alt="facebook" width="30" height="30" />
+                </a>
+                <a href="#">
+                    <img src="./assets/images/ig.webp" alt="instagram" width="30" height="30" />
+                </a>
+            </div>
 
-	</head>
-	<body>
-		<header><nav>
-	<ul class="nav-links">
-		<li>
-			<a href="#home">Home</a>
-		</li>
-		<li>
-			<a href="#about">About</a>
-		</li>
-		<li>
-			<a href="#services">Services</a>
-		</li>
-		<li>
-			<a href="#gallery">Gallery</a>
-		</li>
-		<li>
-			<a href="#seedo">See & Do</a>
-		</li>
-		<li>
-			<a href="#contact">Contact</a>
-		</li>
-	</ul>
-	<div id="customDropdown" class="custom-dropdown">
-		<div id="selectedLang" class="selected-lang">
-			<img 
-				src="./assets/images/en_flag.png" 
-				alt="Default" 
-				width="50" 
-				height="50" 
-			/>
-		</div>
-		<div class="options-container">
-			
-			<a class="dropdown-option" href="./en/">
-				<img
-					src="./assets/images/en_flag.png"
-					alt="English"
-					width="50"
-					height="50"
-				/>
-			</a>
-			
-			<a class="dropdown-option" href="./el/">
-				<img
-					src="./assets/images/el_flag.png"
-					alt="Ελληνικά"
-					width="50"
-					height="50"
-				/>
-			</a>
-			
-			<a class="dropdown-option" href="./de/">
-				<img
-					src="./assets/images/de_flag.png"
-					alt="Deutsch"
-					width="50"
-					height="50"
-				/>
-			</a>
-			
-			<a class="dropdown-option" href="./tr/">
-				<img
-					src="./assets/images/tr_flag.png"
-					alt="Türkçe"
-					width="50"
-					height="50"
-				/>
-			</a>
-			
-		</div>
-	</div>
+            <div class="elfsight-app-aed513f0-a0f3-4443-9336-722fd9a34ebc" data-elfsight-app-lazy></div>
 
-	<div class="burger">
-		<div class="line1"></div>
-		<div class="line2"></div>
-		<div class="line3"></div>
-	</div>
-</nav>
-</header>
-		<main>
-	<div class="social">
-		<a href="https://www.facebook.com/profile.php?id=61561197882948" target="_blank">
-			<img src="./assets/images/fb.webp" alt="facebook" width="30" height="30" />
-		</a>
-		<a href="#">
-			<img src="./assets/images/ig.webp" alt="instagram" width="30" height="30" />
-		</a>
-	</div>
+            <section id="home" class="hero">
+                <div class="container">
+                    <div class="hero__content">
+                        <h1 class="hero__content__title">
+                            <strong>petr𝓐𝓓i</strong>
+                        </h1>
+                        <div class="hero__content__subtitle">
+                            <span>A quite 5 room studio</span><br />
+                            <span>at Petra of Lesvos</span>
+                        </div>
+                    </div>
+                    <div
+                        class="parallax-window"
+                        data-parallax="scroll"
+                        data-image-src="./assets/images/section1.webp"
+                    ></div>
+                </div>
+            </section>
 
-	<div class="elfsight-app-aed513f0-a0f3-4443-9336-722fd9a34ebc" data-elfsight-app-lazy></div>
+            <section id="about" class="about">
+                <div class="container text-center">
+                    <div class="about__content">
+                        <h2 class="about__content__title fade-on-scroll">About</h2>
+                        <p class="about__content__text mx-auto fade-on-scroll transition-on-scroll">
+                            Located at a tranquil part of the village, just a 5-minute walk from both the beach and the village centre, the 5 room hotel petrADi of Petra Lesvos has been recently renovated (June 2024).
+                        </p>
+                    </div>
+                    <div
+                        class="parallax-window"
+                        data-parallax="scroll"
+                        data-image-src="./assets/images/section2.webp"
+                    >
+                        <div class="about__content__card fade-on-scroll">
+                            <h2 class="about__content__title">
+                                <strong>our rooms</strong>
+                            </h2>
+                            <p class="about__content__text text-center">
+                                <strong>Each of our 5 rooms is designed with your comfort in mind, offering a cozy and welcoming atmosphere after a day of exploration.</strong>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-	<section id="home" class="hero">
-		<div class="container">
-			<div class="hero__content">
-				<h1 class="hero__content__title">
-					<strong>petr𝓐𝓓i</strong>
-				</h1>
-				<div class="hero__content__subtitle">
-					<span>A quite 5 room studio</span><br />
-					<span>at Petra of Lesvos</span>
-				</div>
-			</div>
-			<div
-				class="parallax-window"
-				data-parallax="scroll"
-				data-image-src="./assets/images/section1.webp"
-			></div>
-		</div>
-	</section>
-	<section id="about" class="about">
-		<div class="container text-center">
-			<div class="about__content">
-				<h2 class="about__content__title fade-on-scroll">About</h2>
-				<p class="about__content__text mx-auto fade-on-scroll transition-on-scroll">
-					Located at a tranquil part of the village, just a 5-minute walk from both the beach and the village centre, the 5 room hotel petrADi of Petra Lesvos has been recently renovated (June 2024).
-				</p>
-			</div>
-			<div
-				class="parallax-window"
-				data-parallax="scroll"
-				data-image-src="./assets/images/section2.webp"
-			>
-				<div class="about__content__card fade-on-scroll">
-					<h2 class="about__content__title">
-						<strong>our rooms</strong>
-					</h2>
-					<p class="about__content__text text-center">
-						<strong>Each of our 5 rooms is designed with your comfort in mind, offering a cozy and welcoming atmosphere after a day of exploration.</strong>
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
+            <br />
+            <hr class="transparent-line" />
 
-	<br />
-	<hr class="transparent-line" />
+            <div class="center-wrapper">
+                <select id="widgetSelector">
+                    <option value="general">☼ General ☼</option>
+                    <option value="detailed">☼ Detailed ☼</option>
+                </select>
+            </div>
+            <div id="generalWidget" class="center-wrapper widget show">
+                <a
+                    class="weatherwidget-io"
+                    href="https://forecast7.com/en/39d3326d18/petra/"
+                    data-label_1="petrADi"
+                    data-label_2="Weather"
+                    data-icons="Climacons Animated"
+                    data-theme="pure"
+                    >petrADi Weather</a
+                >
+            </div>
+            <div id="detailedWidget" class="center-wrapper widget">
+                <iframe
+                    src="https://www.meteoblue.com/en/weather/widget/three/petras_greece_255439?geoloc=fixed&nocurrent=0&noforecast=0&days=7&tempunit=CELSIUS&windunit=BEAUFORT&layout=bright"
+                    frameborder="0"
+                    scrolling="NO"
+                    allowtransparency="true"
+                    sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
+                    style="width: 805px; height: 613px"
+                ></iframe>
+            </div>
 
-	<div class="center-wrapper">
-		<select id="widgetSelector">
-			<option value="general">☼ General ☼</option>
-			<option value="detailed">☼ Detailed ☼</option>
-		</select>
-	</div>
-	<div id="generalWidget" class="center-wrapper widget show">
-		<a
-			class="weatherwidget-io"
-			href="https://forecast7.com/en/39d3326d18/petra/"
-			data-label_1="petrADi"
-			data-label_2="Weather"
-			data-icons="Climacons Animated"
-			data-theme="pure"
-			>petrADi Weather</a
-		>
-	</div>
-	<div id="detailedWidget" class="center-wrapper widget">
-		<iframe
-			src="https://www.meteoblue.com/en/weather/widget/three/petras_greece_255439?geoloc=fixed&nocurrent=0&noforecast=0&days=7&tempunit=CELSIUS&windunit=BEAUFORT&layout=bright"
-			frameborder="0"
-			scrolling="NO"
-			allowtransparency="true"
-			sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox"
-			style="width: 805px; height: 613px"
-		></iframe>
-	</div>
+            <hr class="transparent-line" />
 
-	<hr class="transparent-line" />
+            <section id="services" class="amenities">
+                <div class="container text-center">
+                    <h2 class="amenities__title fade-on-scroll">Amenities</h2>
+                    <div class="amenities__cards">
+                        <div class="amenities__card text-center">
+                            <div class="amenities__card__image fade-on-scroll">
+                                <img src="./assets/images/beach.svg" alt="icon" width="45" height="38" />
+                            </div>
+                            <div class="transition-on-scroll">
+                                <p>Beach</p>
+                                <span>Just a 10 minute walk from the Beach of Petra, or a 25 minute walk from the sandy beach in Anaxos</span>
+                            </div>
+                        </div>
+                        <div class="amenities__card text-center">
+                            <div class="amenities__card__image fade-on-scroll">
+                                <img src="./assets/images/garden.svg" alt="icon" width="45" height="38" />
+                            </div>
+                            <div class="transition-on-scroll">
+                                <p>Garden</p>
+                                <span>Nice garden view, with parking at a quite place in Petra, just 5 minute walk from the village centre.</span>
+                            </div>
+                        </div>
+                        <div class="amenities__card text-center">
+                            <div class="amenities__card__image fade-on-scroll">
+                                <img src="./assets/images/tv.svg" alt="icon" width="45" height="38" />
+                            </div>
+                            <div class="transition-on-scroll">
+                                <p>Flat TV | Espresso | Hairdryer</p>
+                                <span>Equipped with the latest flat TV, for relaxing nights | Α hairdryer before your night out | Espresso to start your day</span>
+                            </div>
+                        </div>
+                        <div class="amenities__card text-center">
+                            <div class="amenities__card__image fade-on-scroll">
+                                <img src="./assets/images/wifi.svg" alt="icon" width="45" height="38" />
+                            </div>
+                            <div class="transition-on-scroll">
+                                <p>Free Wifi</p>
+                                <span>We offer free wifi. Please note that the wifi speed of the area is not ideal</span>
+                            </div>
+                        </div>
+                        <div class="amenities__card text-center">
+                            <div class="amenities__card__image fade-on-scroll">
+                                <img src="./assets/images/amenities.svg" alt="icon" width="45" height="38" />
+                            </div>
+                            <div class="transition-on-scroll">
+                                <p>Bathroom Amenities</p>
+                                <span>We offer all the common bathroom amenities, soap, shower gel, Shampoo, hair dryer, towels etc.</span>
+                            </div>
+                        </div>
+                        <div class="amenities__card text-center">
+                            <div class="amenities__card__image fade-on-scroll">
+                                <img src="./assets/images/ac.svg" alt="icon" width="45" height="38" />
+                            </div>
+                            <div class="transition-on-scroll">
+                                <p>Air conditioning</p>
+                                <span>We have the latest air conditioning, with minimal noise, to make your warm summer nights a...breeze</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-	<section id="services" class="amenities">
-		<div class="container text-center">
-			<h2 class="amenities__title fade-on-scroll">Amenities</h2>
-			<div class="amenities__cards">
-				
-				<div class="amenities__card text-center">
-					<div class="amenities__card__image fade-on-scroll">
-						<img src="./assets/images/beach.svg" alt="icon" width="45" height="38" />
-					</div>
-					<div class="transition-on-scroll">
-						<p>Beach</p>
-						<span>Just a 10 minute walk from the Beach of Petra, or a 25 minute walk from the sandy beach in Anaxos</span>
-					</div>
-				</div>
-				
-				<div class="amenities__card text-center">
-					<div class="amenities__card__image fade-on-scroll">
-						<img src="./assets/images/garden.svg" alt="icon" width="45" height="38" />
-					</div>
-					<div class="transition-on-scroll">
-						<p>Garden</p>
-						<span>Nice garden view, with parking at a quite place in Petra, just 5 minute walk from the village centre.</span>
-					</div>
-				</div>
-				
-				<div class="amenities__card text-center">
-					<div class="amenities__card__image fade-on-scroll">
-						<img src="./assets/images/tv.svg" alt="icon" width="45" height="38" />
-					</div>
-					<div class="transition-on-scroll">
-						<p>Flat TV | Espresso | Hairdryer</p>
-						<span>Equipped with the latest flat TV, for relaxing nights | Α hairdryer before your night out | Espresso to start your day</span>
-					</div>
-				</div>
-				
-				<div class="amenities__card text-center">
-					<div class="amenities__card__image fade-on-scroll">
-						<img src="./assets/images/wifi.svg" alt="icon" width="45" height="38" />
-					</div>
-					<div class="transition-on-scroll">
-						<p>Free Wifi</p>
-						<span>We offer free wifi. Please note that the wifi speed of the area is not ideal</span>
-					</div>
-				</div>
-				
-				<div class="amenities__card text-center">
-					<div class="amenities__card__image fade-on-scroll">
-						<img src="./assets/images/amenities.svg" alt="icon" width="45" height="38" />
-					</div>
-					<div class="transition-on-scroll">
-						<p>Bathroom Amenities</p>
-						<span>We offer all the common bathroom amenities, soap, shower gel, Shampoo, hair dryer, towels etc.</span>
-					</div>
-				</div>
-				
-				<div class="amenities__card text-center">
-					<div class="amenities__card__image fade-on-scroll">
-						<img src="./assets/images/ac.svg" alt="icon" width="45" height="38" />
-					</div>
-					<div class="transition-on-scroll">
-						<p>Air conditioning</p>
-						<span>We have the latest air conditioning, with minimal noise, to make your warm summer nights a...breeze</span>
-					</div>
-				</div>
-				
-			</div>
-		</div>
+            <section id="gallery" class="gallery">
+                <div class="container gallery__slider-wrapper">
+                    <h2 class="text-center">Gallery</h2>
+                    <button class="arr-right" title="next">
+                        <svg class="slideshow-arrow" style="transform: scaleX(1) scale(1)" width="23" height="39" viewBox="0 0 23 39">
+                            <path d="M857.005,231.479L858.5,230l18.124,18-18.127,18-1.49-1.48L873.638,248Z" transform="translate(-855 -230)"></path>
+                        </svg>
+                    </button>
+                    <div class="gallery__cards">
+                        <div class="gallery__card card-1">
+                            <p>The Clock Room</p>
+                            <span></span>
+                        </div>
+                        <div class="gallery__card card-2">
+                            <p>The Tree Room</p>
+                            <span></span>
+                        </div>
+                        <div class="gallery__card card-3">
+                            <p>The King Size Bedroom</p>
+                            <span></span>
+                        </div>
+                        <div class="gallery__card card-4">
+                            <p>The Spacious Room</p>
+                            <span></span>
+                        </div>
+                        <div class="gallery__card card-5">
+                            <p>Inside the Bathroom</p>
+                            <span></span>
+                        </div>
+                        <div class="gallery__card card-6">
+                            <p>Under the Tree Terence</p>
+                            <span></span>
+                        </div>
+                        <div class="gallery__card card-7">
+                            <p>Village View Terence</p>
+                            <span></span>
+                        </div>
+                    </div>
+                    <button class="arr-left" title="prev">
+                        <svg class="slideshow-arrow" style="transform: scaleX(-1) scale(1)" width="23" height="39" viewBox="0 0 23 39">
+                            <path d="M857.005,231.479L858.5,230l18.124,18-18.127,18-1.49-1.48L873.638,248Z" transform="translate(-855 -230)"></path>
+                        </svg>
+                    </button>
+                    <div class="gallery-buttons">
+                        <a href="https://www.facebook.com/photo/?fbid=122113239680373262&set=pb.61561197882948.-2207520000" target="_blank" class="more-images-btn">Click for more images</a>
+                        <button class="layout-btn">Rooms Layout</button>
+                    </div>
+                </div>
+            </section>
 
+            <section id="seedo" class="amenities">
+                <div class="container text-center">
+                    <h2 class="amenities__title fade-on-scroll">Things to do</h2>
+                    <div class="amenities__cards">
+                        <div class="amenities__card text-center transition-on-scroll">
+                            <p>Beaches</p>
+                            <span>Get your vitamin D from the sandy beach of Petra, or Anaxos, both walking distance.</span>
+                        </div>
+                        <div class="amenities__card text-center transition-on-scroll">
+                            <p>Cultural Sites</p>
+                            <span>Take the 114 steps to visit the historical church of Petra for a panoramic view of the area.</span>
+                        </div>
+                        <div class="amenities__card text-center transition-on-scroll">
+                            <p>Castle of Molyvos</p>
+                            <span>Just a 10 minutes drive to the adjacent village of Molyvos. Visit the castle at night for a memorable time.</span>
+                        </div>
+                        <div class="amenities__card text-center transition-on-scroll">
+                            <p>Hiking</p>
+                            <span>The area around Petra is full of valleys and maintains, ideal for the nature lovers.</span>
+                        </div>
+                        <div class="amenities__card text-center transition-on-scroll">
+                            <p>Bird Watching</p>
+                            <span>After a 20 minute drive you can connect with other bird watchers at Kalloni and enjoy the Flamingos.</span>
+                        </div>
+                        <div class="amenities__card text-center transition-on-scroll">
+                            <p>Petra Village</p>
+                            <span>Petra has atmospheric streets you can browse little shops and tour a small family owned Ouzo distillery.</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-	</section>
+            <br><br>
 
+            <section class="reviews">
+                <div class="container">
+                    <div
+                        class="parallax-window"
+                        data-parallax="scroll"
+                        data-image-src="./assets/images/review.webp"
+                    >
+                        <div class="reviews__card fade-on-scroll">
+                            <h2 class="reviews__title">
+                                <strong>guest reviews</strong>
+                            </h2>
+                            <img src="./assets/images/quote.webp" alt="quote" width="21" height="25" />
+                            <div class="reviews__texts">
+                                <p class="reviews__text text-center">
+                                    <strong>We have a review score of above 9 at booking. And we are striving to do even better.</strong>
+                                </p>
+                                <p class="reviews__text text-center">
+                                    <strong>“Nice and cosy place, very peaceful”</strong>
+                                </p>
+                                <p class="reviews__text text-center">
+                                    <strong>“Ideal for couples who want to disengage from the city life.”</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-	<section id="gallery" class="gallery">
-		<div class="container gallery__slider-wrapper">
-			<h2 class="text-center">Gallery</h2>
-			<button class="arr-right" title="next">
-				<svg class="slideshow-arrow" style="transform: scaleX(1) scale(1)" width="23" height="39" viewBox="0 0 23 39">
-					<path d="M857.005,231.479L858.5,230l18.124,18-18.127,18-1.49-1.48L873.638,248Z" transform="translate(-855 -230)"></path>
-				</svg>
-			</button>
-			<div class="gallery__cards">
-				<div class="gallery__card card-1">
-					<p>The Clock Room</p>
-					<span></span>
-				</div>
-				<div class="gallery__card card-2">
-					<p>The Tree Room</p>
-					<span></span>
-				</div>
-				<div class="gallery__card card-3">
-					<p>The King Size Bedroom</p>
-					<span></span>
-				</div>
-				<div class="gallery__card card-4">
-					<p>The Spacious Room</p>
-					<span></span>
-				</div>
-				<div class="gallery__card card-5">
-					<p>Inside the Bathroom</p>
-					<span></span>
-				</div>
-				<div class="gallery__card card-6">
-					<p>Under the Tree Terence</p>
-					<span></span>
-				</div>
-				<div class="gallery__card card-7">
-					<p>Village View Terence</p>
-					<span></span>
-				</div>
-			</div>
-			<button class="arr-left" title="prev">
-				<svg class="slideshow-arrow" style="transform: scaleX(-1) scale(1)" width="23" height="39" viewBox="0 0 23 39">
-					<path d="M857.005,231.479L858.5,230l18.124,18-18.127,18-1.49-1.48L873.638,248Z" transform="translate(-855 -230)"></path>
-				</svg>
-			</button>
-			<!-- Button container -->
-			<div class="gallery-buttons">
-				<a href="https://www.facebook.com/photo/?fbid=122113239680373262&set=pb.61561197882948.-2207520000" target="_blank" class="more-images-btn">Click for more images</a>
-				<button class="layout-btn">Rooms Layout</button>
-			</div>
-		</div>
-	</section>
+            <section id="contact" class="contacts">
+                <div class="container">
+                    <h2 class="contacts__title text-center">CONTACT US</h2>
+                    <div class="contacts__details transition-on-scroll">
+                        <a href="mailto:petradi.lesvos@gmail.com">petradi.lesvos@gmail.com</a>
+                        <span class="slash">/</span>
+                        <span>
+                            Phone:
+                            <a href="tel:+306979066541" title="Call us">
+                                +30 697 90 66 541</a>
+                            <a href="https://wa.me/306979066541" target="_blank" title="Contact via WhatsApp">
+                                <i class="fab fa-whatsapp" style="color: #25D366; margin-left: 5px;"></i>
+                            </a>
+                            <a href="viber://chat?number=306979066541" target="_blank" title="Contact via Viber">
+                                <i class="fab fa-viber" style="color: #665CAC; margin-left: 5px;"></i>
+                            </a>
+                        </span>
+                        <span class="slash">/</span>
+                        <span>Find us on
+                            <a href="https://www.booking.com/hotel/gr/petrarooms.en-gb.html" target="_blank">
+                                <span style="color: #002060; font-family: Arial, sans-serif; font-weight: 800;">Booking</span>
+                            </a>
+                        </span>
+                    </div>
+                    <br>
+                </div>
+            </section>
 
+            <div class="container social-mobile">
+                <a href="https://www.facebook.com/profile.php?id=61561197882948" target="_blank">
+                    <img src="./assets/images/fb.webp" alt="facebook" width="30" height="30" />
+                </a>
+                <a href="#">
+                    <img src="./assets/images/ig.webp" alt="instagram" width="30" height="30" />
+                </a>
+            </div>
 
+            <section class="location">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3086.4282779093955!2d26.167948676467415!3d39.32388122142662!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba91f375e70707%3A0x5eb5b685ae8251e3!2spetrADi!5e0!3m2!1sen!2sgr!4v1744552219659!5m2!1sen!2sgr" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </section>
+        </main>
 
-	<section id="seedo" class="amenities">
-		<div class="container text-center">
-			<h2 class="amenities__title fade-on-scroll">Things to do</h2>
-			<div class="amenities__cards"><div class="amenities__card text-center transition-on-scroll">
-					<p>Beaches</p>
-					<span>Get your vitamin D from the sandy beach of Petra, or Anaxos, both walking distance.</span>
-				</div><div class="amenities__card text-center transition-on-scroll">
-					<p>Cultural Sites</p>
-					<span>Take the 114 steps to visit the historical church of Petra for a panoramic view of the area.</span>
-				</div><div class="amenities__card text-center transition-on-scroll">
-					<p>Castle of Molyvos</p>
-					<span>Just a 10 minutes drive to the adjacent village of Molyvos. Visit the castle at night for a memorable time.</span>
-				</div><div class="amenities__card text-center transition-on-scroll">
-					<p>Hiking</p>
-					<span>The area around Petra is full of valleys and maintains, ideal for the nature lovers.</span>
-				</div><div class="amenities__card text-center transition-on-scroll">
-					<p>Bird Watching</p>
-					<span>After a 20 minute drive you can connect with other bird watchers at Kalloni and enjoy the Flamingos.</span>
-				</div><div class="amenities__card text-center transition-on-scroll">
-					<p>Petra Village</p>
-					<span>Petra has atmospheric streets you can browse little shops and tour a small family owned Ouzo distillery.</span>
-				</div></div>
-		</div>
-	</section>
+        <script src="./assets/js/jquery-3.6.0.min.js"></script>
+        <script src="./assets/js/slick.min.js"></script>
+        <script src="./assets/js/parallax.min.js"></script>
+        <script src="./assets/js/scripts.js"></script>
 
-	<!-- <h2 style="text-align: center; font-family: 'Rubik', sans-serif;">Find out more ...</h2><br><br><br><br>
-	<div class="button-content">
-			
-			<div class="item button-parrot">
-					<button onclick="window.open('./more.html', '_blank')">...Click here...
-							<div class="parrot"></div>
-							<div class="parrot"></div>
-							<div class="parrot"></div>
-							<div class="parrot"></div>
-							<div class="parrot"></div>
-							<div class="parrot"></div>
-					</button>
-			</div>
-	</div>
-
-	<br><br><br><br> -->
-	<br><br>
-
-	<section class="reviews">
-		<div class="container">
-			<div
-				class="parallax-window"
-				data-parallax="scroll"
-				data-image-src="./assets/images/review.webp"
-			>
-				<div class="reviews__card fade-on-scroll">
-					<h2 class="reviews__title">
-						<strong>guest reviews</strong>
-					</h2>
-					<img src="./assets/images/quote.webp" alt="quote" width="21" height="25" />
-					<div class="reviews__texts"><p class="reviews__text text-center">
-							<strong>We have a review score of above 9 at booking. And we are striving to do even better.</strong>
-						</p><p class="reviews__text text-center">
-							<strong>“Nice and cosy place, very peaceful”</strong>
-						</p><p class="reviews__text text-center">
-							<strong>“Ideal for couples who want to disengage from the city life.”</strong>
-						</p></div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<section id="contact" class="contacts">
-		<div class="container">
-			<h2 class="contacts__title text-center">CONTACT US</h2>
-			<div class="contacts__details transition-on-scroll">
-				<a href="mailto:petradi.lesvos@gmail.com">petradi.lesvos@gmail.com</a>
-				<span class="slash">/</span>
-				<span>
-					Phone: 
-					<a href="tel:+306979066541" title="Call us">
-						+30 697 90 66 541</a>
-					<a href="https://wa.me/306979066541" target="_blank" title="Contact via WhatsApp">
-						<i class="fab fa-whatsapp" style="color: #25D366; margin-left: 5px;"></i>
-					</a>
-					<a href="viber://chat?number=306979066541" target="_blank" title="Contact via Viber">
-						<i class="fab fa-viber" style="color: #665CAC; margin-left: 5px;"></i>
-					</a>
-				</span>
-				<span class="slash">/</span>
-				<span>Find us on 
-					<a href="https://www.booking.com/hotel/gr/petrarooms.en-gb.html" target="_blank">
-						<span style="color: #002060; font-family: Arial, sans-serif; font-weight: 800;">Booking</span>
-					</a>
-				</span>
-			</div>
-			<br>
-		</div>
-	</section>
-
-
-
-		<div class="container social-mobile">
-			<a href="https://www.facebook.com/profile.php?id=61561197882948" target="_blank">
-				<img src="./assets/images/fb.webp" alt="facebook" width="30" height="30" />
-			</a>
-			<a href="#">
-				<img src="./assets/images/ig.webp" alt="instagram" width="30" height="30" />
-			</a>
-		</div>
-	</section>
-
-	<section class="location">
-		<iframe
-			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3086.4282779093946!2d26.16794867646742!3d39.32388122142663!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba91f375e70707%3A0x5eb5b685ae8251e3!2spetrADi!5e0!3m2!1sen!2sgr!4v1719917555515!5m2!1sen!2sgr"
-			width="600"
-			height="450"
-			style="border: 0"
-			allowfullscreen=""
-			loading="lazy"
-			referrerpolicy="no-referrer-when-downgrade"
-		></iframe>
-	</section>
-</main>
-
-		<script src="./assets/js/jquery-3.6.0.min.js"></script>
-		<script src="./assets/js/slick.min.js"></script>
-		<script src="./assets/js/parallax.min.js"></script>
-		<script src="./assets/js/scripts.js"></script>
-		<footer><footer class="footer">
-	<div class="container text-center">
-		<p class="footer__content">© 2024 by petrADi</p>
-	</div>
-</footer>
-</footer>
-	</body>
+        <footer>
+            <footer class="footer">
+                <div class="container text-center">
+                    <p class="footer__content">© 2024 by petrADi</p>
+                </div>
+            </footer>
+        </footer>
+    </body>
 </html>

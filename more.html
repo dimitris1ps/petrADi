@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>More - petrADI</title>
+
+  <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon"/>
+
+  <link rel="stylesheet" href="./assets/css/button.css" />
+  <link rel="stylesheet" href="./assets/css/styles.css" />
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1T20957YE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-F1T20957YE');
+  </script>
+
+  <style>
+    /* Add a smooth transition for hover effects */
+    .info-card {
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .info-card:hover {
+      transform: translateY(-5px); /* Lift card slightly on hover */
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-100 font-sans">
+
+  <header class="bg-gray-800 shadow-md">
+    <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <ul class="flex space-x-6">
+        <li>
+          <a href="./index.html" class="text-white hover:text-blue-300 transition-colors duration-200">Home</a>
+        </li>
+        </ul>
+    </nav>
+  </header>
+
+  <main class="flex-1 container mx-auto px-16 py-32">
+    <h1 class="text-4xl font-bold text-center mb-32 text-gray-800">
+      More Information &amp; Services
+    </h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-24">
+
+      <a href="./LocalLaundryServices.html" class="block hover:no-underline group">
+        <div class="info-card bg-white rounded-xl shadow-lg p-12 h-full border border-gray-200 group-hover:shadow-xl group-hover:border-blue-300">
+          <h2 class="text-xl font-semibold mb-6 text-blue-600 flex items-center">
+             <i class="fas fa-broom mr-3 text-blue-500"></i>
+             Local Laundry Services
+          </h2>
+          <p class="text-gray-600">
+            At petrADi, we do not offer laundry services. However, there is a self-service laundry facility nearby where you can wash your clothes. Click here for more information.
+          </p>
+        </div>
+      </a>
+
+      <div class="info-card bg-white rounded-xl shadow-lg p-12 h-full border border-gray-200 hover:shadow-xl hover:border-blue-300">
+        <h2 class="text-xl font-semibold mb-6 text-gray-700 flex items-center">
+          <i class="fas fa-bus-alt mr-3 text-gray-500"></i>
+          Local Transport
+        </h2>
+        <p class="text-gray-600">
+        Working Progress.
+        </p>
+      </div>
+
+      <div class="info-card bg-white rounded-xl shadow-lg p-12 h-full border border-gray-200 hover:shadow-xl hover:border-blue-300">
+        <h2 class="text-xl font-semibold mb-6 text-gray-700 flex items-center">
+          <i class="fas fa-calendar-alt mr-3 text-gray-500"></i>
+          Nearby Beaches
+        </h2>
+        <p class="text-gray-600">
+        Working Progress.
+        </p>
+      </div>
+
+      <div class="info-card bg-white rounded-xl shadow-lg p-12 h-full border border-gray-200 hover:shadow-xl hover:border-blue-300">
+        <h2 class="text-xl font-semibold mb-6 text-gray-700 flex items-center">
+          <i class="fas fa-ship mr-3 text-gray-500"></i>
+          Recommended Taverns
+        </h2>
+        <p class="text-gray-600">
+        Working Progress.
+        </p>
+      </div>
+
+      <div class="info-card bg-white rounded-xl shadow-lg p-12 h-full border border-gray-200 hover:shadow-xl hover:border-blue-300">
+        <h2 class="text-xl font-semibold mb-6 text-gray-700 flex items-center">
+          <i class="fas fa-concierge-bell mr-3 text-gray-500"></i>
+          Hotel Facilities
+        </h2>
+        <p class="text-gray-600">
+          What petrADi your stay at pertADi has to offer and what it does not offer (Working progress).
+        </p>
+      </div>
+
+      <div class="info-card bg-white rounded-xl shadow-lg p-12 h-full border border-gray-200 hover:shadow-xl hover:border-blue-300">
+        <h2 class="text-xl font-semibold mb-6 text-gray-700 flex items-center">
+           <i class="fas fa-comments mr-3 text-gray-500"></i>
+           Guest Support & Communication
+        </h2>
+        <p class="text-gray-600">
+            How to Contact Us (Before/During Stay) – WhatsApp, email, phone, live chat
+            FAQ Page – All the common questions in one place
+            Luggage Storage Options – Early arrivals or late departures
+            (Working progress)
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-gray-800 text-gray-300 py-6 mt-32">
+    <div class="container mx-auto text-center">
+      <p>© 2024 by petrADi</p>
+      </div>
+  </footer>
+
+  <script src="./assets/js/jquery-3.6.0.min.js"></script>
+  <script src="./assets/js/scripts.js"></script>
+</body>
+</html>
