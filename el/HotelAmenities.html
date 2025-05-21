@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="el"> <!-- Changed lang to Greek -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Οι Παροχές Μας - [Το Όνομα του Ξενοδοχείου Σας]</title> <!-- *** UPDATE HOTEL NAME *** --> <!-- Translated -->
+
+    <!-- Favicon Link -->
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon"/> <!-- Adjusted path -->
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome CSS (Using the newer version) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1T20957YE"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-F1T20957YE');
+    </script>
+
+    <!-- Existing Styles (button.css, slick.css, styles.css) -->
+    <link rel="stylesheet" href="../assets/css/button.css" /> <!-- Adjusted path -->
+    <link rel="stylesheet" href="../assets/css/slick.css" /> <!-- Adjusted path -->
+    <link rel="stylesheet" href="../assets/css/slick-theme.css" /> <!-- Adjusted path -->
+    <link rel="stylesheet" href="../assets/css/styles.css" /> <!-- Adjusted path -->
+
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basic Reset & Body Styling */
+        * {
+            box-sizing: border-box;
+            /* Removed margin/padding reset here as Tailwind includes resets */
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Use Inter font like source */
+            line-height: 1.6;
+            color: #333;
+            /* background-color: #f4f4f4; */ /* Removed, Tailwind bg-gray-100 added below */
+        }
+
+        /* Dark Theme Color Variables (Can still be used for non-Tailwind parts) */
+        :root {
+            --primary-color: #2F4F4F; /* Dark Slate Gray */
+            --secondary-color: #f4f4f4;
+            --background-light: #ffffff;
+            --text-dark: #333;
+            --text-light: #f9f9f9;
+            --text-muted: #555;
+            --border-color: #ddd;
+        }
+
+        /* Custom CSS from source Nav Bar */
+        /* Make nav links white like in the reference style block */
+        nav .nav-links li a {
+            color: white;
+        }
+
+        .nav-list li:not(:last-child) {
+            margin-right: 3rem; /* Adjust as needed - This rule might be from an older nav style */
+        }
+
+
+        /* Container for Amenities Content (Adjust if needed with Tailwind) */
+        .amenities-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Section Styling (Keep for amenity sections) */
+        .amenity-section {
+            background-color: var(--background-light); /* White background */
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .amenity-section h2 {
+            font-size: 1.8em;
+            color: var(--primary-color); /* Section title color */
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            font-weight: 700; /* Make headers bolder like Inter-bold */
+        }
+
+        /* Flexbox for multi-item sections */
+        .amenity-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px; /* Spacing between items */
+            justify-content: center;
+        }
+
+        .amenity-item {
+            flex: 1 1 280px; /* Flex properties */
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            cursor: default;
+        }
+
+        /* HOVER EFFECT */
+        .amenity-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Styling the Font Awesome Icon - Using font-size */
+        .amenity-item i.fas, .amenity-item i.fa {
+            font-size: 3rem; /* Large size */
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: block; /* Makes margin auto work */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1; /* Ensure icon vertical alignment */
+        }
+
+        .amenity-item h3 {
+            font-size: 1.2em;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            margin-top: 15px; /* Adjusted to give space below larger icon */
+            font-weight: 700;
+        }
+
+        .amenity-item p {
+            font-size: 0.95em;
+            color: var(--text-muted);
+        }
+
+        /* Styling for single prominent items */
+        .amenity-focus-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Styling the Font Awesome Icon - Using font-size */
+        .amenity-focus-item i.fas, .amenity-focus-item i.fa {
+            font-size: 3rem; /* Large size */
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: block; /* Makes margin auto work */
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1; /* Ensure icon vertical alignment */
+        }
+
+        .amenity-focus-item h3 {
+            font-size: 1.4em;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+             margin-top: 15px; /* Added margin-top for space */
+            font-weight: 700;
+        }
+
+        .amenity-focus-item p {
+            font-size: 1em;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Wifi caveat styling */
+        .wifi-caveat {
+            font-size: 0.85em;
+            color: #777;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Footer Styling (Using custom CSS for now) */
+        .site-footer { /* Added class to footer */
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #777;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--background-light); /* Match section background */
+        }
+
+        /* Responsive Adjustments (Keep these for amenity content) */
+        @media (max-width: 768px) {
+            .amenity-section h2 { font-size: 1.6em; }
+            .amenity-item { flex-basis: calc(50% - 25px); }
+            /* Adjusted responsive icon sizes */
+            .amenity-item i.fas, .amenity-item i.fa { font-size: 4rem; }
+            .amenity-focus-item i.fas, .amenity-focus-item i.fa { font-size: 4.5rem; }
+        }
+
+        @media (max-width: 580px) {
+            .amenity-grid { flex-direction: column; gap: 15px; }
+            .amenity-item { flex-basis: 100%; }
+             /* Adjusted responsive icon sizes */
+            .amenity-item i.fas, .amenity-item i.fa { font-size: 3.5rem; }
+            .amenity-focus-item i.fas, .amenity-focus-item i.fa { font-size: 4rem; }
+             /* Reduce nav item spacing on smaller screens */
+            .nav-list li:not(:last-child) {
+                margin-right: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .amenities-container { padding: 10px; }
+            .amenity-section { padding: 20px; }
+            .amenity-focus-item h3 { font-size: 1.2em; }
+            .amenity-focus-item p { font-size: 0.95em; }
+             /* Adjusted responsive icon sizes */
+            .amenity-item i.fas, .amenity-item i.fa { font-size: 3rem; }
+            .amenity-focus-item i.fas, .amenity-focus-item i.fa { font-size: 3.5rem; }
+             /* Further reduce nav item spacing */
+            .nav-list li:not(:last-child) {
+                margin-right: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100"> <!-- Added light gray background -->
+
+<!-- Header - Fixed Nav Bar -->
+<header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+    <nav>
+        <ul class="nav-links">
+            <li>
+                <a href="./">Αρχική</a> <!-- Translated & Adjusted path -->
+            </li>
+            <li>
+                <a href="./more.html">Περισσότερα</a> <!-- Translated & Adjusted path -->
+            </li>
+        </ul>
+        <!-- Language Dropdown -->
+        <div id="customDropdown" class="custom-dropdown">
+            <div id="selectedLang" class="selected-lang">
+                <img
+                    src="../assets/images/el_flag.png" 
+                    alt="Ελληνικά" 
+                />
+            </div>
+            <!-- options-container added to wrap language options -->
+            <div class="options-container">
+
+                <a class="dropdown-option" href="../HotelAmenities.html"> <!-- Link to English version, adjusted path -->
+                    <img
+                        src="../assets/images/en_flag.png" 
+                        alt="Αγγλικά" 
+                    />
+                </a>
+
+                <a class="dropdown-option" href="../tr/HotelAmenities.html"> <!-- Adjusted path -->
+                    <img
+                        src="../assets/images/tr_flag.png" 
+                        alt="Türkçe"
+                    />
+                </a>
+
+                <a class="dropdown-option" href="../de/HotelAmenities.html"> <!-- Adjusted path -->
+                    <img
+                        src="../assets/images/de_flag.png" 
+                        alt="Deutsch"
+                    />
+                </a>
+                
+                <a class="dropdown-option" href="../nl/HotelAmenities.html"> <!-- Adjusted path -->
+                    <img
+                        src="../assets/images/nl_flag.png" 
+                        alt="Nederlands"
+                    />
+                </a>
+
+
+                <a class="dropdown-option" href="../fr/HotelAmenities.html">
+                    <img
+                        src="../assets/images/fr_flag2.png"
+                        alt="Français"
+                    />
+                </a>
+
+                <a class="dropdown-option" href="../es/HotelAmenities.html">
+                    <img
+                        src="../assets/images/es_flag.png"
+                        alt="Español"
+                    />
+                </a>
+
+            </div>
+            <!-- options-container closing tag -->
+        </div>
+        <!-- customDropdown closing tag -->
+
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+</header>
+
+<!-- Main Amenities Content -->
+<main class="amenities-container mt-8"> <!-- Added margin-top to space content below sticky nav -->
+
+            <!-- Section: Practical Perks -->
+            <section class="amenity-section">
+                <h2>Πρακτικά Προνόμια</h2> <!-- Translated -->
+                <div class="amenity-grid">
+                    <div class="amenity-item">
+                        <i class="fas fa-car"></i>
+                        <h3>Δωρεάν Χώρος Στάθμευσης</h3> <!-- Translated -->
+                        <p>Επωφεληθείτε από τον δωρεάν χώρο στάθμευσης που διατίθεται στις εγκαταστάσεις μας κατά τη διάρκεια της διαμονής σας.</p> <!-- Translated -->
+                    </div>
+                    <div class="amenity-item">
+                        <i class="fas fa-suitcase-rolling"></i>
+                        <h3>Αποθήκευση Αποσκευών</h3> <!-- Translated -->
+                        <p>Χρειάζεστε να αποθηκεύσετε τις αποσκευές σας πριν το check-in ή μετά το check-out; Ενημερώστε μας εκ των προτέρων και θα το κανονίσουμε για εσάς.</p> <!-- Translated -->
+                    </div>
+                </div>
+            </section>
+
+        <!-- Section: Stay Connected & Entertained -->
+        <section class="amenity-section">
+            <h2>Μείνετε Συνδεδεμένοι & Ψυχαγωγηθείτε</h2> <!-- Translated -->
+            <div class="amenity-grid">
+                <div class="amenity-item">
+                    <i class="fas fa-wifi"></i>
+                    <h3>WiFi: Μείνετε Συνδεδεμένοι</h3> <!-- Translated -->
+                    <p>Απολαύστε δωρεάν Wi-Fi κατά τη διάρκεια της διαμονής σας.</p> <!-- Translated -->
+                    <br>
+
+                    <div style="background-color: #edecf8d2; /* Light grey background */
+                    padding: 15px;             /* Space inside the card */
+                    border: 1px solid #cccccc; /* Subtle border */
+                    border-radius: 30px;        /* Slightly rounded corners */
+                    display: inline-block;
+                    line-height: 1.5;          /* Increase spacing between lines */
+                    ">
+        <small><b>petradi</b> | <b> !Welcome1</b></small><br>
+        <small><b>petradi2.4</b> | <b>  Welcome24</b></small>
+        </div>
+
+                    <p class="wifi-caveat"><br>Προσοχή: <br>Οι ταχύτητες του διαδικτύου δεν είναι ιδανικές στην περιοχή. Εάν αντιμετωπίσετε προβλήματα σύνδεσης, παρακαλούμε στείλτε μας μήνυμα – θα το εξετάσουμε αμέσως!</p> <!-- Translated -->
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-tv"></i>
+                    <h3>TV: Κέντρο Ψυχαγωγίας</h3> <!-- Translated -->
+                    <p>Χαλαρώστε με το αγαπημένο σας βίντεο στο Youtube ή ταινία στην Smart TV Samsung 42" που διατίθεται στο δωμάτιό σας.</p> <!-- Translated -->
+                    <p class="wifi-caveat"><br>Προσοχή: <br>Εάν η τηλεόραση δεν είναι συνδεδεμένη στο διαδίκτυο, ενημερώστε μας.</p> <!-- Translated -->
+                </div>
+                <div class="amenity-item">
+                    <i class="fa fa-film"></i> <!-- Note: fa-film is often used -->
+                    <h3>Netflix: Δωρεάν Κινηματογραφικές Βραδιές</h3> <!-- Translated -->
+                    <p>Χαλαρώστε στο κρεβάτι και παρακολουθήστε τις αγαπημένες σας ταινίες με τη δωρεάν πρόσβαση στο Netflix που παρέχουμε.</p> <!-- Translated -->
+                    <p class="wifi-caveat"><br>Προσοχή: <br>Παρακαλούμε να γνωρίζετε ότι μόνο τέσσερα από τα πέντε δωμάτια μπορούν να παρακολουθούν Netflix ταυτόχρονα. (Περιορισμός συνδρομής).</p> <!-- Translated -->
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Perfect Climate -->
+        <section class="amenity-section">
+        <div class="amenity-focus-item">
+                <i class="fas fa-wind"></i>
+                <h3>Κλιματισμός: Ιδανική Θερμοκρασία, Αθόρυβα Παρεχόμενη</h3> <!-- Translated -->
+                <p>Είτε πρόκειται για ένα ζεστό καλοκαιρινό απόγευμα είτε για μια κρύα νύχτα, ο κλιματισμός τελευταίας γενιάς παρέχει ισχυρή ψύξη ή θέρμανση με ελάχιστο θόρυβο, εξασφαλίζοντας ότι η άνεσή σας παραμένει ανενόχλητη. Κάνοντας τις ζεστές σας νύχτες... αεράκι!</p> <!-- Translated -->
+            </div>
+        </section>
+
+        <!-- Section: In-Room Refreshments & Conveniences -->
+        <section class="amenity-section">
+            <h2>Δροσιστικά & Ανέσεις στο Δωμάτιο</h2> <!-- Translated -->
+            <div class="amenity-grid">
+                <div class="amenity-item">
+                    <i class="fas fa-coffee"></i>
+                    <h3>Καφετιέρα: Πρωινό Ξεκίνημα</h3> <!-- Translated -->
+                    <p>Η προσωπική σας καφετιέρα, εφοδιασμένη με κάψουλες, είναι έτοιμη όποτε χρειάζεστε μια ώθηση. Φρεσκοφτιαγμένος καφές για άμεση ενέργεια!</p> <!-- Translated -->
+                    <p class="wifi-caveat">Προσοχή: Δεν παρέχεται ζάχαρη.</p> <!-- Translated -->
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-mug-hot"></i>
+                    <h3>Έτοιμο για την Ώρα του Τσαγιού</h3> <!-- Translated -->
+                    <p>Ένας ηλεκτρικός βραστήρας για το τσάι σας ή άλλες ανάγκες ζεστού νερού.</p> <!-- Translated -->
+                    <p class="wifi-caveat">Προσοχή: Δεν παρέχονται φακελάκια τσαγιού.</p> <!-- Translated -->
+                </div>
+                 <!-- *** NEW REFRIGERATOR CARD ADDED HERE *** -->
+                <div class="amenity-item">
+                    <i class="fa fa-columns"></i>
+                    <h3>Ψυγείο: Διατηρήστε τα Δροσερά</h3> <!-- Translated -->
+                    <p>Ένα μίνι ψυγείο διατίθεται στο δωμάτιό σας για να διατηρείτε τα ποτά και τα σνακ σας δροσερά.</p> <!-- Translated -->
+                    <p class="wifi-caveat">Ιδανικό για ποτά και μικροαντικείμενα.</p> <!-- Translated -->
+                </div>
+                <!-- *** END OF NEW CARD *** -->
+                <div class="amenity-item">
+                    <i class="fas fa-tint"></i> <!-- Note: fa-tint is often used for water/droplet -->
+                    <h3>Ενυδάτωση Καλωσορίσματος</h3> <!-- Translated -->
+                    <p>Βρείτε δύο μπουκάλια παγωμένο νερό να σας περιμένουν κατά την άφιξή σας. Δροσιστικό!</p> <!-- Translated -->
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-soap"></i>
+                    <h3>Βασικά Είδη Περιποίησης</h3> <!-- Translated -->
+                    <p>Σας παρέχουμε σαπούνι, αφρόλουτρο, σαμπουάν, φρέσκες πετσέτες και άλλα απαραίτητα είδη.</p> <!-- Translated -->
+                </div>
+                <div class="amenity-item">
+                    <i class="fas fa-fan"></i> <!-- Note: fa-fan often means ventilation fan, but okay for hairdryer visual -->
+                    <h3>Σεσουάρ Μαλλιών</h3> <!-- Translated -->
+                    <p>Ένα σεσουάρ μαλλιών παρέχεται στο δωμάτιό σας για την εξυπηρέτησή σας.</p> <!-- Translated -->
+                </div>
+                <!-- Optional Makeup Station -->
+            </div>
+        </section>
+
+        <!-- Section: Tranquility -->
+        <section class="amenity-section">
+            <div class="amenity-focus-item">
+                <i class="fas fa-leaf"></i>
+                <h3>Η Απόδρασή σας στον Κήπο</h3> <!-- Translated -->
+                <p>Απολαύστε ήρεμες στιγμές με θέα την κοντινή φύση.</p> <!-- Translated -->
+            </div>
+            <!-- Optional: Add a nice garden photo here -->
+        </section>
+
+    </main>
+
+    <!-- Re-using the footer from the laundry page -->
+<footer class="bg-gray-800 text-gray-400 py-8 mt-16">
+    <div class="container mx-auto text-center px-6">
+    <p class="text-sm">© 2024 petrADi. Με επιφύλαξη παντός δικαιώματος.</p> <!-- Translated -->
+    <p class="text-xs mt-2">Σχεδιασμένο με φροντίδα.</p> <!-- Translated -->
+    </div>
+</footer>
+
+<script src="../assets/js/jquery-3.6.0.min.js"></script> <!-- Adjusted path -->
+<script src="../assets/js/slick.min.js"></script> <!-- Adjusted path -->
+<script src="../assets/js/parallax.min.js"></script> <!-- Adjusted path -->
+<script src="../assets/js/scripts.js"></script> <!-- Adjusted path -->
+
+</body>
+</html>

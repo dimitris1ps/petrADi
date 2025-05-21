@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LaundryServices - petrADI</title>
+  <title>Services de Blanchisserie - petrADI</title>
 
-  <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon"/>
+  <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon"/>
 
   <!-- Tailwind CSS CDN (Required for the new navbar bg color) -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -29,10 +29,10 @@
   </script>
 
   <!-- Existing Styles (styles.css, button.css, slick.css, slick-theme.css) -->
-   <link rel="stylesheet" href="./assets/css/button.css" />
-   <link rel="stylesheet" href="./assets/css/slick.css" />
-   <link rel="stylesheet" href="./assets/css/slick-theme.css" />
-   <link rel="stylesheet" href="./assets/css/styles.css" />
+   <link rel="stylesheet" href="../assets/css/button.css" />
+   <link rel="stylesheet" href="../assets/css/slick.css" />
+   <link rel="stylesheet" href="../assets/css/slick-theme.css" />
+   <link rel="stylesheet" href="../assets/css/styles.css" />
 
 
   <style>
@@ -80,61 +80,69 @@
     <nav>
         <ul class="nav-links">
             <li>
-                <a href="./">Home</a>
+                <a href="./">Accueil</a>
             </li>
-             <li>
-                <a href="./more.html">More</a>
+            <li>
+                <a href="./more.html">Plus</a>
             </li>
         </ul>
         <!-- Language Dropdown -->
         <div id="customDropdown" class="custom-dropdown">
             <div id="selectedLang" class="selected-lang">
                 <img
-                    src="./assets/images/en_flag.png"
-                    alt="English"
+                    src="../assets/images/fr_flag2.png"
+                    alt="Français"
                 />
             </div>
             <!-- options-container added to wrap language options -->
             <div class="options-container">
-                <a class="dropdown-option" href="./el/LocalLaundryServices.html"> <!-- Link to current page in Greek -->
+
+                <a class="dropdown-option" href="../el/LocalLaundryServices.html">
                     <img
-                        src="./assets/images/el_flag.png"
-                        alt="Ελληνικά"
+                        src="../assets/images/el_flag.png"
+                        alt="Grec"
+                    />
+                </a>
+                
+                <a class="dropdown-option" href="../LocalLaundryServices.html"> <!-- Link to English version of this page -->
+                    <img
+                        src="../assets/images/en_flag.png"
+                        alt="Anglais"
                     />
                 </a>
 
-              <a class="dropdown-option" href="./tr/LocalLaundryServices.html"> <!-- Link to current page in Turkish -->
+              <a class="dropdown-option" href="../tr/LocalLaundryServices.html"> <!-- Link to current page in Turkish -->
                   <img
-                      src="./assets/images/tr_flag.png"
-                      alt="Türkçe"
+                      src="../assets/images/tr_flag.png"
+                      alt="Turc"
                   />
               </a>
-              
-                <a class="dropdown-option" href="./de/LocalLaundryServices.html"> <!-- Link to current page in German -->
+
+                <a class="dropdown-option" href="../de/LocalLaundryServices.html"> <!-- Link to current page in German -->
                     <img
-                        src="./assets/images/de_flag.png"
-                        alt="Deutsch"
+                        src="../assets/images/de_flag.png"
+                        alt="Allemand"
                     />
                 </a>
 
-                <a class="dropdown-option" href="./nl/LocalLaundryServices.html"> <!-- Link to current page in Dutch -->
+                <a class="dropdown-option" href="../nl/LocalLaundryServices.html"> <!-- Link to current page in Dutch -->
                   <img
-                      src="./assets/images/nl_flag.png"
-                      alt="Nederlands"
+                      src="../assets/images/nl_flag.png"
+                      alt="Néerlandais"
                   />
                 </a>
 
-                      <a class="dropdown-option" href="./fr/LocalLaundryServices.html">
+                      <!-- <a class="dropdown-option" href="../fr/LocalLaundryServices.html">
                             <img
-                                src="./assets/images/fr_flag2.png"
+                                src="../assets/images/fr_flag2.png"
                                 alt="Français"
                             />
-                        </a>
+                        </a> -->
 
-                        <a class="dropdown-option" href="./es/LocalLaundryServices.html">
+                        <a class="dropdown-option" href="../es/LocalLaundryServices.html">
                             <img
-                                src="./assets/images/es_flag.png"
-                                alt="Español"
+                                src="../assets/images/es_flag.png"
+                                alt="Espagnol"
                             />
                         </a>
 
@@ -158,72 +166,72 @@
   <main class="container mx-auto px-6 py-12 flex-grow mt-16">
 
     <h1 class="text-4xl md:text-5xl font-bold text-center mb-8 text-gray-900">
-      Need Laundry Done?
+      Besoin de Laver du Linge ?
     </h1>
 
     <p class="text-lg text-center mb-12 max-w-3xl mx-auto text-gray-600">
-      While <span class="font-semibold text-blue-600">petrADi</span> doesn't offer laundry services directly, there's a convenient self-service laundromat just around the corner! Here’s what you need to know:
+      Bien que <span class="font-semibold text-blue-600">petrADi</span> n'offre pas de services de blanchisserie directs, il y a une laverie automatique (laundromat) pratique juste au coin de la rue ! Voici ce que vous devez savoir :
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
       <div class="info-card bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center">
         <i class="fas fa-coins fa-3x text-yellow-500 mb-4"></i>
-        <h3 class="text-xl font-semibold mb-2 text-gray-800">Pricing</h3>
-        <p class="text-gray-600">€10 for up to 12kg <br>(€8 to wash, €2 to dry).</p>
+        <h3 class="text-xl font-semibold mb-2 text-gray-800">Tarification</h3>
+        <p class="text-gray-600">10 € jusqu'à 12 kg <br>(8 € pour le lavage, 2 € pour le séchage).</p>
       </div>
 
       <div class="info-card bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center">
         <i class="fas fa-map-marker-alt fa-3x text-red-500 mb-4"></i>
-        <h3 class="text-xl font-semibold mb-2 text-gray-800">Location</h3>
-        <p class="text-gray-600">Only a 1-min drive or a 8-min walk away.</p>
+        <h3 class="text-xl font-semibold mb-2 text-gray-800">Emplacement</h3>
+        <p class="text-gray-600">À seulement 1 minute en voiture ou 8 minutes à pied.</p>
       </div>
 
       <div class="info-card bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center">
         <i class="fas fa-clock fa-3x text-blue-500 mb-4"></i>
-        <h3 class="text-xl font-semibold mb-2 text-gray-800">Convenient Hours</h3>
-        <p class="text-gray-600">Open daily from 9 AM to 12 AM (midnight).</p>
+        <h3 class="text-xl font-semibold mb-2 text-gray-800">Horaires Pratiques</h3>
+        <p class="text-gray-600">Ouvert tous les jours de 9h00 à minuit.</p>
       </div>
 
       <div class="info-card bg-white p-6 rounded-lg shadow-md border border-gray-200 text-center">
         <i class="fas fa-soap fa-3x text-green-500 mb-4"></i>
-        <h3 class="text-xl font-semibold mb-2 text-gray-800">Supplies Included</h3>
-        <p class="text-gray-600">No need to bring detergent; it's provided!</p>
+        <h3 class="text-xl font-semibold mb-2 text-gray-800">Fournitures Incluses</h3>
+        <p class="text-gray-600">Pas besoin d'apporter de détergent ; il est fourni !</p>
       </div>
     </div>
 
     <section class="mb-16">
-        <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Info from the laundromat</h2>
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Informations de la Laverie Automatique</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <img src="./assets/images/Clean_p1.jpg"
-               alt="View of the laundry machines inside the laundromat"
+          <img src="../assets/images/Clean_p1.jpg"
+               alt="Vue des machines à laver à l'intérieur de la laverie"
                class="gallery-image w-full object-cover rounded-lg shadow-sm border border-gray-200"
                style="height: 512px;"
-               onerror="this.onerror=null; this.src='./assets/images/Clean_p1.jpg';" />
-          <img src="./assets/images/Clean_p2.jpg"
-               alt="Close-up of laundry machine controls"
+               onerror="this.onerror=null; this.src='../assets/images/Clean_p1.jpg';" />
+          <img src="../assets/images/Clean_p2.jpg"
+               alt="Gros plan sur les commandes de la machine à laver"
                class="gallery-image w-full object-cover rounded-lg shadow-sm border border-gray-200"
                style="height: 512px;"
-               onerror="this.onerror=null; this.src='./assets/images/Clean_p2.jpg';" />
-          <img src="./assets/images/Clean_p3.jpg"
-               alt="Waiting area inside the laundromat"
+               onerror="this.onerror=null; this.src='../assets/images/Clean_p2.jpg';" />
+          <img src="../assets/images/Clean_p3.jpg"
+               alt="Salle d'attente à l'intérieur de la laverie"
                class="gallery-image w-full object-cover rounded-lg shadow-sm border border-gray-200"
                style="height: 512px;"
-               onerror="this.onerror=null; this.src='./assets/images/Clean_p3.jpg';" />
-          <img src="./assets/images/Clean_p4.jpg"
-               alt="Exterior view of the local laundromat"
+               onerror="this.onerror=null; this.src='../assets/images/Clean_p3.jpg';" />
+          <img src="../assets/images/Clean_p4.jpg"
+               alt="Vue extérieure de la laverie locale"
                class="gallery-image w-full object-cover rounded-lg shadow-sm border border-gray-200"
                style="height: 512px;"
-               onerror="this.onerror=null; this.src='./assets/images/Clean_p4.jpg';" />
+               onerror="this.onerror=null; this.src='../assets/images/Clean_p4.jpg';" />
         </div>
       </section>
 
 
     <section>
-        <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Its next to the Gallery</h2>
+        <h2 class="text-3xl font-bold text-center mb-8 text-gray-900">Situé à Côté de la Galerie</h2>
         <div class="shadow-lg rounded-lg overflow-hidden border border-gray-200">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192.8930011154927!2d26.17450628873171!3d39.327059579507235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba91f33b88d5ab%3A0x8405b8b7ee987a6!2sFirst%20Kiss%20Gallery%20Paul%20Henry!5e0!3m2!1sen!2sgr!4v1744551187504!5m2!1sen!2sgr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192.8930011154927!2d26.17450628873171!3d39.327059579507235!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba91f33b88d5ab%3A0x8405b8b7ee987a6!2sFirst%20Kiss%20Gallery%20Paul%20Henry!5e0!3m2!1sfr!2sfr!4v1744551187504!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <p class="text-center mt-4 text-gray-600">Map showing the location of the nearby laundry service.</p>
+        <p class="text-center mt-4 text-gray-600">Carte indiquant l'emplacement du service de blanchisserie à proximité.</p>
     </section>
 
   </main>
@@ -231,16 +239,16 @@
   <!-- Footer (Using the updated footer structure) -->
   <footer class="bg-gray-800 text-gray-400 py-8 mt-16">
     <div class="container mx-auto text-center px-6">
-      <p class="text-sm">© 2024 petrADi. All rights reserved.</p>
-      <p class="text-xs mt-2">Designed with care.</p>
+      <p class="text-sm">© 2024 petrADi. Tous droits réservés.</p>
+      <p class="text-xs mt-2">Conçu avec soin.</p>
     </div>
   </footer>
 
   <!-- SCRIPTS (Added jquery, slick, parallax, and scripts.js) -->
-  <script src="./assets/js/jquery-3.6.0.min.js"></script>
-  <script src="./assets/js/slick.min.js"></script>
-  <script src="./assets/js/parallax.min.js"></script>
-  <script src="./assets/js/scripts.js"></script> <!-- This should handle the nav/burger/dropdown -->
+  <script src="../assets/js/jquery-3.6.0.min.js"></script>
+  <script src="../assets/js/slick.min.js"></script>
+  <script src="../assets/js/parallax.min.js"></script>
+  <script src="../assets/js/scripts.js"></script> <!-- This should handle the nav/burger/dropdown -->
 
   </body>
 </html>

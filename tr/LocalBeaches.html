@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Midilli Plajları</title>
+
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon"/>
+
+    <!-- Tailwind CSS CDN (Added as it's used in the reference) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Icons & Fonts -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+        rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <!-- Added button.css and kept existing styles -->
+    <link rel="stylesheet" href="../assets/css/button.css" />
+    <link rel="stylesheet" href="../assets/css/slick.css" />
+    <link rel="stylesheet" href="../assets/css/slick-theme.css" />
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+
+    <style>
+        /* 1. RESET & GLOBALS */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth; /* Optional: Smooth scrolling for anchor links */
+        }
+        body {
+            font-family: "Inter", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        img, iframe {
+            max-width: 100%;
+            display: block;
+            height: auto; /* Ensure images scale proportionally */
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* --- NAVBAR STYLES --- */
+        /* Inheriting header styles from styles.css / Tailwind bg-gray-800 */
+
+        /* Make nav links white like in the reference style block */
+        nav .nav-links li a {
+            color: white;
+        }
+
+        /* Removing old navbar specific styles */
+        /*
+        header {
+            background-color: #1f2937;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                        0 2px 4px -2px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            color: #fff;
+        }
+        .navbar-container {
+            max-width: 1280px;
+            margin-inline: auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .nav-list {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+        .nav-list a {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-list a:hover {
+            color: #93c5fd;
+        }
+        .nav-list a.active-nav {
+            color: #93c5fd;
+            border-bottom-color: #60a5fa;
+        }
+        */
+
+        /* 3. LAYOUT */
+        main {
+            max-width: 1100px;
+            width: 90%; /* Use percentage for better flexibility */
+            margin: 2rem auto;
+            flex-grow: 1;
+            /* Added margin-top to space content below sticky nav */
+             margin-top: 4rem;
+        }
+        .main-title {
+            text-align: center;
+            margin-bottom: 2.5rem; /* Increased margin */
+            color: #2c5b8f;
+            font-weight: 600; /* Slightly bolder */
+            font-size: clamp(1.6rem, 4vw, 2.25rem); /* Fluid typography */
+        }
+        /* Footer Styling (using the new footer structure) */
+         footer {
+            text-align: center;
+            padding: 1.75rem 1rem;
+            /* Background and text color will come from Tailwind classes below */
+            font-size: 0.9rem;
+            margin-top: 4rem;
+        }
+        footer a {
+            color: #a0d4ff; /* Keep link color consistent */
+            font-weight: 500;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* 4. BEACH SECTION */
+        .beach-section {
+            background: #fff;
+            border-radius: 10px; /* Slightly larger radius */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Softer shadow */
+            margin-bottom: 3rem; /* Increased spacing */
+            padding: 1.5rem; /* Base padding */
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* Base gap */
+            overflow: hidden; /* Prevent content spill */
+        }
+        .beach-title {
+            color: #1e40af; /* Darker blue */
+            font-weight: 700; /* Bolder title */
+            font-size: clamp(1.3rem, 3vw, 1.75rem);
+            margin-bottom: 0.5rem; /* Space below title */
+        }
+        .beach-desc {
+            margin: 0;
+            color: #4b5563; /* Slightly lighter text */
+            line-height: 1.7; /* Improved readability */
+        }
+
+        /* 5. CAROUSEL */
+        .image-carousel {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+            border-radius: 8px; /* Rounded corners for the carousel */
+            overflow: hidden; /* Clip images to rounded corners */
+        }
+        .carousel-images {
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-images > img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .carousel-images > img.active {
+            opacity: 1;
+            z-index: 1; /* Ensure active image is on top */
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px; /* Slightly smaller */
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5); /* Slightly darker background */
+            color: #fff;
+            font-size: 1.8rem; /* Adjust icon size */
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+            user-select: none; /* Prevent text selection */
+        }
+        .carousel-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* 6. WEATHER / WINDY / MAP */
+        .extras-wrapper {
+            display: flex;
+            flex-direction: column; /* Mobile first: stack vertically */
+            gap: 1.5rem;
+        }
+        .weather-info, /* Keep weather separate for styling */
+        .windy-container,
+        .map-container {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .weather-info {
+            background: #eef7ff;
+            border: 1px solid #cce4ff;
+            padding: 1.25rem;
+            font-size: 0.95rem;
+            flex-basis: 100%; /* Take full width on mobile */
+        }
+        .weather-info h3 {
+            margin: 0 0 0.8rem;
+            font-size: 1.1rem;
+            color: #0056b3;
+            font-weight: 600; /* Bolder heading */
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid #cce4ff; /* Separator */
+        }
+        .weather-info p, .weather-info div > h3 { /* Target h3 for organized/distance */
+            margin-bottom: 0.6rem;
+        }
+        .weather-info ul {
+            list-style: disc; /* Use standard list bullets */
+            padding-left: 1.5rem; /* Indent list items */
+            margin-top: 0.3rem;
+            margin-bottom: 1rem;
+        }
+        .weather-info li {
+             margin-bottom: 0.2rem;
+        }
+        .weather-condition {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* Add gap */
+            margin-top: 0.6rem;
+        }
+        .weather-icon {
+            width: 36px; /* Slightly larger icon */
+            height: 36px;
+            /* display: inline-block; Should be handled by JS */
+        }
+        .wind-arrow {
+            display: inline-block;
+            margin-left: 6px;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+        .weather-error {
+            color: #dc2626; /* Red color for errors */
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+        .weather-info hr { /* Style the separators */
+             border: none;
+             border-top: 1px solid #93c5fd;
+             margin: 1.2rem 0;
+        }
+
+        /* Windy & Map Container Base Styles */
+        .windy-container,
+        .map-container {
+            flex-basis: 100%; /* Full width on mobile */
+            background-color: #e5e7eb; /* Placeholder bg */
+        }
+
+        /* Specific Heights for Windy */
+        .windy-container {
+            aspect-ratio: 16 / 10; /* Original aspect ratio */
+            min-height: 300px; /* Original minimum height */
+        }
+
+        /* Specific Heights for Map (Halved) */
+        .map-container {
+            aspect-ratio: 32 / 10; /* Adjusted for half height */
+            min-height: 150px;     /* Adjusted for half height */
+        }
+
+        .windy-container iframe,
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* 7. RESPONSIVE ADJUSTMENTS */
+        /* Note: Mobile menu toggle/nav-list display handled by JS & styles.css */
+
+        /* Small devices (phones, landscape) - Adjusting only content styles */
+        @media (max-width: 767px) {
+            .carousel-button {
+                width: 36px;
+                height: 36px;
+                font-size: 1.6rem;
+            }
+            .prev-btn { left: 8px; }
+            .next-btn { right: 8px; }
+
+            .beach-section {
+                 padding: 1rem; /* Reduce padding on mobile */
+                 gap: 1rem;
+                 margin-bottom: 2rem;
+            }
+             main {
+                width: 95%; /* Slightly more width on smallest screens */
+                margin-top: 1.5rem; /* Reduced margin-top on mobile */
+            }
+            /* Base responsive heights already set outside media query */
+        }
+
+        /* Medium devices (tablets) */
+        @media (min-width: 768px) {
+            .beach-section {
+                padding: 2rem; /* Restore desktop padding */
+                gap: 2rem; /* Restore desktop gap */
+            }
+            .extras-wrapper {
+                flex-direction: row; /* Switch to horizontal layout */
+                align-items: stretch; /* Make items same height */
+                flex-wrap: wrap; /* Allow wrapping if needed */
+                gap: 1.5rem; /* Horizontal gap */
+            }
+            .weather-info {
+                flex: 1 1 280px; /* Weather takes ~280px base, grows/shrinks */
+                min-width: 250px; /* Minimum width before shrinking too much */
+            }
+            /* Shared Medium Layout */
+            .windy-container,
+            .map-container {
+                flex: 1 1 35%; /* Each takes roughly 35% base width, grows/shrinks */
+                min-width: 280px; /* Minimum width */
+            }
+            /* Specific Medium Heights */
+            .windy-container {
+                aspect-ratio: 4 / 3;  /* Original aspect ratio */
+                min-height: 350px;    /* Original min height */
+            }
+            .map-container {
+                aspect-ratio: 8 / 3;  /* Adjusted for half height */
+                min-height: 175px;    /* Adjusted for half height */
+            }
+        }
+
+        /* Large devices (desktops) */
+        @media (min-width: 1024px) {
+            /* Nav list gap might be controlled by styles.css, keep it consistent */
+            /*
+            .nav-list {
+                gap: 3rem;
+            }
+            .nav-list a {
+                 font-size: 1.125rem;
+            }
+            */
+            .extras-wrapper {
+                 gap: 2rem; /* Slightly larger gap */
+            }
+             /* Specific Large Heights */
+            .windy-container {
+                 min-height: 400px;    /* Original min height */
+                 aspect-ratio: 16 / 9; /* Original aspect ratio */
+            }
+            .map-container {
+                 min-height: 200px;     /* Adjusted for half height */
+                 aspect-ratio: 32 / 9; /* Adjusted for half height */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- NAV (Copied from corrected HotelAmenities.html) -->
+    <header class="bg-gray-800 shadow-lg sticky top-0 z-50">
+        <nav>
+            <ul class="nav-links">
+                <li>
+                    <a href="./">Ana Sayfa</a>
+                </li>
+                 <li>
+                    <a href="./more.html">Daha Fazla</a>
+                </li>
+
+            </ul>
+            <!-- Language Dropdown -->
+            <div id="customDropdown" class="custom-dropdown">
+                <div id="selectedLang" class="selected-lang">
+                    <img
+                        src="../assets/images/tr_flag.png"
+                        alt="Türkçe"
+                    />
+                </div>
+                <!-- options-container added to wrap language options -->
+                <div class="options-container">
+                     <a class="dropdown-option" href="../el/LocalBeaches.html">
+                        <img
+                            src="../assets/images/el_flag.png"
+                            alt="Yunanca"
+                        />
+                    </a>
+
+                    <a class="dropdown-option" href="../LocalBeaches.html">
+                        <img
+                            src="../assets/images/en_flag.png"
+                            alt="İngilizce"
+                        />
+                    </a>
+
+
+                    <a class="dropdown-option" href="../de/LocalBeaches.html">
+                        <img
+                            src="../assets/images/de_flag.png"
+                            alt="Almanca"
+                        />
+                    </a>
+                    <!-- <a class="dropdown-option" href="../tr/LocalBeaches.html"> 
+                        <img
+                            src="../assets/images/tr_flag.png"
+                            alt="Τουρκικά"
+                        />
+                    </a> -->
+                    <a class="dropdown-option" href="../nl/LocalBeaches.html">
+                    <img
+                        src="../assets/images/nl_flag.png"
+                        alt="Felemenkçe"
+                    />
+                    </a>
+
+                    <a class="dropdown-option" href="../fr/LocalBeaches.htm">
+                            <img
+                                src="../assets/images/fr_flag2.png"
+                                alt="Fransızca"
+                            />
+                        </a>
+
+                        <a class="dropdown-option" href="../es/LocalBeaches.htm">
+                            <img
+                                src="../assets/images/es_flag.png"
+                                alt="İspanyolca"
+                            />
+                        </a>
+
+
+                </div>
+                <!-- options-container closing tag -->
+            </div>
+            <!-- customDropdown closing tag -->
+
+            <!-- Burger Icon (Used by scripts.js and styles.css for mobile menu) -->
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1 class="main-title">
+            Yakındaki
+            <small>(ve o kadar da yakın olmayan)</small>
+            Plajlar
+          </h1>
+
+        <!-- PETRA -->
+        <section class="beach-section" id="beach-petra"> <!-- Use unique IDs -->
+            <!-- 1. Title & description -->
+            <div>
+                <h2 class="beach-title">Petra Plajı</h2>
+                <p class="beach-desc">
+                    Petra Plajı, safran rengi gün batımları ve berrak sularıyla ünlü, büyüleyici, düzenli bir kum plajıdır. Plaj, ikonik kaya ve hemen kıyı şeridinin arkasında yükselen Panagia Glykofilousa şapeli ile çevrilidir. Plaj, Petra kasabasından Petra limanına kadar uzanır (burada kafeler ve snack barlar bulabilirsiniz).
+                </p>
+            </div>
+
+            <!-- 2. Carousel -->
+            <div class="image-carousel">
+                <div class="carousel-images">
+                    <img src="https://i.ibb.co/N6qsdnFx/petra2.png" alt="Petra Plajı 1" class="active" data-beach="petra"/>
+                    <img src="https://i.ibb.co/DHTBbVHq/petra1.png" alt="Petra Plajı 2" loading="lazy" data-beach="petra"/>
+                    <img src="https://i.ibb.co/8nzBcmwV/petra6.png" alt="Petra Plajı 3" loading="lazy" data-beach="petra"/>
+                    <img src="https://i.ibb.co/HDgcbhtL/petra7.png" alt="Petra Plajı 4" loading="lazy" data-beach="petra"/>
+                    <img src="https://i.ibb.co/LzC089NX/petra4.png" alt="Petra Plajı 5" loading="lazy" data-beach="petra"/>
+                    <img src="https://i.ibb.co/mCdcNCLn/petra3.png" alt="Petra Plajı 6" loading="lazy" data-beach="petra"/>
+                </div>
+                <button class="carousel-button prev-btn" aria-label="Önceki resim" data-beach="petra">‹</button>
+                <button class="carousel-button next-btn" aria-label="Sonraki resim" data-beach="petra">›</button>
+            </div>
+
+            <!-- 3. Weather + Windy + Map -->
+            <div class="extras-wrapper">
+                <div class="weather-info" data-location="Petra, Lesvos, Greece">
+                    <h3>Canlı Hava Durumu</h3>
+                    <p>Sıcaklık: <span class="weather-temp">--</span>°C</p>
+                    <p>
+                        Rüzgar: <span class="weather-wind">--</span> km/h
+                        <span class="weather-wind-direction">--</span>
+                        <span class="wind-arrow">↑</span>
+                    </p>
+                    <div class="weather-condition">
+                        <img class="weather-icon" alt="" src="" style="display: none;"/> <!-- Hide initially -->
+                        <span class="weather-condition-text">--</span>
+                    </div>
+                    <p class="weather-error"></p>
+
+                    <hr />
+                    <div> <!-- Wrap custom sections -->
+                        <h3>Düzenli: Evet</h3>
+                        <ul>
+                            <li>Şezlonglar</li>
+                            <li>Tavernalar</li>
+                            <li>Kafeler</li>
+                        </ul>
+                    </div>
+                    <hr />
+                    <div>
+                        <h3>petrADi'den Mesafe: 1,1 km</h3>
+                         <ul>
+                            <li>Yürüyerek: 14 dakika</li>
+                            <li>Arabayla: 3 dakika</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="windy-container">
+                    <iframe
+                        title="Windy Haritası Petra"
+                        src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=10&overlay=wind&product=ecmwf&level=surface&lat=39.343&lon=26.172&detailLat=39.32951742518056&detailLon=26.167373657226566&marker=true"
+                        loading="lazy"
+                    ></iframe>
+                </div>
+                <div class="map-container">
+                     <iframe
+                        title="Google Haritası Petra Plajı"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3086.1869992726415!2d26.176943595933178!3d39.32934857399199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba9a7ec4274003%3A0xeb6af91a6e2d7945!2sParalia%20Petra!5e0!3m2!1sen!2sgr!4v1744898039027!5m2!1sen!2sgr"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+       <!-- Anaxos Beach -->
+       <section class="beach-section" id="beach-anaxos">
+            <div>
+                <h2 class="beach-title">Anaxos Plajı</h2>
+                <p class="beach-desc">
+                    Anaxos Plajı, Petra'ya en yakın bir sonraki plajdır. Aynı zamanda düzenlidir ve bazı su sporları seçenekleri (aya bağlı olarak) ve birkaç kafe sunmaktadır.
+                </p>
+            </div>
+            <div class="image-carousel">
+                <div class="carousel-images">
+                    <img src="https://i.ibb.co/0pHPFvsy/anaxos3.png" alt="Anaxos Plajı 1" class="active" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/JwGh23Wd/anaxos4.png" alt="Anaxos Plajı 2" loading="lazy" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/1GMttsMz/anaxos5.png" alt="Anaxos Plajı 3" loading="lazy" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/HDBXk9LF/anaxos7.png" alt="Anaxos Plajı 4" loading="lazy" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/fdymD4fz/anaxos8.png" alt="Anaxos Plajı 5" loading="lazy" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/r28Hd7fp/anaxos9.png" alt="Anaxos Plajı 6" loading="lazy" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/vCtPqVYq/anaxos10.png" alt="Anaxos Plajı 7" loading="lazy" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/gMdrdbxr/anaxos11.png" alt="Anaxos Plajı 8" loading="lazy" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/PG0mdc6R/anaxos12.png" alt="Anaxos Plajı 9" loading="lazy" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/PzgX4Ftn/anaxos2.png" alt="Anaxos Plajı 10" loading="lazy" data-beach="anaxos"/>
+                    <img src="https://i.ibb.co/VWPQX0sj/anaxos1.png" alt="Anaxos Plajı 11" loading="lazy" data-beach="anaxos"/>
+                </div>
+                <button class="carousel-button prev-btn" aria-label="Önceki resim" data-beach="anaxos">‹</button>
+                <button class="carousel-button next-btn" aria-label="Sonraki resim" data-beach="anaxos">›</button>
+            </div>
+            <div class="extras-wrapper">
+                <div class="weather-info" data-location="Anaxos, Lesvos, Greece">
+                    <h3>Canlı Hava Durumu</h3>
+                    <p>Sıcaklık: <span class="weather-temp">--</span>°C</p>
+                    <p>Rüzgar: <span class="weather-wind">--</span> km/h <span class="weather-wind-direction">--</span><span class="wind-arrow">↑</span></p>
+                    <div class="weather-condition">
+                         <img class="weather-icon" alt="" src="" style="display: none;"/>
+                         <span class="weather-condition-text">--</span>
+                    </div>
+                    <p class="weather-error"></p>
+                    <hr />
+                    <div>
+                         <h3>Düzenli: Evet</h3>
+                         <ul>
+                             <li>Şezlonglar</li>
+                             <li>Tavernalar</li>
+                             <li>Kafeler</li>
+                             <li>Su Sporları (mevsimlik)</li>
+                         </ul>
+                    </div>
+                    <hr />
+                    <div>
+                         <h3>petrADi'den Mesafe: 2,6 km</h3>
+                         <ul>
+                             <li>Yürüyerek: 35 dakika</li>
+                             <li>Arabayla: 5 dakika</li>
+                         </ul>
+                     </div>
+                </div>
+                <div class="windy-container">
+                    <iframe
+                        title="Windy Haritası Anaxos"
+                        src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=39.31&lon=26.174&detailLat=39.32473709379018&detailLon=26.15158081054688&marker=true"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="map-container">
+                    <iframe
+                        title="Google Haritası Anaxos Plajı"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12346.689104318355!2d26.13619117133389!3d39.318351596722835!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba90b77398d2e9%3A0xff70cde68d73b2ed!2sParalia%20Anaxos!5e0!3m2!1sen!2sgr!4v1744900894219!5m2!1sen!2sgr"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+       <!-- Molyvos Beach -->
+       <section class="beach-section" id="beach-molyvos">
+            <div>
+                <h2 class="beach-title">Molivos Plajı</h2>
+                <p class="beach-desc">
+                    Molivos Plajı'nda, denizin yumuşak parıltısı kalenin eski taş duvarlarıyla buluşarak burayı Midilli'ye aşık olmak için unutulmaz bir yer haline getiriyor.
+                </p>
+            </div>
+            <div class="image-carousel">
+                <div class="carousel-images">
+                    <img src="https://i.ibb.co/v6CDYFdx/molyvos1.png" alt="Molivos Plajı 1" class="active" data-beach="molyvos"/>
+                    <img src="https://i.ibb.co/3mnkSvMJ/molyvos2.png" alt="Molivos Plajı 2" loading="lazy" data-beach="molyvos"/>
+                    <img src="https://i.ibb.co/4gJMSSRT/molyvos4.png" alt="Molivos Plajı 3" loading="lazy" data-beach="molyvos"/>
+                    <img src="https://i.ibb.co/WvZzmZ9H/molyvos5.png" alt="Molivos Plajı 4" loading="lazy" data-beach="molyvos"/>
+                    <img src="https://i.ibb.co/d4NxGGmv/molyvos3.png" alt="Molivos Plajı 5" loading="lazy" data-beach="molyvos"/>
+                </div>
+                <button class="carousel-button prev-btn" aria-label="Önceki resim" data-beach="molyvos">‹</button>
+                <button class="carousel-button next-btn" aria-label="Sonraki resim" data-beach="molyvos">›</button>
+            </div>
+            <div class="extras-wrapper">
+                <div class="weather-info" data-location="Molyvos, Lesvos, Greece">
+                     <h3>Canlı Hava Durumu</h3>
+                    <p>Sıcaklık: <span class="weather-temp">--</span>°C</p>
+                    <p>Rüzgar: <span class="weather-wind">--</span> km/h <span class="weather-wind-direction">--</span><span class="wind-arrow">↑</span></p>
+                    <div class="weather-condition">
+                         <img class="weather-icon" alt="" src="" style="display: none;"/>
+                         <span class="weather-condition-text">--</span>
+                    </div>
+                    <p class="weather-error"></p>
+                    <hr />
+                     <div>
+                         <h3>Düzenli: Evet</h3>
+                         <ul>
+                             <li>Şezlonglar</li>
+                             <li>Tavernalar</li>
+                             <li>Kafeler</li>
+                         </ul>
+                    </div>
+                     <hr />
+                     <div>
+                         <h3>petrADi'den Mesafe: 5,3 km</h3>
+                         <ul>
+                             <li>Yürüyerek: 1 saat 10 dakika</li>
+                             <li>Arabayla: 8 dakika</li>
+                         </ul>
+                     </div>
+                </div>
+                <div class="windy-container">
+                    <iframe
+                        title="Windy Haritası Molivos"
+                        src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=39.332&lon=26.167&detailLat=39.35766163717121&detailLon=26.16874694824219&marker=true"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="map-container">
+                     <iframe
+                        title="Google Haritası Molivos Plajı"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.072100484705!2d26.175251129483758!3d39.36334800134049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba9a53d62515c9%3A0x16f6e3b69edcf08d!2sParalia%20Molivos!5e0!3m2!1sen!2sgr!4v1744901071827!5m2!1sen!2sgr"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+       <!-- Eftalou Beach -->
+       <section class="beach-section" id="beach-eftalou">
+            <div>
+                <h2 class="beach-title">Eftalou Plajı</h2>
+                <p class="beach-desc">
+                    Eftalou Plajı, dinlenmek, son derece berrak sularda yüzmek ve belki de yakındaki ünlü kaplıcalara dalmak için ideal, sakin bir noktadır.
+                </p>
+            </div>
+            <div class="image-carousel">
+                <div class="carousel-images">
+                    <img src="https://i.ibb.co/Q7DzF8jZ/efthalou11.png" alt="Eftalou Plajı 1" class="active" data-beach="eftalou"/>
+                    <img src="https://i.ibb.co/tT5bCcvn/efthalou2.png" alt="Eftalou Plajı 2" loading="lazy" data-beach="eftalou"/>
+                    <img src="https://i.ibb.co/mVbZHNqn/efthalou3.png" alt="Eftalou Plajı 3" loading="lazy" data-beach="eftalou"/>
+                    <img src="https://i.ibb.co/Pz3nc8nj/efthalou4.png" alt="Eftalou Plajı 4" loading="lazy" data-beach="eftalou"/>
+                </div>
+                <button class="carousel-button prev-btn" aria-label="Önceki resim" data-beach="eftalou">‹</button>
+                <button class="carousel-button next-btn" aria-label="Sonraki resim" data-beach="eftalou">›</button>
+            </div>
+            <div class="extras-wrapper">
+                <div class="weather-info" data-location="Eftalou, Lesvos, Greece"> <!-- More specific location -->
+                     <h3>Canlı Hava Durumu</h3>
+                    <p>Sıcaklık: <span class="weather-temp">--</span>°C</p>
+                    <p>Rüzgar: <span class="weather-wind">--</span> km/h <span class="weather-wind-direction">--</span><span class="wind-arrow">↑</span></p>
+                    <div class="weather-condition">
+                         <img class="weather-icon" alt="" src="" style="display: none;"/>
+                         <span class="weather-condition-text">--</span>
+                    </div>
+                    <p class="weather-error"></p>
+                    <hr />
+                     <div>
+                         <h3>İmkanlar: Sınırlı</h3>
+                         <ul>
+                             <li>Küçük bir Taverna</li>
+                             <li>Yakınlarda Kaplıcalar</li>
+                         </ul>
+                    </div>
+                     <hr />
+                     <div>
+                         <h3>petrADi'den Mesafe: 10,7 km</h3>
+                         <ul>
+                             <li>Yürüyerek: 2 saat 25 dakika</li>
+                             <li>Arabayla: 16 dakika</li>
+                         </ul>
+                     </div>
+                </div>
+                <div class="windy-container">
+                    <iframe
+                        title="Windy Haritası Eftalou"
+                        src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=39.41&lon=26.259&detailLat=39.38685591117905&detailLon=26.23466491699219&marker=true"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="map-container">
+                     <iframe
+                        title="Google Haritası Eftalou Plajı"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d22575.878999813027!2d26.215375877936157!3d39.380064105342505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba9b4f48b68bdd%3A0xf62a780ddc6ce348!2sParalia%20Efthalou!5e0!3m2!1sen!2sgr!4v1744902263201!5m2!1sen!2sgr"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+       <!-- Golden Sand Beach -->
+       <section class="beach-section" id="beach-golden-sand">
+            <div>
+                <h2 class="beach-title">Altın Kum Plajı (Golden Sand Beach)</h2>
+                <p class="beach-desc">
+                    Altın Kum Plajı (Golden Sand Beach), adadaki favori gizli mücevherimizdir. Muhteşem turkuaz suları ve tam bir izolasyonla, kendi özel cennetiniz gibi hissettirir. Sadece bol su ve plaj şemsiyesi getirmeyi unutmayın - hiçbir tesis yok, sadece sonsuz güzellik var.
+                </p>
+            </div>
+             <div class="image-carousel">
+                <div class="carousel-images">
+                    <img src="https://i.ibb.co/DPPvz2pR/Xammo00.png" alt="Altın Kum Plajı 1" class="active" data-beach="golden-sand"/>
+                    <img src="https://i.ibb.co/gb3tB7m5/Xammo0.png" alt="Altın Kum Plajı 2" loading="lazy" data-beach="golden-sand"/>
+                    <img src="https://i.ibb.co/Jwf10mdG/Xammo5.png" alt="Altın Kum Plajı 3" loading="lazy" data-beach="golden-sand"/>
+                    <img src="https://i.ibb.co/F4j0prKK/Xammo4.png" alt="Altın Kum Plajı 4" loading="lazy" data-beach="golden-sand"/>
+                    <img src="https://i.ibb.co/M5yHZG7H/Xammo3.png" alt="Altın Kum Plajı 5" loading="lazy" data-beach="golden-sand"/>
+                    <img src="https://i.ibb.co/FL73vFyg/Xammo2.png" alt="Altın Kum Plajı 6" loading="lazy" data-beach="golden-sand"/>
+                    <img src="https://i.ibb.co/Tx6C7vDK/Xammo1.png" alt="Altın Kum Plajı 7" loading="lazy" data-beach="golden-sand"/>
+                    <img src="https://i.ibb.co/nNyK8Yyn/Xammo6.png" alt="Altın Kum Plajı 8" loading="lazy" data-beach="golden-sand"/>
+                </div>
+                <button class="carousel-button prev-btn" aria-label="Önceki resim" data-beach="golden-sand">‹</button>
+                <button class="carousel-button next-btn" aria-label="Sonraki resim" data-beach="golden-sand">›</button>
+            </div>
+            <div class="extras-wrapper">
+                <div class="weather-info" data-location="Kalloni, Lesvos, Greece"> <!-- Using a nearby town for weather -->
+                     <h3>Canlı Hava Durumu (Yakın Bölge)</h3>
+                    <p>Sıcaklık: <span class="weather-temp">--</span>°C</p>
+                    <p>Rüzgar: <span class="weather-wind">--</span> km/h <span class="weather-wind-direction">--</span><span class="wind-arrow">↑</span></p>
+                    <div class="weather-condition">
+                         <img class="weather-icon" alt="" src="" style="display: none;"/>
+                         <span class="weather-condition-text">--</span>
+                    </div>
+                    <p class="weather-error"></p>
+                    <hr />
+                     <div>
+                         <h3>İmkanlar: Yok</h3>
+                         <ul>
+                             <li>Tamamen izole</li>
+                             <li>Kendi suyunuzu/gölgenizi getirin</li>
+                         </ul>
+                    </div>
+                     <hr />
+                     <div>
+                         <h3>petrADi'den Mesafe: 37,2 km</h3>
+                         <ul>
+                             <li>Yürüyerek: Tavsiye edilmez</li>
+                             <li>Arabayla: yaklaşık 49 dakika</li>
+                         </ul>
+                     </div>
+                </div>
+                <div class="windy-container">
+                    <iframe
+                        title="Windy Haritası Altın Kum Plajı"
+                        src="https://embed.windy.com/embed.html?type=map&location=coordinates&metricRain=default&metricTemp=default&metricWind=default&zoom=11&overlay=wind&product=ecmwf&level=surface&lat=39.332&lon=26.411&detailLat=39.310925412127155&detailLon=26.409072875976566&marker=true"
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div class="map-container">
+                    <iframe
+                        title="Google Haritası Altın Kum Plajı"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2941.573379705076!2d26.402786572659714!3d39.3122522177929!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ba8777b7ebb781%3A0x44f3bbf0665687f1!2sGolden%20Sand%20Beach!5e0!3m2!1sen!2sgr!4v1744902828642!5m2!1sen!2sgr"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <!-- FOOTER (Using the updated footer from HotelAmenities.html) -->
+    <footer class="bg-gray-800 text-gray-400 py-8 mt-16">
+        <div class="container mx-auto text-center px-6">
+             <!-- Kept the specific beach footer text, combined with new structure -->
+            <p class="text-sm">
+                © 2025 petrADi. Hava durumu verileri şuradan sağlanmaktadır:
+                <a href="https://www.weatherapi.com/" rel="noopener noreferrer" target="_blank" title="Ücretsiz Hava Durumu API'si">WeatherAPI.com</a>
+                ve
+                <a href="https://www.windy.com/" rel="noopener noreferrer" target="_blank" title="Windy">Windy.com</a>.
+            </p>
+             <p class="text-xs mt-2">Özenle tasarlandı.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS (Kept existing and added scripts.js which handles nav) -->
+    <script src="../assets/js/jquery-3.6.0.min.js"></script>
+    <script src="../assets/js/slick.min.js"></script>
+    <script src="../assets/js/parallax.min.js"></script>
+    <script src="../assets/js/scripts.js"></script> <!-- This should handle the nav/burger/dropdown -->
+
+    <!-- Removed old mobile menu toggle script as it's handled by scripts.js -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // --- Mobile Menu Toggle ---
+            // REMOVED: This functionality is now expected to be in scripts.js
+
+            // --- WEATHER API ---
+            const API_KEY = "f69d9fdb578d4566bee175817251604"; // Replace with your actual key if needed
+            const API_URL = "https://api.weatherapi.com/v1/current.json";
+
+            document.querySelectorAll(".weather-info").forEach((box) => {
+                const loc = box.dataset.location;
+                if (loc) {
+                    fetchWeather(loc, box);
+                } else {
+                    updateWeatherUI(box, null, "Konum verileri eksik");
+                }
+            });
+
+            async function fetchWeather(query, box) {
+                try {
+                    const response = await fetch(
+                        `${API_URL}?key=${API_KEY}&q=${encodeURIComponent(query)}&aqi=no&lang=tr` // Added lang=tr for Turkish weather conditions if API supports
+                    );
+                    if (!response.ok) {
+                         // Try to get error message from API response body
+                        let errorMsg = `HTTP error ${response.status}`;
+                        try {
+                            const errorData = await response.json();
+                            errorMsg = errorData?.error?.message || errorMsg;
+                        } catch (parseError) { /* Ignore parsing error */ }
+                        throw new Error(errorMsg);
+                    }
+                    const data = await response.json();
+                    if (data && data.current) {
+                         updateWeatherUI(box, data.current);
+                    } else {
+                         throw new Error("Invalid weather data received");
+                    }
+                } catch (error) {
+                    console.error("Weather fetch error for", query, ":", error);
+                    updateWeatherUI(box, null, `Hava durumu mevcut değil (${error.message})`);
+                }
+            }
+
+            function updateWeatherUI(box, currentData, errorMessage = "") {
+                const tempEl = box.querySelector(".weather-temp");
+                const windEl = box.querySelector(".weather-wind");
+                const windDirEl = box.querySelector(".weather-wind-direction");
+                const windArrowEl = box.querySelector(".wind-arrow");
+                const conditionTextEl = box.querySelector(".weather-condition-text");
+                const conditionIconEl = box.querySelector(".weather-icon");
+                const errorEl = box.querySelector(".weather-error");
+
+                // Clear previous state
+                 if (errorEl) errorEl.textContent = "";
+                 if (conditionIconEl) conditionIconEl.style.display = 'none';
+
+                if (errorMessage) {
+                    if (errorEl) errorEl.textContent = errorMessage;
+                    // Reset text content for weather details
+                    if (tempEl) tempEl.textContent = "--";
+                    if (windEl) windEl.textContent = "--";
+                    if (windDirEl) windDirEl.textContent = "--";
+                    if (conditionTextEl) conditionTextEl.textContent = "--";
+                    if (windArrowEl) windArrowEl.style.transform = 'rotate(0deg)'; // Reset arrow
+
+                } else if (currentData) {
+                    const { temp_c, wind_kph, wind_dir, wind_degree, condition } = currentData;
+
+                    if (tempEl) tempEl.textContent = Math.round(temp_c); // Display rounded temperature
+                    if (windEl) windEl.textContent = Math.round(wind_kph);
+                    if (windDirEl) windDirEl.textContent = wind_dir;
+                    if (windArrowEl) windArrowEl.style.transform = `rotate(${wind_degree || 0}deg)`;
+                    if (conditionTextEl) conditionTextEl.textContent = condition.text;
+
+                    if (conditionIconEl && condition.icon) {
+                        // Ensure URL starts with https:
+                        const iconUrl = condition.icon.startsWith("//") ? `https:${condition.icon}` : condition.icon;
+                        conditionIconEl.src = iconUrl;
+                        conditionIconEl.alt = condition.text || "Hava durumu ikonu";
+                        conditionIconEl.style.display = 'inline-block';
+                    }
+                }
+            }
+
+            // --- IMAGE CAROUSEL ---
+            document.querySelectorAll(".carousel-button").forEach((button) => {
+                button.addEventListener("click", (event) => {
+                    const btn = event.currentTarget;
+                    const isNext = btn.classList.contains("next-btn");
+                    const beachId = btn.dataset.beach;
+                    const carousel = btn.closest(".image-carousel");
+
+                    if (!carousel || !beachId) return;
+
+                    const images = Array.from(
+                        carousel.querySelectorAll(`.carousel-images > img[data-beach="${beachId}"]`)
+                    );
+
+                    if (images.length < 2) return; // No need to cycle if less than 2 images
+
+                    const currentIndex = images.findIndex((img) =>
+                        img.classList.contains("active")
+                    );
+
+                    // If no image is active, activate the first one (shouldn't happen with initial setup)
+                    if (currentIndex === -1) {
+                         images[0].classList.add("active");
+                         return;
+                    }
+
+                    images[currentIndex].classList.remove("active");
+
+                    let nextIndex = isNext ? currentIndex + 1 : currentIndex - 1;
+
+                    // Wrap around using modulo operator
+                    nextIndex = (nextIndex + images.length) % images.length;
+
+                    images[nextIndex].classList.add("active");
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
