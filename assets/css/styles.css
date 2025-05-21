@@ -928,3 +928,119 @@ main .location iframe {
   margin: 0;                  /* Remove auto margins */
   background-color: #f5f5f5;  /* Match the other button */
 }
+
+
+
+
+
+/* ------------------------------------------------------------------
+   MOBILE‑VISIBILITY FIX  (keep this *after* every other rule)
+------------------------------------------------------------------*/
+@media screen and (max-width: 1024px) {
+  .fade-on-scroll,
+  .transition-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+
+
+
+/* Container for the amenity cards */
+.amenities__cards {
+    display: flex; /* Use flexbox for layout */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line */
+    justify-content: center; /* Center cards horizontally */
+    gap: 20px; /* Spacing between cards */
+    padding-top: 20px; /* Add some space below the title */
+}
+/* Individual amenity card styling */
+.amenities__card {
+    background-color: #ffffff; /* White background for card */
+    border-radius: 8px; /* Rounded corners */
+    padding: 25px; /* Internal spacing */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effect */
+    flex: 0 1 300px; /* Flex properties: don't grow, shrink if needed, base width 300px */
+    display: flex; /* Use flexbox for internal alignment */
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center content horizontally */
+    min-height: 220px; /* Ensure cards have a minimum height for consistency */
+    text-align: center; /* Ensure text is centered */
+}
+/* Align card image/icon and text container */
+.amenities__card__image,
+.amenities__card__icon { /* Target both image and new icon class */
+     margin-bottom: 15px; /* Space below the icon/image */
+}
+ /* Styling for the icons in the "Things to do" section */
+ .amenities__card__icon .fas { /* Target Font Awesome icons */
+    font-size: 2.5em; /* Adjust size as needed */
+    color: #555; /* Adjust color as needed */
+}
+/* Hover effect for the amenity card */
+.amenities__card:hover {
+    transform: translateY(-5px) scale(1.02); /* Lift and slightly scale up */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow on hover */
+}
+/* Ensure text elements inside the card behave well */
+.amenities__card p {
+    font-weight: bold;
+    margin-top: 0; /* Remove default top margin */
+    margin-bottom: 10px;
+    color: #333; /* Adjust color if needed */
+}
+.amenities__card span {
+    font-size: 0.9em;
+    color: #555; /* Adjust color if needed */
+    line-height: 1.4;
+}
+/* Adjustments for smaller screens if necessary (example) */
+@media (max-width: 768px) {
+    .amenities__card {
+        flex: 0 1 calc(50% - 20px); /* Two cards per row on medium screens */
+        min-height: auto; /* Adjust min-height if needed */
+    }
+}
+@media (max-width: 480px) {
+    .amenities__card {
+        flex: 0 1 100%; /* One card per row on small screens */
+    }
+}
+/* --- START: Styles for More Amenities Link --- */
+.more-amenities-link-container {
+    text-align: center; /* Center the button */
+    padding: 30px 0; /* Add vertical spacing */
+    background-color: #f8f8f8; /* Optional: subtle background color */
+    margin-top: 20px; /* Space above this section */
+}
+.more-amenities-btn {
+    display: inline-block; /* Allows padding and margin */
+    padding: 12px 25px; /* Button padding */
+    background-color: #031b35; /* Example button color */
+    color: #ffffff; /* Text color */
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none; /* Remove underline */
+    border-radius: 25px; /* Rounded corners */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+.more-amenities-btn:hover {
+    background-color: #021830; /* Darker color on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Enhanced shadow */
+}
+ /* --- END: Styles for More Amenities Link --- */
+
+
+
+#customDropdown img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  display: block;
+}
