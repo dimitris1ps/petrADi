@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="es"> <!-- Asegúrate de que esto esté correctamente configurado para cada página, o JS intentará configurarlo -->
+    <head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1T20957YE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-F1T20957YE');
+  </script>
+
+        <script>
+            !(function (d, s, id) {
+                var js,
+                    fjs = d.getElementsByTagName(s)[0];
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = 'https://weatherwidget.io/js/widget.min.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            })(document, 'script', 'weatherwidget-io-js');
+        </script>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>petrADI</title>
+        <link rel="stylesheet" href="../assets/css/button.css" />
+        <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="../assets/css/slick.css" />
+        <link rel="stylesheet" href="../assets/css/slick-theme.css" />
+        <link rel="stylesheet" href="../assets/css/styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html {
+            font-size: 100%;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem; /* Base font size */
+            line-height: 1.6;
+        }
+
+        /* Removed .info-card styles as they are handled by Tailwind on RestaurantCard directly */
+
+        header nav .nav-links li a {
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        .modal-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-scrollbar::-webkit-scrollbar-track {
+            background: #e2e8f0; /* slate-200 */
+        }
+        .modal-scrollbar::-webkit-scrollbar-thumb {
+            background: #94a3b8; /* slate-400 */
+            border-radius: 4px;
+        }
+        .modal-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* slate-500 */
+        }
+
+        /* Styles for the NEW Language Switcher (Unchanged) */
+        .lang-switcher-container {
+            position: relative;
+            display: inline-block;
+            margin-left: 15px;
+        }
+        .lang-switcher-selected {
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .lang-switcher-selected:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        .lang-switcher-selected img {
+            width: 30px;
+            height: auto;
+            border-radius: 3px;
+        }
+        .lang-switcher-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.25);
+            z-index: 1050;
+            min-width: 160px;
+            border-radius: 4px;
+            margin-top: 5px;
+            padding: 5px 0;
+            list-style: none;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .lang-switcher-container.open .lang-switcher-options {
+            display: block;
+        }
+        .lang-switcher-options li a {
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+        .lang-switcher-options li a:hover {
+            background-color: #f0f0f0;
+        }
+        .lang-switcher-options li a img {
+            width: 24px;
+            height: auto;
+            border-radius: 2px;
+        }
+        .lang-switcher-options li a span {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gradient-to-br from-sky-50 via-slate-50 to-sky-100 font-inter text-slate-800">
+  <header class="bg-black shadow-lg sticky top-0 z-50">
+    <nav>
+        <ul class="nav-links">
+            <li>
+                <a href="./">Inicio</a>
+            </li>
+            <li>
+                <a href="./faq">Preguntas Frecuentes</a>
+            </li>
+        </ul>
+
+        <div class="lang-switcher-container" id="languageSwitcherContainer">
+            <div class="lang-switcher-selected" id="languageSwitcherSelectedDisplay">
+                <!-- Content generated by JS -->
+            </div>
+            <ul class="lang-switcher-options" id="languageSwitcherOptionsList">
+                <li><a href="../el/TavernRecommendations" data-lang-code="el"><img src="../assets/images/el_flag.png" alt="Bandera Griega"> </a></li>
+                <li><a href="../TavernRecommendations" data-lang-code="en"><img src="../assets/images/en_flag.png" alt="Bandera Inglesa"> </a></li>
+                <li><a href="../tr/TavernRecommendations" data-lang-code="tr"><img src="../assets/images/tr_flag.png" alt="Bandera Turca"> </a></li>
+                <li><a href="../de/TavernRecommendations" data-lang-code="de"><img src="../assets/images/de_flag.png" alt="Bandera Alemana"> </a></li>
+                <li><a href="../nl/TavernRecommendations" data-lang-code="nl"><img src="../assets/images/nl_flag.png" alt="Bandera Holandesa"> </a></li>
+                <li><a href="../fr/TavernRecommendations" data-lang-code="fr"><img src="../assets/images/fr_flag2.png" alt="Bandera Francesa"> </a></li>
+                <li><a href="../es/TavernRecommendations" data-lang-code="es"><img src="../assets/images/es_flag.png" alt="Bandera Española"> </a></li>
+            </ul>
+        </div>
+
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+  </header>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo, useRef } = React;
+
+        const initialRestaurantData = [
+            {
+                id: 1,
+                name: "Kaminia",
+                mapLink: "https://maps.app.goo.gl/eH49tApi3RMoqvJZ7",
+                price: "€15–20",
+                priceNumeric: 17.5,
+                phone: "0030 2253092400",
+                menuLink: null,
+                distance: "11,5 km",
+                distanceNumeric: 11.5,
+                imagePlaceholder: "../assets/images/food/Kaminia.png",
+                reviewSummary: [
+                    "Comida fresca y bien cocinada: Elogiada por sus mariscos «perfectos» y platos tradicionales; porciones generosas, sabores «honestos», «simples» y «deliciosos».",
+                    "Excelente relación calidad-precio: Precios «muy buenos» o «completamente normales» sin recargos turísticos.",
+                    "Ubicación en la playa: Mesas en la orilla con vistas al mar y a Molyvos. Hamacas y sombrillas gratuitas cerca.",
+                    "Ambiente relajado y rústico: Tranquilo, apacible, «sencillo» y «familiar», principalmente con clientes locales.",
+                    "Servicio genuinamente cálido: El propietario y el personal se describen como «sonrientes», «amables», «atentos» y «hospitalarios»."
+                ],
+                issuesSummary: [
+                    "Problemas ocasionales de servicio: Un cliente calificó el servicio con 1/5, y otro tuvo una confusión al pedir pescado. Otro cliente consideró que el personal (muy) joven necesitaba más formación.",
+                    "Capacidad limitada / único local en los alrededores: Un crítico señala que es «el único en la zona», por lo que la elección es limitada y la taberna puede estar concurrida.",
+                    "Mentalidad de «Guardar el secreto»: Muchos lugareños instan a otros a no publicitar el lugar, lo cual es excelente para el ambiente, pero puede significar un marketing mínimo y posiblemente esperas más largas en temporada alta."
+                ],
+                additionalInfo: {
+                    payments: "Pagos móviles NFC, Tarjetas de crédito, Efectivo.",
+                    parking: "Sí"
+                },
+                overallSummary: "Si busca mariscos sencillos y tradicionales a precios razonables en un entorno tranquilo con los pies en la arena, y un servicio amable pero a veces apurado, esta taberna se describe consistentemente como una joya."
+            },
+            {
+                id: 2,
+                name: "Cooperativa de Mujeres de Petra",
+                mapLink: "https://maps.app.goo.gl/sNUh7YWMAjvpqFgP7",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253041238",
+                menuLink: "https://www.google.com/maps/place/Women's+Cooperative+of+Petra/@39.3277466,26.1752349,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgIDO-_WjjgE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4noXVBtxrm5dxvsMXsSlyz8UW1n_Nhk4JXODMdKKt3K39Lwnb_OqLeM0cP5n093seqF7bsnOiL4-zFJWQ4SLSRBP7iJM9Jpmp0Libt6QYBWMhwSR92_GEAh3YW1iQRSSV4ERJc4ulg%3Dw203-h270-k-no!7i3024!8i4032!4m9!3m8!1s0x14ba908277a8c923:0x30d8ea64a2bffb58!8m2!3d39.3277466!4d26.1752349!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11c42g104p?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "700 m",
+                distanceNumeric: 0.7,
+                imagePlaceholder: "../assets/images/food/Cooperative.png",
+                reviewSummary: [
+                    "Cocina auténtica, «casera»: Los críticos hablan de «una de las mejores comidas de Lesbos», describiendo la comida como casera, ligera pero llena de sabor, incluso «mejor que la de la abuela». Éxitos especiales: flores de calabacín fritas, saganaki de gambas o cigalas, pulpo al vino, surtidos de entrantes, verduras rellenas y guisos del día.",
+                    "Entorno con vistas al mar y atardeceres: Una terraza/balcón da directamente a la playa y al muelle de Petra; los atardeceres se describen como «impresionantes», «celestiales» y «merecen la reserva».",
+                    "Relación calidad-precio: La mayoría de los clientes encuentran los precios «muy asequibles» o «precios normales de taberna», especialmente dada la generosidad de las porciones (a menudo descritas como abundantes) y los obsequios (postre de la casa, vino o ouzo).",
+                    "Ambiente cálido, familiar/cooperativo: La taberna comenzó como una cooperativa de mujeres y todavía se gestiona con espíritu familiar; los camareros son elogiados como «amables», «sonrientes», «experimentados y buenos». Muchos clientes regresan repetidamente durante su estancia.",
+                    "Rapidez, cuando funciona correctamente: Varias publicaciones señalan un «servicio rápido» a pesar de la multitud, y la comida llega caliente y bien programada en los días más tranquilos."
+                ],
+                issuesSummary: [
+                    "Multitudes y capacidad: Incluso fuera de temporada alta, el lugar se llena rápidamente; sin reserva, los clientes esperan, se sientan dentro (descrito como «apretado, difícil respirar») o se pierden las mesas delcón.",
+                    "Retrasos en el servicio bajo presión: En las noches concurridas, los pedidos han tardado entre 60 y 90 minutos, los entrantes y los platos principales llegaron desordenados o el personal olvidó por completo tomar los pedidos.",
+                    "Problemas de gestión de mesas: Algunos informes de solicitud de marcharse después de una hora, o de ser trasladado de una mesa «reservada» sin previo aviso; un cliente calificó el enfoque de «inaceptable».",
+                    "Porciones/platos inconsistentes: Si bien la mayoría de las porciones son grandes, las sardinas y algunas pastas parecían pequeñas; los platos de ternera se destacaron como grasos o insípidos, y un cliente calificó la cocina en general como «mediocre y cara».",
+                    "Se agotan las existencias: Los clientes que llegan tarde a veces encuentran que muchos platos del día ya se han terminado.",
+                    "Difícil de localizar: La entrada es una puerta sin marcar sobre una cafetería en la playa, fácil de pasar por alto en el paseo peatonal."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre",
+                    diningOptions: "Almuerzo, Cena, Postre, Asientos",
+                    planning: "Se requiere reserva, Acepta reservas",
+                    parking: "Aparcamiento gratuito en la calle"
+                },
+                overallSummary: "Reserve con antelación —idealmente para una mesa en el balcón al atardecer— si desea disfrutar de ricos platos tradicionales de Lesbos, especialidades de marisco destacadas y una cálida bienvenida a precios amigables. Sin embargo, prepárese para posibles esperas y un poco de caos organizado cuando el pequeño comedor esté lleno."
+            },
+            {
+                id: 3,
+                name: "THALASSA / El Restaurante del Mar",
+                mapLink: "https://maps.app.goo.gl/QX275dy7NLP6gMFq5",
+                price: "€15–20",
+                priceNumeric: 17.5,
+                phone: "0030 2253041366",
+                menuLink: "https://www.google.com/maps/place/THALASSA+%2F+The+sea+RESTAURANT/@39.3309771,26.1792797,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICH2Km55AE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4noJkW-q7UYreHxU2igeDxwIUdY9oerujBguTY3AnsZppMANgVBhj840XZ4k1-KAUCEzpB0Z3X2wu5jpjiC8ltmeV3TlSmu5jsYS28RwN1ZcDcfAZMsc5Uj2Ett0joMsJe0Sgrdu%3Dw203-h270-k-no!7i3000!8i4000!4m9!3m8!1s0x14ba9a7e916c7885:0x1b1c2ad1a63b8da2!8m2!3d39.3309771!4d26.1792797!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11_r19d4b?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "1,2 km",
+                distanceNumeric: 1.2,
+                imagePlaceholder: "../assets/images/food/THALASSA.png",
+                reviewSummary: [
+                    "Mariscos frescos y sabrosos y especialidades griegas: Calamar relleno o a la parrilla, sardinas, pulpo, saganaki de gambas, dolmades, lahanodolmades (rollitos de col), kleftiko de cordero, briam y guisos del día reciben repetidas menciones positivas. Muchos lo llaman la comida más sabrosa que encontraron en Petra; también hay buenas opciones vegetarianas.",
+                    "Paquete de playa económico: Los platos principales suelen costar entre 10 y 25 € con obsequios (postre de la casa, sandía, ouzo) y sin cargo por las hamacas de enfrente. A los clientes les encanta pedir bebidas desde su hamaca y luego caminar diez metros para cenar al atardecer.",
+                    "Ambiente de atardecer y atmósfera relajada: Las mesas están en la arena o en una tranquila calle lateral con vistas panorámicas hacia el oeste; los atardeceres son «legendarios» y el ambiente es «cálido» en lugar de un club turístico. Suficientemente tranquilo para conversar la mayoría de las noches.",
+                    "Calidez familiar: Los propietarios Maria y Nikos (y su familia extendida) son elogiados como «encantadores», «serviciales» y capaces de conversar en varios idiomas, incluyendo turco y holandés. Los clientes habituales regresan año tras año por la bienvenida.",
+                    "Variedad y flexibilidad: El menú cubre mariscos, carnes y muchos mezzes; los vegetarianos o clientes sin gluten informan de muchas opciones. Adecuado para parejas, familias, grupos grandes; los críticos comieron aquí varias veces durante la misma estancia."
+                ],
+                issuesSummary: [
+                    "El servicio se ralentiza cuando está lleno: En horas punta, los clientes informan de esperas de 30 a 90 minutos, entrantes/platos principales que llegan juntos o personal que olvida recoger los platos. Una mesa esperó dos horas por cuatro platos.",
+                    "Se recomienda reservar: Incluso fuera de temporada, las noches se llenan; sin reserva, puede terminar en mesas interiores estrechas, esperar en la cola o perderse el lugar con vistas al mar que deseaba.",
+                    "Diseño abarrotado: Algunos encuentran las mesas «demasiado juntas», bandejas que pasan por encima de las cabezas, espacio limitado para los codos en la plataforma de la playa.",
+                    "Platos de éxito variable: Una minoría califica la cocina de «ordinaria»: calamar duro, flores de calabacín demasiado fritas, gyros salado, plato vegetariano insípido, carnes a la parrilla demasiado cocidas. Las gambas a veces se sirven sin pelar.",
+                    "Curva de porción/valor inconsistente: La mayoría de las porciones parecen generosas, pero algunos dicen que las sardinas, la pasta o los platos del día eran pequeños en relación con el precio; otros se sorprendieron por cargos de pan no anunciados.",
+                    "Momentos lentos o bruscos: Un puñado informa de camareros indiferentes, reposición de bebidas muy lenta o solicitud de desalojar una mesa «reservada» a mitad de la comida."
+                ],
+                additionalInfo: {
+                    diningOptions: "Desayuno, Almuerzo, Cena, Postre, Asientos",
+                    planning: "Acepta reservas",
+                    payments: "Tarjetas de débito, Pagos móviles NFC, Tarjetas de crédito, Efectivo",
+                    parking: "Sí"
+                },
+                overallSummary: "Si desea mariscos griegos clásicos y platos principales caseros a precios razonables, justo en la playa de Petra con una puesta de sol de postal, reserve con antelación y tómese más tiempo; el servicio puede fallar cuando llega la multitud, pero la mayoría de los clientes se van encantados (y a menudo regresan la noche siguiente)."
+            },
+            {
+                id: 4,
+                name: "KALDERIMI",
+                mapLink: "https://maps.app.goo.gl/SwQvdnU3R9j6fSwT8",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253041234",
+                menuLink: null,
+                distance: "700 m",
+                distanceNumeric: 0.7,
+                imagePlaceholder: "../assets/images/food/KALDERIMI.png",
+                reviewSummary: [
+                    "«El mejor gyros de Petra»: El gyros de cerdo o pollo (además de kebabs, biftekis y pitas enrolladas) se describe repetidamente como jugoso, generosamente relleno y barato. Muchos visitantes toman uno cada día de su viaje.",
+                    "Platos grandes, cuenta pequeña: 4-5 € por una pita enrollada, 10-12 € por una parrillada; las porciones son «enormes» y a menudo se ofrece un postre gratuito al final. La lista de cervezas artesanales y el ligero vino rosado casero también son elogiados.",
+                    "Oasis de patio sombreado: La fachada a la calle parece un puesto de comida rápida, pero entre en un exuberante jardín trasero con bananos, guirnaldas de luces y música griega, descrito como idílico y familiar.",
+                    "Rotación rápida, opción de almuerzo tardío: Abre alrededor de las 13:00 y sirve hasta la noche; la mayoría de las comidas llegan rápidamente a pesar de la multitud. Excelente alternativa cuando todas las tabernas de playa se centran en el marisco.",
+                    "Calidez de los propietarios: Chrysa y el personal son agradecidos sistemáticamente por sus sonrisas, su flexibilidad lingüística (griego, inglés, turco, francés) y por encontrar gafas de sol perdidas o cervezas especiales."
+                ],
+                issuesSummary: [
+                    "Cambios de humor en el servicio: Si bien la mayoría del personal es elogiado, un puñado informa de un camarero «arrogante» o brusco, platos arrojados a la mesa o solicitudes (hielo, mostaza) que nunca llegaron.",
+                    "Congestión en horas punta: El patio se llena en cuanto se abren las puertas; espere hacer cola afuera, compartir mesas o sentirse apurado para que el siguiente grupo pueda sentarse.",
+                    "Inconsistencia en la parrilla: Una minoría informa de souvlaki poco cocido, costillas duras, patatas frías o pitas servidas con patatas empapadas; el sabor puede variar de «perfectamente sazonado» a «un poco insípido».",
+                    "Los precios suben: Los lugareños señalan que la pita de gyros ha subido a 4,20-4,50 €; algunos dicen que las porciones se redujeron mientras los precios subían. Otros todavía lo encuentran barato, por lo que las percepciones de valor varían.",
+                    "No para quienes buscan vistas al mar: Situado en la parte trasera del bazar, ideal para la sombra, pero sin vistas panorámicas del atardecer como las tabernas de la playa."
+                ],
+                additionalInfo: {
+                    highlights: "Postre excelente, Asientos en la azotea",
+                    diningOptions: "Almuerzo, Cena, Catering, Servicio de mostrador, Postre, Asientos",
+                    planning: "No acepta reservas",
+                    payments: "Tarjetas de crédito, Tarjetas de débito, Pagos móviles NFC, Efectivo",
+                    parking: "Sí"
+                },
+                overallSummary: "Kalderimi Grill es el lugar predilecto de los carnívoros de Petra y, en nuestra opinión, uno de los mejores de la isla: un exuberante patio escondido detrás de un mostrador de comida para llevar, donde puede disfrutar de un sabroso gyros, acompañarlo con una IPA artesanal y aún le sobrará dinero para el postre. Venga temprano (o tarde) para evitar las prisDashas, gestione sus expectativas sobre problemas ocasionales de servicio y se irá satisfecho, sonriendo, y probablemente planeando su repetición de mañana."
+            },
+            {
+                id: 5,
+                name: "O Gavrilos",
+                mapLink: "https://maps.app.goo.gl/anPwbZywjrXwn8Et9",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253091500",
+                menuLink: "https://www.google.com/maps/place/%CE%9F+%CE%93%CE%B1%CE%B2%CF%81%CE%AF%CE%BB%CE%BF%CF%82+-+O+Gavrilos/@39.298312,26.193082,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipOH_8lyXgRsABXJaj-JjXWEdbMPdud4dhOKEEEh!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipOH_8lyXgRsABXJaj-JjXWEdbMPdud4dhOKEEEh%3Dw203-h143-k-no!7i1587!8i1122!4m9!3m8!1s0x14ba905b6c40f51b:0x6b8831cb9203c36f!8m2!3d39.2984834!4d26.1930902!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11bbrj6bvm?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "5,6 km",
+                distanceNumeric: 5.6,
+                imagePlaceholder: "../assets/images/food/Gavrilos.png",
+                reviewSummary: [
+                    "«¡Esas chuletas!»: Las chuletas de cordero/oveja a la parrilla de carbón son la estrella indiscutible: jugosas, ahumadas y a 24-28 € el kilo o unos 15 € la porción. El chuletón de ternera, el souvlaki de cerdo, las salchichas caseras y una pita de pastourma con feta le siguen de cerca.",
+                    "Vistas que merecen las curvas cerradas: Encaramada sobre Petra, la terraza tiene vistas a los olivares y al Egeo; los atardeceres provocan aplausos (e inundan Instagram). Una brisa constante mantiene alejado el calor del verano.",
+                    "Menos es más en el menú: Una lista concisa de carnes a la parrilla más una docena de mezzes —remolachas y fava, tirokafteri (crema de queso picante), dolmades— ejecutados «sin un solo plato flojo». Los vegetarianos todavía pueden componer una mesa de entrantes.",
+                    "Vino de la casa + opciones artesanales: El rosado rústico y los tintos ligeros elaborados por la familia del propietario destacan en una lista económica; los lugareños también elogian la pequeña pero inteligente colección de botellas.",
+                    "Calidez familiar: Dimitris trabaja en la sala mientras el padre Gavrilos da la bienvenida en la puerta. Carteras perdidas devueltas, mesas para el atardecer reservadas, niños mimados: la hospitalidad es una historia recurrente.",
+                    "Apto para el bolsillo: La mayoría de los grupos informan de 15-20 € por persona (entrantes, plato principal, vino) y lo llaman «la mejor relación calidad-precio de Lesbos». Solo efectivo, así que traiga euros."
+                ],
+                issuesSummary: [
+                    "Reserva (casi) obligatoria: Las aproximadamente 12 mesas de la terraza suelen estar completamente reservadas de 18:00 a 20:30; quienes llegan sin reserva a menudo esperan entre 20 y 30 minutos o se sientan por tiempo limitado.",
+                    "Enfoque solo en carne: No hay mariscos, y las chuletas son grasas por diseño; uno o dos clientes las encontraron «demasiado aceitosas» o insípidas.",
+                    "Solo efectivo en caja: Los datáfonos no han llegado a la montaña.",
+                    "Insectos y brisa: La tarde trae avispas; los vientos nocturnos pueden ser fuertes, lleve una prenda ligera.",
+                    "Ritmo de servicio = ritmo de parrilla: Todo se cocina al momento; a la mayoría les encanta la explicación, unos pocos califican la espera de «larga». Quejas muy raras sobre un camarero brusco."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre, Comer en el local",
+                    diningOptions: "Almuerzo, Cena, Postre, Asientos",
+                    planning: "Se recomienda reservar para la cena, Acepta reservas",
+                    payments: "Solo efectivo",
+                    parking: "Sí",
+                    pets: "Se admiten perros en el exterior"
+                },
+                overallSummary: "O Gavrilos es la peregrinación de los carnívoros de la isla: una taberna en lo alto de un acantilado donde las chuletas de cordero con grasa, las frías jarras de rosado casero y una impresionante vista panorámica de Petra se encuentran con precios que parecen anteriores a la inflación. Reserve con antelación, tenga efectivo y venga con hambre; se irá oliendo a parrilla y planeando una visita de regreso antes de que termine la semana."
+            },
+            {
+                id: 6,
+                name: "RAMA",
+                mapLink: "https://maps.app.goo.gl/YuqBttzBXKu9ekPw9",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253041085",
+                menuLink: null,
+                distance: "1,2 km",
+                distanceNumeric: 1.2,
+                imagePlaceholder: "../assets/images/food/RAMA.png",
+                reviewSummary: [
+                    "Pizzas de masa fina horneadas en horno de leña: «La mejor pizza de Lesbos», «crujiente como la de mamá», en dos tamaños (la pequeña ya llena la mayoría de los platos). Mejores opciones: Horiatiki (griega), Rama especial, pita de ajo para empezar.",
+                    "Más allá de la pizza: Chuletas de cordero, schnitzel, boloñesa, flores de calabacín rellenas y algunos platos de marisco también ofrecen un hogar a los no amantes de la pizza.",
+                    "Entorno junto a la playa: Las mesas se extienden en un jardín bordeado de palmeras justo en la arena de Petra; tumbonas caseras y servicio de bebidas durante todo el día, puestas de sol en la cena.",
+                    "Calidez familiar: Mamá en la masa, papá en el horno, el hijo Timos en la sala; los clientes son llamados por su nombre, se les ofrece helado o fruta gratis y a menudo se quedan a charlar.",
+                    "Limpio y con buena relación calidad-precio: La cocina se describe como «impecable», la mayoría de las comidas cuestan alrededor de 10-15 € por persona (pizza grande + bebida). Tumbonas gratuitas con el pedido.",
+                    "Servicio rápido: La comida llega rápidamente; la entrega/recogida se elogia como «caliente y puntual»."
+                ],
+                issuesSummary: [
+                    "El menú sigue siendo sencillo: Excelente para pizzas, ensaladas y algunas carnes a la parrilla; las pastas y las patatas reciben críticas mixtas («mediocres», «insípidas»).",
+                    "Horario de temporada alta: Los horarios en Google no siempre están actualizados; un crítico lo encontró cerrado, otro fue rechazado cuando el horno cerró un poco antes de las 23:00. Si es tarde, llame primero.",
+                    "Perfil de sabor: Las salsas tienden a ser suaves (a algunos europeos del norte les encanta, algunos italianos/turcos querían más intensidad). Opte por la Horiatiki más picante o añada aceite de chile si le gusta el picante.",
+                    "Tamaños de las porciones: Las ensaladas son pequeñas y, para algunos, caras para la cantidad; pida la grande si comparte."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre, Recogida en la acera, Entrega sin contacto, Entrega, Para llevar, Comer en el local",
+                    offerings: "Alcohol, Cerveza, Café, Comida nocturna, Bocado rápido, Platos pequeños, Licores, Vino",
+                    diningOptions: "Desayuno, Almuerzo, Cena, Postre, Asientos",
+                    planning: "Acepta reservas",
+                    payments: "Tarjetas de crédito, Efectivo",
+                    parking: "Sí",
+                    pets: "Se admiten perros"
+                },
+                overallSummary: "Rama es la alternativa relajada a las tabernas de mariscos a lo largo del paseo marítimo: un impecable negocio familiar donde las masas finas, el vino casero frío y la vista con los pies en la arena crean un fácil ritual de vacaciones. Consiga una mesa junto al mar antes del atardecer, comparta una pizza griega y una ensalada verde, y deje que los propietarios le mimen con una bola de helado gratis al salir."
+            },
+            {
+                id: 7,
+                name: "Caravan by the sea",
+                mapLink: "https://maps.app.goo.gl/Jywfz9opb5ArKTyG6",
+                price: "€15–20",
+                priceNumeric: 17.5,
+                phone: "0030 6938128656",
+                menuLink: "https://www.google.com/maps/place/Caravan+by+the+sea/@39.3231107,26.1579168,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICZ09K2yAE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4npU6d8MXqwqeV5s0OYVB1A16pkCyQbY3akYlvs8TauZBMvCWBLrjzaiKaE_595HRR8HTWcmp-ygrIL44n8fK-cQrN93zaqLTGb1QVrND6RcUClGV4mlKSGc6f7DR-Eg3Nubxt2g%3Dw203-h360-k-no!7i2268!8i4032!4m9!3m8!1s0x14ba90a2c7bb827d:0x4f4500492c2339be!8m2!3d39.3231107!4d26.1579168!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11d_z8ywlk?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "1,9 km",
+                distanceNumeric: 1.9,
+                imagePlaceholder: "../assets/images/food/Caravan.png",
+                reviewSummary: [
+                    "Platos griegos «del huerto a la mesa»: Flores de calabacín rellenas de queso, saganaki de gambas, lubina/dorada a la parrilla, kleftiko y ensalada de remolacha, todos calificados como «los mejores de la isla». Las verduras y hierbas provienen directamente del huerto de los propietarios junto a la terraza.",
+                    "Entorno de ensueño y apartado: Las mesas se extienden sobre una plataforma encalada literalmente al borde del agua; la puesta de sol sobre la Bahía de los Pájaros (Avlaki) brilla y las olas proporcionan la banda sonora.",
+                    "Propietarios cálidos y enérgicos: Stelios da la bienvenida, Filio cocina, el personal recuerda los nombres, trae vermut para cócteles fuera del menú y a menudo invita a los clientes a postre o helado.",
+                    "Vale la pena el desvío: Se llega a través de un callejón estrecho (o una caminata de 10 minutos por la costa desde Petra); casi todos los críticos concluyen con «definitivamente vale la pena encontrarlo».",
+                    "Buena relación calidad-precio: La mayoría de los platos principales cuestan entre 12 y 20 €, el vino de la casa es elogiado, cuenta típica de 25 a 45 € por persona por una generosa variedad de mezzes + pescado."
+                ],
+                issuesSummary: [
+                    "Reserve con antelación: Las mesas junto al agua son muy solicitadas, especialmente al atardecer; quienes llegan sin reserva se sientan más atrás.",
+                    "Acceso: El camino es empinado y sin iluminación; el taxi o el sendero de la playa son más fáciles por la noche (traiga la linterna del teléfono). El aparcamiento es limitado, tenga cuidado con el borde del mar.",
+                    "El ritmo puede variar: Cuando la terraza está llena, los platos pueden llegar en diferentes momentos; a la mayoría de los clientes no les importa, pero planifique una comida relajada.",
+                    "Asientos: Las sillas sobre la grava pueden hundirse un poco; los cojines ayudan a los clientes más bajos."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre, Recogida en la acera, Para llevar, Comer en el local",
+                    offerings: "Alcohol, Cerveza, Vino",
+                    diningOptions: "Almuerzo, Cena, Postre, Asientos",
+                    parking: "Sí"
+                },
+                overallSummary: "Caravan by the Sea ofrece la quintaesencia de una noche isleña: olas rompiendo a sus pies, una puesta de sol pintando la bahía, platos llenos de productos cultivados a pocos metros de distancia y anfitriones que le tratan como a viejos amigos. Reserve una mesa junto al agua, comience con flores de calabacín rellenas y una jarra de vino blanco casero crujiente, disfrute de la pesca del día y planee volver a subir el callejón con el estómago lleno y una sonrisa."
+            },
+            {
+                id: 8,
+                name: "Tropicana Platanos",
+                mapLink: "https://maps.app.goo.gl/3PNxE5miGCy4gZxs6",
+                price: "€10–20",
+                priceNumeric: 15,
+                phone: "0030 2253071869",
+                menuLink: "https://www.unique-molivos.com/",
+                distance: "6,8 km",
+                distanceNumeric: 6.8,
+                imagePlaceholder: "../assets/images/food/Tropicana.png",
+                reviewSummary: [
+                    "Cocina griega casera con toques creativos: Cordero o ternera con ciruelas, ensalada «Mágica», moussaka, flores de calabacín rellenas, ladotyri saganaki, stifado y yogur de oveja casero para el desayuno, todos reciben elogios de «el mejor de la isla».",
+                    "Lugar de encuentro de la mañana a la noche: Abre para tortillas, yogur griego y zumo recién exprimido; permanece lleno hasta las tablas de mezzes de la noche, mariscos y parrilladas.",
+                    "La calidez familiar personificada: La anfitriona Taxia (y sus hijos) saludan cada mesa, bromean con los niños, toman fotos, envían dulces de cuchara o postres gratis y recuerdan a los clientes que regresan.",
+                    "Atmósfera de postal: Las mesas se agrupan bajo un plátano centenario en una plaza adoquinada; buganvillas vibrantes, faroles y música suave se suman al ambiente de taberna de pueblo.",
+                    "Apto para vegetarianos y niños: Muchas opciones sin carne (berenjenas al horno, judías gigantes, pimientos rellenos) y porciones más pequeñas bajo petición; los gatos locales proporcionan entretenimiento adicional para los más pequeños.",
+                    "Valor que los locales respaldan: Cuenta típica de 15-25 € por persona en la cena; muchos locales lo mencionan como su lugar para «comida de verdad»."
+                ],
+                issuesSummary: [
+                    "Reserve, especialmente para la cena: Solo una docena de mesas aproximadamente; las noches se agotan con días de antelación en temporada alta.",
+                    "Espere una espera suave: Como todo se cocina al momento, los platos llegan cuando están listos; la mayoría de los clientes aprecian el ritmo de «comida lenta».",
+                    "Gatos y algunas moscas: La plaza abierta significa gatos amigables e insectos ocasionales, encantador para algunos, una molestia para otros.",
+                    "Un poco difícil de localizar: Escondido una cuadra cuesta arriba de la principal calle turística; siga las señales hacia el castillo, luego escuche las risas bajo el gran árbol.",
+                    "Porciones = generosas: Comparta los entrantes o venga con hambre; muchos clientes informan haber dejado comida para los gatos."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre, Para llevar, Comer en el local",
+                    offerings: "Alcohol, Todo lo que puedas comer, Cerveza, Menú en Braille, Cócteles, Café, Platos orgánicos, Platos pequeños, Licores, Opciones vegetarianas, Opciones veganas, Vino",
+                    diningOptions: "Desayuno, Brunch, Almuerzo, Cena, Postre, Asientos",
+                    planning: "Acepta reservas",
+                    payments: "Tarjetas de débito, Pagos móviles NFC, Tarjetas de crédito, Efectivo",
+                    parking: "Difícil encontrar sitio"
+                },
+                overallSummary: "Tropicana es el tipo de taberna donde te sientas como un extraño y te vas sintiéndote adoptado. Venga a desayunar bajo el plátano o reserve con antelación para una cena a la luz de las velas con flores de calabacín rellenas, estofado de cordero con ciruelas y una jarra de cerveza local Sedusa o vino casero. Diga «yia mas» a Taxia, siéntese mientras la plaza se llena de conversación, y entenderá por qué tantos visitantes terminan comiendo aquí tres noches seguidas."
+            },
+            {
+                id: 9,
+                name: "Eleven Four",
+                mapLink: "https://maps.app.goo.gl/zTZc12toYb2UmrWr7",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 6972182605",
+                menuLink: "https://www.google.com/maps/place/Eleven+Four/@39.3280406,26.1753505,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipOMT_eToWte8C2PKlhqju-Kn54bYY984fSClgxa!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipOMT_eToWte8C2PKlhqju-Kn54bYY984fSClgxa%3Dw203-h270-k-no!7i3024!8i4032!4m9!3m8!1s0x14ba9bd37d994e25:0x41b570c8ea3eebbd!8m2!3d39.3279887!4d26.1753971!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11txyyw6qc?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "700 m",
+                distanceNumeric: 0.7,
+                imagePlaceholder: "../assets/images/food/Eleven.png",
+                reviewSummary: [
+                    "Pizza y pasta artesanales en un mar de tabernas: Pizzas de masa fina (servidas solo después de que la masa haya «reposado» dos días), carbonara «como en Italia», linguine con gambas, pizza «Mafia» picante, risotto y enormes sándwiches club rompen la rutina de la comida griega.",
+                    "Menú para todo el día que realmente es para todo el día: Tortillas, desayunos ingleses, tostadas de aguacate y salmón y zumos frescos por la mañana; hamburguesas, ensaladas y cócteles para el atardecer; pasteles caseros y helados (pistacho y limón reciben los mayores aplausos) en cualquier momento.",
+                    "Servicio con una sonrisa: Los camareros, especialmente Theodoros, se describen como «rápidos», «sonrientes» y «podrían enseñar a otros». El agua helada gratuita en la mesa llega automáticamente; cuencos de agua tibia con limón para los dedos aparecen con las gambas con cáscara.",
+                    "Lugar privilegiado para relajarse: Sofás cómodos y mesas normales a lo largo del paseo marítimo; los clientes observan cómo el sol se pone detrás de la bahía de Molyvos mientras suena música lounge.",
+                    "Buena relación calidad-precio: Gasto típico de 5-10 € para el desayuno, 10-18 € para pizzas/pasta, 2-3 € para enormes bolas de helado; muchos señalan «porciones enormes» de patatas fritas y helado.",
+                    "Toques aptos para dietas: Opción de pasta sin gluten, amplia lista de ensaladas y personal dispuesto a adaptar los platos."
+                ],
+                issuesSummary: [
+                    "Pizza solo por la noche: La masa se prepara con 48 horas de antelación; los visitantes del mediodía pueden encontrar los hornos apagados.",
+                    "Puede estar abarrotado en horas punta: Cuando está lleno, es posible una pequeña espera o un pago de cuenta más lento; pida su cuenta en cuanto esté listo.",
+                    "Principalmente al aire libre: El entorno junto al mar significa viento ocasional (¡sujete su pan!) y el fumador ocasional de paso.",
+                    "No estrictamente griego: El menú tiende a ser italiano/americano; busque en otro lugar si quiere moussaka o kleftiko."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre, Para llevar, Comer en el local",
+                    offerings: "Alcohol, Cerveza, Cócteles, Café",
+                    diningOptions: "Desayuno, Almuerzo, Postre, Asientos",
+                    planning: "Acepta reservas",
+                    parking: "Sí"
+                },
+                overallSummary: "Ya sea que desee un capuchino al amanecer, un helado enorme o una pizza artesanal con vistas al atardecer, Eleven Four ofrece unas vacaciones relajadas y una comida reconfortante impresionantemente bien ejecutada. Un personal amable, precios razonables y un asiento en primera fila en el paseo marítimo de Petra lo convierten en un práctico «descanso del ciclo de las tabernas» y un lugar que muchos viajeros visitan cinco días seguidos."
+            },
+            {
+                id: 10,
+                name: "El Restaurante del Pulpo",
+                mapLink: "https://maps.app.goo.gl/AQdLTC21SDmXU7zVA",
+                price: "€15–25",
+                priceNumeric: 20,
+                phone: "0030 2253071317",
+                menuLink: "https://octopusrestaurant.gr/",
+                distance: "6,9 km",
+                distanceNumeric: 6.9,
+                imagePlaceholder: "../assets/images/food/Octopus.png",
+                reviewSummary: [
+                    "Pulpo de todas las formas: Secado al sol y a la parrilla, marinado en vinagre de vino tinto o en pasta con marisco; la mayoría de los clientes dicen que es «el mejor que han probado». (El pescado fresco, el pez espada y las gambas jumbo ocupan el segundo lugar).",
+                    "Mezzes para recordar: Flores de calabacín fritas rellenas de queso, ladotyri-saganaki, gambas al ajo y mostaza, calamares rellenos y tzatziki clásico protagonizan una lista de entrantes lo suficientemente larga como para componer una comida.",
+                    "Vistas al puerto en primera fila: Las mesas están justo al borde del agua; los atardeceres flamean detrás de los barcos que se mecen. El personal reparte mantas cuando el meltemi se intensifica.",
+                    "Personal bilingüe y acogedor: Menús en griego, inglés y turco, camareros dispuestos a filetear una lubina entera o a empaquetar las sobras; a menudo llega halva o sémola dulce gratis con la cuenta.",
+                    "Buen rango de presupuestos: Almuerzo ligero (mezzes y cerveza) 15-25 € por persona • Comida completa de marisco con vino 35-50 € por persona • Langosta y vinos blancos de primera del Peloponeso disponibles si quiere derrochar."
+                ],
+                issuesSummary: [
+                    "Reserve o haga cola: Octopus es el nombre que se corre de boca en boca (y en TikTok); quienes llegan sin reserva después de las 19:30 a menudo se enfrentan a una espera de 20-40 minutos.",
+                    "El ritmo del servicio sigue a la multitud: Las reservas tempranas o tardías elogian la entrega «extremadamente rápida»; las horas punta pueden traer esperas de 30 minutos entre platos.",
+                    "La textura del pulpo varía: Un puñado de clientes encontró la versión a la parrilla «gomosa»; pida el estilo marinado en vinagre si lo prefiere tierno.",
+                    "El pan y el agua embotellada no son gratis: Un cargo de cubierto típico de 1-2 € por persona aparece en la mayoría de las cuentas.",
+                    "Las mesas están apretadas: La fachada del puerto significa poco espacio para los codos; si quiere espacio para un carrito o un lugar más tranquilo, menciónelo al reservar."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre, Comer en el local",
+                    offerings: "Alcohol, Cerveza, Vino",
+                    diningOptions: "Almuerzo, Cena, Postre, Asientos",
+                    planning: "Acepta reservas",
+                    parking: "Sí"
+                },
+                overallSummary: "El Octopus se ha ganado su clientela fiel sirviendo mariscos de Lesbos ambiciosos pero auténticos en un entorno de postal, con un personal que cambia de idioma con tanta habilidad como sirve tentáculos avinagrados. Espere multitudes, precios ligeramente más altos que las tabernas del interior y la espera ocasional; luego levante un vaso de ouzo cuando la puesta de sol (y esa bandeja de flores de calabacín) demuestre que valió la pena."
+            },
+            {
+                id: 11,
+                name: "Chat 'n Chill",
+                mapLink: "https://maps.app.goo.gl/NCFnTEVT7xhqduaf7",
+                price: "€20–25",
+                priceNumeric: 22.5,
+                phone: "0030 6944441408",
+                menuLink: null,
+                distance: "6,3 km",
+                distanceNumeric: 6.3,
+                imagePlaceholder: "../assets/images/food/Chill.png",
+                reviewSummary: [
+                    "Costillas que dominan: Cocinadas a fuego lento, sazonadas y se deshacen en la boca; elija su peso (½ kilo, «peso medio» o el festín de 1 kilo). Patatas fritas, ensalada y dos salsas caseras vienen de acompañamiento; la mayoría apenas las tocan porque «el condimento es perfecto».",
+                    "Menú pequeño, gran sabor: Pollo a la parrilla, hamburguesas jugosas y una tortilla vegetariana completan la carta; todo es casero y servido por el propio chef.",
+                    "Vistas desde la terraza: Encaramada sobre el puerto, la terraza y el bar de la azotea enmarcan los atardeceres sobre la bahía de Petra y las luces del castillo después del anochecer.",
+                    "Gestión holandesa, extremadamente amable: Los propietarios Paul y el personal cambian de idioma (holandés/inglés/griego), recuerdan los nombres de los clientes habituales y mantienen el buen humor; espere un ambiente «como en casa».",
+                    "Precios razonables y porciones grandes: La cena con bebidas cuesta alrededor de 20-30 € por persona; varios clientes compartieron un costillar o un pollo y se fueron satisfechos."
+                ],
+                issuesSummary: [
+                    "Acceso empinado: El callejón adoquinado es corto pero empinado, bueno a pie para la mayoría, pero tome un taxi si las colinas o los tacones son un problema.",
+                    "Abre a las 19:00, se llena rápido: Solo unas 30 plazas; los madrugadores consiguen mesas cerca de la ventana, los rezagados a veces esperan arriba con una cerveza.",
+                    "Las costillas necesitan su tiempo: En hora punta, la cocina informa de 30-40 minutos para los costillares grandes. Tome un cóctel en el bar del desván mientras se ahúman.",
+                    "No es una taberna griega: Aquí no hay moussaka ni marisco; venga por comida reconfortante carnívora y un cambio de ritmo de los mezzes isleños."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Recogida en la acera, Para llevar, Comer en el local, Entrega",
+                    offerings: "Alcohol, Cerveza, Café, Comida, Comida en el bar, Platos pequeños, Licores, Opciones vegetarianas, Vino",
+                },
+                overallSummary: "Chat ’n Chill es una combinación etérea de hospitalidad holandesa y barbacoa americana para chuparse los dedos, servida con el panorama más hermoso de Lesbos. Si anhela costillas perfectamente cocinadas, bebidas heladas y una puesta de sol que valga la pena la subida, este es el lugar; simplemente reserve o llegue temprano, y quizás deje los tacones altos en el hotel."
+            },
+            {
+                id: 12,
+                name: "Sarandos",
+                mapLink: "https://maps.app.goo.gl/4gN2ZVrrP8xF4WJZ6",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253041449",
+                menuLink: "https://www.google.com/maps/place/Sarandos/@39.3164705,26.150383,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgIDEusuXCA!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4nrZvUMQAJmoklkk3QqtqqSV-iDnVdte_5LCWTnGtBICOr7syn0Rgr2lnDiKFvAcjWoV7sochfe_V54w8Orjc-SxaqXwJmDvPpyOe924mOf-IDRZ6fnj5S2yS93RgzX9lgKy0KUa%3Dw203-h360-k-no!7i1080!8i1920!4m9!3m8!1s0x14ba90b85714569f:0x91097981e65d711!8m2!3d39.3164705!4d26.150383!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11c4pcgnzn?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "2,1 km",
+                distanceNumeric: 2.1,
+                imagePlaceholder: "../assets/images/food/Sarandos.png",
+                reviewSummary: [
+                    "Clásicos griegos caseros: Cordero cocinado a fuego lento «a la Sarandos» y kleftiko, estofado de ternera que se deshace en la boca, enormes tomates/pimientos rellenos y crujientes «chips» de berenjena con rebozado de cerveza.",
+                    "Porciones generosas, precios pequeños: Parrillada mixta 13 €, medias pintas de cerveza 3 €, platos principales generalmente 9-14 €; y la mayoría de los platos alimentan a dos, con un mini postre o fruta gratis para terminar.",
+                    "Calidez familiar: Los propietarios de tercera generación Babis y Stratos le dan la bienvenida como primos, intercambian bromas en media docena de idiomas y siguen trayendo ouzo (y pan gratis con aceite de hierbas).",
+                    "Atmósfera auténtica: Mesas escondidas un poco apartadas de la calle principal de Anaxos, cigarras y música griega discreta en lugar de las multitudes de la playa; decoración rústica de madera y menú manuscrito cada temporada.",
+                    "Favoritos del público fiables: Tzatziki cargado de ajo, pastourmadopitakia (empanadillas de pastırma) rellenas de feta, sardinas y pulpo a la parrilla, además de éxitos vegetarianos como moussaka y saganaki de champiñones."
+                ],
+                issuesSummary: [
+                    "Es popular: Se forman colas después de las 20:00; llegue temprano o espere con una bebida.",
+                    "Ritmo de servicio = ritmo griego: Un chef, una parrilla: las comidas pueden tardar entre 30 y 40 minutos en hora punta. La mayoría de los clientes dicen que la espera vale la pena.",
+                    "El efectivo sigue siendo el rey: El datáfono es temperamental, traiga euros.",
+                    "Grandes comedores bienvenidos: Muchas parejas comparten un plato principal; los clientes solos a menudo piden media porción.",
+                    "Ubicación: No en la playa; busque el letrero azul en la calle del pueblo frente al mini-mercado."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre, Entrega sin contacto, Entrega, Para llevar, Comer en el local",
+                    popularFor: "Almuerzo, Cena, Clientes solos",
+                    offerings: "Alcohol, Cerveza, Cócteles, Café, Comida halal, Comida nocturna, Bocado rápido, Platos pequeños, Licores, Opciones veganas, Opciones vegetarianas, Vino",
+                    diningOptions: "Desayuno, Brunch, Almuerzo, Cena, Catering, Postre, Asientos",
+                    amenities: "Bar en el lugar, Baños de género neutro, Baño, Wi-Fi, Wi-Fi gratis",
+                    planning: "Se recomienda reservar para la cena, Acepta reservas",
+                    payments: "Tarjetas de crédito, Tarjetas de débito, Efectivo",
+                    parking: "Sí",
+                    pets: "Se admiten perros"
+                },
+                overallSummary: "Sarandos es el tipo de taberna de pueblo que imagina encontrar solo después de hacerse amigo de los lugareños: recetas de cuatro generaciones, precios amigables y personal que ofrece sandía «de la casa». Si busca auténtica comida reconfortante de Lesbos en lugar de vistas a la calle turística, tome una mesa, pida algo cocinado a fuego lento y póngase cómodo para una noche relajada y llena de risas."
+            },
+            {
+                id: 13,
+                name: "I Mouria tou Mirivili",
+                mapLink: "https://maps.app.goo.gl/FZcKZFq5hqr2m78F6",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253055319",
+                menuLink: "https://www.google.com/maps/place/I+Mouria+tou+Mirivili/@39.3733809,26.3031001,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgIDH0N3A4gE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4noLCqMJS9krZ6uMUAx5RjnwJnqxQY-oTd93yV5h0_848NUvd_5f1OhLLuUoAVTtkfwcedDAvD02kc675zwwWAQqDQi3Fo1JXSVJP30Dkx-9WZwPckW6Gp-Oc0hchR8v4fFKeIwDQA%3Dw203-h270-k-no!7i3024!8i4032!4m9!3m8!1s0x14ba840a90fb8ec9:0x16a519ad4d243623!8m2!3d39.3733809!4d26.3031001!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11bw3z1qq7?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "28,4 km",
+                distanceNumeric: 28.4,
+                imagePlaceholder: "../assets/images/food/Mirivili.png",
+                reviewSummary: [
+                    "Encanto frente al puerto: Las mesas se extienden bajo una morera justo en el pequeño muelle pesquero, con vistas a los caiques que se mecen y a la capilla de Panagia, digna de una postal, en el rompeolas.",
+                    "La pesca más fresca de Lesbos: Sardinas locales «casadas», salmonete delicado, calamar relleno, pulpo al vino y una langosta con pasta o kritharoto (orzo) de culto, todo viene directamente de los barcos del pueblo.",
+                    "Generosidad y obsequios: Pan de pueblo tostado bañado en aceite de oliva y tomillo, aceitunas de la casa y un final ritual con halva de sémola con dulce de guinda en almíbar más té caliente.",
+                    "Menú que recompensa a los curiosos: Los aficionados destacan el pastourma de pescado, la variedad de mezzes de marisco encurtido y el saganaki de gambas, platos que rara vez se ven fuera de Lesbos.",
+                    "Marisco económico: La mayoría de los mezzes cuestan entre 6 y 9 €; los platos principales de pescado entre 11 y 18 €; la langosta con pasta alimenta a dos por unos 40 €. Cuentas recientes: 70 € para 4 personas con cerveza, o 15-25 € por persona para el almuerzo."
+                ],
+                issuesSummary: [
+                    "Es un lugar de peregrinación: Los mediodías de verano y las horas del atardecer se llenan rápidamente; llegue temprano o reserve, especialmente para las codiciadas mesas del borde.",
+                    "Ritmo de servicio ≈ ritmo isleño: Con una cocina pequeña, los platos llegan a medida que se cocinan; la mayoría de los clientes se relajan con ouzo y no les importa, pero planifique una comida relajada.",
+                    "Gatos y niños del puerto: Los peludos locales patrullan esperando sobras de sardinas, encantador para muchos, una molestia para algunos alérgicos.",
+                    "El efectivo es más seguro: El datáfono puede ser temperamental y un puñado de críticos informan de confusiones ocasionales con el cambio; cuente antes de irse.",
+                    "Acceso: Los últimos kilómetros descienden hacia el puerto; el aparcamiento es limitado junto al muelle, así que prepárese para caminar 2-3 minutos."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre, Para llevar, Comer en el local",
+                    popularFor: "Almuerzo, Cena, Clientes solos",
+                    offerings: "Alcohol, Cerveza, Café, Comida nocturna, Bocado rápido, Platos pequeños, Licores, Vino",
+                    diningOptions: "Almuerzo, Cena, Postre, Asientos",
+                    planning: "Acepta reservas",
+                    payments: "Tarjetas de crédito, Efectivo",
+                    parking: "Sí",
+                    pets: "Se admiten perros"
+                },
+                overallSummary: "I Mouria tou Mirivili es la quintaesencia de la taberna griega junto al mar: brisa marina en el pelo, una mesa a la sombra de una morera centenaria, platos de pescado fresquísimo rociados con aceite de oliva verde de Lesbos y el tintineo de los vasos de ouzo de las mesas vecinas de lugareños y excursionistas turcos. Venga por la magia del puerto y quédese lo suficiente para el halva gratis; entenderá por qué la gente añade este pequeño pueblo a su itinerario solo para cenar."
+            },
+            {
+                id: 14,
+                name: "Wave Taverna (La Ola)",
+                mapLink: "https://maps.app.goo.gl/fjJnoUFEsC1maB2C7",
+                price: "€15–20",
+                priceNumeric: 17.5,
+                phone: "0030 6944866508",
+                menuLink: "https://www.google.com/maps/place/Wave+Taverna/@39.3751604,26.2925417,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICn3uKIPQ!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4npQZl290-UWwKAowwGuqbBnpVsQkJVs7LZuJqqsZZAHlygH90mRyRRJe4m8TJZutIhzp0hJFKWaWdOlCa5fx2ClDPPHPEY2E4t2ayo3hauccWJl1NFxFd0hYMfvk49AzTtD2O8n%3Dw195-h123-k-no!7i1932!8i1221!4m12!1m3!2m2!1sRestaurants!6e5!3m7!1s0x14ba840a94e3497f:0x4eca823cea7ae6d7!8m2!3d39.3749169!4d26.2923597!10e9!15sCgtSZXN0YXVyYW50c1oNIgtyZXN0YXVyYW50c5IBCnJlc3RhdXJhbnSqAUQQASoPIgtyZXN0YXVyYW50cygAMh4QASIa4iedZWtQTBEhPBWiwUE7GKzd5slXHymgamgyDxACIgtyZXN0YXVyYW50c-ABAA!16s%2Fg%2F11hbvzbrr9?entry=ttu&g_ep=EgoyMDI1MDYwMi4wIKXMDSoASAFQAw%3D%3D",
+                distance: "25,4 km",
+                distanceNumeric: 25.4,
+                imagePlaceholder: "../assets/images/food/Wave.png",
+                reviewSummary: [
+                    "Ubicación: Justo al lado del mar, ambiente tranquilo, sombra de árboles, magníficas vistas",
+                    "Calidad de la comida: Mariscos excepcionalmente frescos, porciones generosas, sabores griegos tradicionales",
+                    "Platos destacados: Flores de calabacín rellenas, pulpo a la parrilla, saganaki de gambas, salmonete",
+                    "Hospitalidad: Negocio familiar cálido, personal amable y acogedor (especialmente el propietario Paris)",
+                    "Relación calidad-precio: Precios asequibles (10–25 € por persona), a menudo se sirve postre/fruta gratis",
+                    "Ambiente: Ambiente tranquilo junto al mar con música griega de fondo, ideal para comidas relajantes",
+                    "Apto para niños: Dispone de un parque infantil y una zona segura para familias con niños",
+                    "Limpieza: Comedor limpio, entorno ordenado, presentación cuidada"
+                ],
+                issuesSummary: [
+                    "Avispas en verano: Varios clientes mencionaron avispas en agosto que molestaron su comida",
+                    "Servicio lento: Debido a una cocina pequeña, los platos pueden llegar en diferentes momentos, no es ideal si tiene prisa",
+                    "Problemas con el pago con tarjeta: Problemas ocasionales con el datáfono o con el cambio correcto",
+                    "Camino de acceso: Los últimos 500 metros hasta la taberna son por un camino de tierra (pero transitable)",
+                    "Aglomeraciones en horas punta: Especialmente en agosto, las plazas se llenan rápidamente, se recomienda reservar"
+                ],
+                additionalInfo: {
+                    serviceOptions: "Mesas al aire libre, Para llevar, Comer en el local",
+                    popularFor: "Almuerzo, Cena, Clientes solos",
+                    diningOptions: "Desayuno, Brunch, Almuerzo, Cena, Catering, Servicio de mostrador, Postre, Asientos",
+                    planning: "Acepta reservas",
+                    payments: "Efectivo, Tarjetas de débito, Pagos móviles NFC, Tarjetas de crédito",
+                    parking: "Amplio aparcamiento",
+                    pets: "Se admiten perros"
+                },
+                overallSummary: "La taberna Wave (La Ola) es una taberna griega junto al mar digna de una postal donde el tiempo pasa más despacio. Las mesas se extienden junto a las olas, a la sombra de los tamariscos, mientras el olor a pulpo a la parrilla y flores de calabacín fritas flota en el aire. Lugareños, excursionistas de un día y fieles clientes habituales vienen no solo por la comida honesta y sabrosa, sino también por la calidez de Paris y su equipo, que tratan a cada cliente como a uno más de la familia. Venga por las flores rellenas y quédese por la brisa marina, los brindis con ouzo y la fruta gratis al final; es el tipo de lugar al que querrá volver incluso antes de haberse ido."
+            }
+        ];
+
+        // Generic SVG Icon component (for CheckCircle, XCircle, Close)
+        const SvgIcon = ({ path, path2, className = "w-5 h-5 inline-block" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className} aria-hidden="true">
+                <path fillRule="evenodd" d={path} clipRule="evenodd" />
+                {path2 && <path d={path2} />}
+            </svg>
+        );
+
+        // Font Awesome Icon component
+        const FaIcon = ({ iconClass, className = "w-4 h-4", ariaHidden = true }) => (
+            <i className={`${iconClass} ${className}`} aria-hidden={ariaHidden}></i>
+        );
+
+        // Specific Icons using FontAwesome
+        const PhoneActionIcon = ({className}) => <FaIcon iconClass="fas fa-phone" className={className} />;
+        const MapLinkIcon = ({className}) => <FaIcon iconClass="fas fa-map-marker-alt" className={className} />;
+        const MenuLinkIcon = ({className}) => <FaIcon iconClass="fas fa-book-open" className={className} />;
+        const PriceDisplayIcon = ({className}) => <FaIcon iconClass="fas fa-credit-card-alt" className={className} />; // Or fas fa-euro-sign
+        const DistanceDisplayIcon = ({className}) => <FaIcon iconClass="fas fa-route" className={className} />;
+
+        // Specific Icons using SVG
+        const CheckCircleIcon = () => <SvgIcon path="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" className="w-5 h-5 inline-block mr-1.5 text-green-600" />;
+        const XCircleIcon = () => <SvgIcon path="M10 18a8 8 0 100-16 8 8 0 000 16z" path2="M13.414 12l2.293-2.293a1 1 0 00-1.414-1.414L12 10.586l-2.293-2.293a1 1 0 00-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 001.414 1.414L12 13.414l2.293 2.293a1 1 0 001.414-1.414L13.414 12z" className="w-5 h-5 inline-block mr-1.5 text-red-600" />;
+        const CloseIcon = () => <SvgIcon path="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 01-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z" className="w-5 h-5"/>;
+
+
+        const RestaurantDetailModal = ({ restaurant, onClose }) => {
+            if (!restaurant) return null;
+
+            useEffect(() => {
+                const handleEsc = (event) => {
+                    if (event.keyCode === 27) {
+                        onClose();
+                    }
+                };
+                window.addEventListener('keydown', handleEsc);
+                document.body.style.overflow = 'hidden';
+                return () => {
+                    window.removeEventListener('keydown', handleEsc);
+                    document.body.style.overflow = '';
+                };
+            }, [onClose]);
+
+            // Helper to translate keys from additionalInfo
+            const translateKey = (key) => {
+                const translations = {
+                    payments: "Pagos",
+                    parking: "Estacionamiento",
+                    serviceOptions: "Opciones de servicio",
+                    diningOptions: "Opciones de comida",
+                    planning: "Planificación",
+                    pets: "Mascotas",
+                    highlights: "Destacados",
+                    offerings: "Ofertas",
+                    popularFor: "Popular por",
+                    amenities: "Comodidades"
+                };
+                return translations[key] || key.replace(/([A-Z])/g, ' $1').trim();
+            };
+
+            return (
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[100] transition-opacity duration-300 ease-in-out animate-fadeIn">
+                    <div className="bg-slate-50 rounded-lg shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 relative modal-scrollbar">
+                        <button
+                            onClick={onClose}
+                            className="absolute top-3 right-3 text-slate-500 hover:text-sky-600 transition-colors p-1 rounded-full hover:bg-slate-200"
+                            aria-label="Cerrar ventana"
+                        >
+                            <CloseIcon />
+                        </button>
+
+                        <div className="flex flex-col sm:flex-row gap-6 mb-6">
+                            <img src={restaurant.imagePlaceholder} alt={restaurant.name} className="w-full sm:w-1/3 h-auto object-cover rounded-lg shadow-md" />
+                            <div className="flex-grow">
+                                <h2 className="text-3xl font-bold text-sky-800 mb-1">{restaurant.name}</h2>
+                                <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-600 mb-4">
+                                    <span className="flex items-center"><PriceDisplayIcon className="w-4 h-4 mr-1 text-slate-700" /> Precio: {restaurant.price}</span>
+                                    <span className="flex items-center"><DistanceDisplayIcon className="w-4 h-4 mr-1 text-slate-700" /> {restaurant.distance} desde Petradi</span>
+                                </div>
+                                <div className="flex flex-wrap gap-2 mt-3">
+                                    {restaurant.phone && <a href={`tel:${restaurant.phone}`} className="bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold py-2 px-3 rounded-md transition-colors duration-200 flex items-center gap-1.5 shadow-sm hover:shadow-md"><PhoneActionIcon className="w-3.5 h-3.5" />Llamar</a>}
+                                    <a href={restaurant.mapLink} target="_blank" rel="noopener noreferrer" className="bg-teal-500 hover:bg-teal-600 text-white text-xs font-semibold py-2 px-3 rounded-md transition-colors duration-200 flex items-center gap-1.5 shadow-sm hover:shadow-md"><MapLinkIcon className="w-3.5 h-3.5" />Mapa</a>
+                                    {restaurant.menuLink && <a href={restaurant.menuLink} target="_blank" rel="noopener noreferrer" className="bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold py-2 px-3 rounded-md transition-colors duration-200 flex items-center gap-1.5 shadow-sm hover:shadow-md"><MenuLinkIcon className="w-3.5 h-3.5" />Menú</a>}
+                                </div>
+                            </div>
+                        </div>
+
+                        <p className="text-slate-700 italic text-base my-6 border-b border-slate-200 pb-4">{restaurant.overallSummary}</p>
+
+                        <div className="space-y-5">
+                            <div>
+                                <h3 className="text-xl font-semibold text-sky-700 mb-2.5">Qué dicen las reseñas:</h3>
+                                <ul className="list-none space-y-1.5">
+                                    {restaurant.reviewSummary.map((item, index) => (
+                                        <li key={`pro-modal-${restaurant.id}-${index}`} className="text-sm text-slate-600 flex items-start">
+                                            <CheckCircleIcon /> <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            {restaurant.issuesSummary && restaurant.issuesSummary.length > 0 && (
+                                <div>
+                                    <h3 className="text-xl font-semibold text-sky-700 mb-2.5">Problemas Mencionados:</h3>
+                                    <ul className="list-none space-y-1.5">
+                                        {restaurant.issuesSummary.map((item, index) => (
+                                            <li key={`con-modal-${restaurant.id}-${index}`} className="text-sm text-slate-600 flex items-start">
+                                                <XCircleIcon /> <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+
+                        {restaurant.additionalInfo && Object.keys(restaurant.additionalInfo).length > 0 && (
+                            <div className="mt-6 border-t border-slate-200 pt-5">
+                                <h3 className="text-xl font-semibold text-sky-700 mb-3">Información Adicional:</h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                                {Object.entries(restaurant.additionalInfo).map(([key, value]) => (
+                                    <div key={`${key}-${restaurant.id}`} className="text-sm text-slate-600">
+                                        <strong className="font-medium text-slate-700 capitalize">{translateKey(key)}:</strong> {value}
+                                    </div>
+                                ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const RestaurantCard = ({ restaurant, onOpenModal }) => {
+            return (
+                <div className="bg-white shadow-xl rounded-xl overflow-hidden transform hover:shadow-sky-600/30 hover:scale-[1.03] transition-all duration-300 ease-in-out flex flex-col">
+                    <img src={restaurant.imagePlaceholder} alt={restaurant.name} className="w-full h-52 object-cover" />
+                    <div className="p-5 flex flex-col flex-grow">
+                        <h2 className="text-xl font-semibold text-sky-800 mb-1.5">{restaurant.name}</h2>
+                        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-500 mb-3">
+                            <span className="flex items-center"><PriceDisplayIcon className="w-3.5 h-3.5 mr-1" /> {restaurant.price}</span>
+                            <span className="flex items-center"><DistanceDisplayIcon className="w-3.5 h-3.5 mr-1" /> {restaurant.distance} desde Petradi</span>
+                        </div>
+                        <p className="text-sm text-gray-600 italic mb-4 flex-grow line-clamp-3">{restaurant.overallSummary}</p>
+
+                        <button
+                            onClick={() => onOpenModal(restaurant)}
+                            className="mt-auto bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-gray-600"
+                        >
+                            Ver Detalles
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const FilterControls = ({ onFilterChange, onSortChange, currentSort, currentPriceFilter }) => {
+            // Dynamically generate price options from the data
+            const uniquePriceRanges = useMemo(() => {
+                const prices = new Set(initialRestaurantData.map(r => r.price));
+                return Array.from(prices).sort((a,b) => {
+                    const numA = parseFloat(a.replace('€','').split('–')[0]);
+                    const numB = parseFloat(b.replace('€','').split('–')[0]);
+                    return numA - numB;
+                });
+            }, []);
+
+            return (
+                <div className="mb-10 p-5 bg-white/80 backdrop-blur-md rounded-xl shadow-lg">
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 items-end">
+                        <div>
+                            <label htmlFor="sortBy" className="block text-xs font-medium text-slate-700 mb-1">Ordenar por:</label>
+                            <select
+                                id="sortBy"
+                                name="sortBy"
+                                className="mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm transition-colors"
+                                onChange={(e) => onSortChange(e.target.value)}
+                                value={currentSort}
+                            >
+                                <option value="name_asc">Nombre (A-Z)</option>
+                                <option value="name_desc">Nombre (Z-A)</option>
+                                <option value="price_asc">Precio (Bajo-Alto)</option>
+                                <option value="price_desc">Precio (Alto-Bajo)</option>
+                                <option value="distance_asc">Distancia (Más cercano)</option>
+                                <option value="distance_desc">Distancia (Más lejano)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label htmlFor="priceFilter" className="block text-xs font-medium text-slate-700 mb-1">Filtrar por Precio:</label>
+                            <select
+                                id="priceFilter"
+                                name="priceFilter"
+                                className="mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm transition-colors"
+                                onChange={(e) => onFilterChange('price', e.target.value)}
+                                value={currentPriceFilter}
+                            >
+                                <option value="all">Todos los Precios</option>
+                                {uniquePriceRanges.map(price => (
+                                    <option key={price} value={price}>{price}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <button
+                            onClick={() => {
+                                onSortChange('name_asc');
+                                onFilterChange('price', 'all');
+                            }}
+                            className="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2.5 px-4 rounded-md text-sm sm:col-span-2 md:col-span-1 transition-colors"
+                        >
+                            Restablecer Filtros
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [sortCriteria, setSortCriteria] = useState('name_asc');
+            const [priceFilter, setPriceFilter] = useState('all');
+            const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+
+            const handleOpenModal = (restaurant) => {
+                setSelectedRestaurant(restaurant);
+            };
+
+            const handleCloseModal = () => {
+                setSelectedRestaurant(null);
+            };
+
+            const handleFilterChange = (type, value) => {
+                if (type === 'price') {
+                    setPriceFilter(value);
+                }
+            };
+
+            const handleSortChange = (criteria) => {
+                setSortCriteria(criteria);
+            };
+
+            const filteredAndSortedRestaurants = useMemo(() => {
+                let processedRestaurants = [...initialRestaurantData];
+                if (priceFilter !== 'all') {
+                    processedRestaurants = processedRestaurants.filter(r => r.price === priceFilter);
+                }
+                processedRestaurants.sort((a, b) => {
+                    const [field, order] = sortCriteria.split('_');
+                    let comparison = 0;
+                    let valA = a[field === 'price' ? 'priceNumeric' : (field === 'distance' ? 'distanceNumeric' : field)];
+                    let valB = b[field === 'price' ? 'priceNumeric' : (field === 'distance' ? 'distanceNumeric' : field)];
+
+                    if (field === 'name' && typeof valA === 'string' && typeof valB === 'string') {
+                        valA = valA.toLowerCase();
+                        valB = valB.toLowerCase();
+                    }
+                    
+                    if (valA > valB) comparison = 1;
+                    else if (valA < valB) comparison = -1;
+                    return order === 'desc' ? comparison * -1 : comparison;
+                });
+                return processedRestaurants;
+            }, [sortCriteria, priceFilter]);
+
+            return (
+                <React.Fragment>
+                    <div className="container mx-auto px-6 py-8 text-center">
+                        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-sky-900">Explorador de Restaurantes</h1>
+                        <p className="mt-3 text-lg text-slate-700">
+                            Nuestras sugerencias de restaurantes para explorar la cocina local, las deliciosas tabernas de pescado y uno de los mejores souvlakis de la isla.
+                        </p>
+                    </div>
+
+                    <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                        <FilterControls
+                            onFilterChange={handleFilterChange}
+                            onSortChange={handleSortChange}
+                            currentSort={sortCriteria}
+                            currentPriceFilter={priceFilter}
+                        />
+                        {filteredAndSortedRestaurants.length > 0 ? (
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                                {filteredAndSortedRestaurants.map(restaurant => (
+                                    <RestaurantCard key={restaurant.id} restaurant={restaurant} onOpenModal={handleOpenModal} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-16">
+                                <img src="https://placehold.co/180x135/CBD5E0/718096?text=No+Encontrados" alt="No se encontraron resultados" className="mx-auto mb-6 rounded-lg shadow-md opacity-80"/>
+                                <h3 className="text-xl font-semibold text-slate-700 mb-1.5">Ningún Restaurante Coincide con tus Filtros</h3>
+                                <p className="text-slate-500">Intenta ajustar tus opciones de precio o clasificación.</p>
+                            </div>
+                        )}
+                    </main>
+
+                    {selectedRestaurant && (
+                        <RestaurantDetailModal restaurant={selectedRestaurant} onClose={handleCloseModal} />
+                    )}
+
+                    <footer className="bg-black text-gray-200 py-8 mt-16">
+                        <div className="container mx-auto px-6 text-center">
+                            <p className="text-base">© {new Date().getFullYear()} petrADi.</p>
+                            <p className="text-sm mt-1">¡Disfruta de los sabores de Lesbos!</p>
+                        </div>
+                    </footer>
+                </React.Fragment>
+            );
+        };
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+
+  <!-- SCRIPTS (jQuery, Slick, Parallax) (Unchanged) -->
+  <script src="../assets/js/jquery-3.6.0.min.js"></script>
+  <script src="../assets/js/slick.min.js"></script>
+  <script src="../assets/js/parallax.min.js"></script>
+
+  <!-- General Site Scripts (e.g., for burger menu if not handled by React) (Unchanged) -->
+  <script src="../assets/js/scripts.js"></script>
+
+  <!-- NEW Language Switcher SCRIPT (Unchanged logic, but alt text for selected flag will use translated source) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const switcherContainer = document.getElementById('languageSwitcherContainer');
+        const selectedDisplay = document.getElementById('languageSwitcherSelectedDisplay');
+        const optionsList = document.getElementById('languageSwitcherOptionsList');
+
+        if (!switcherContainer || !selectedDisplay || !optionsList) {
+            console.warn('Language switcher HTML elements not found. Switcher will not initialize.');
+            return;
+        }
+
+        const optionLinks = optionsList.querySelectorAll('li a');
+
+        // Determine current language from HTML lang attribute or path
+        let detectedLangCode = document.documentElement.lang || 'en'; // Default to 'en'
+
+        const pathParts = window.location.pathname.split('/').filter(part => part.length > 0);
+        if (pathParts.length > 0) {
+            const firstPathPart = pathParts[0];
+            // Check if the first path part is a known language code from our switcher
+            const isKnownLangDir = Array.from(optionLinks).some(link => link.dataset.langCode === firstPathPart);
+            if (isKnownLangDir) {
+                detectedLangCode = firstPathPart;
+            } else if (!document.documentElement.lang) {
+                 detectedLangCode = 'en';
+            }
+        }
+        if (detectedLangCode) {
+            document.documentElement.lang = detectedLangCode;
+        }
+
+
+        let currentLanguageOption = null;
+        optionLinks.forEach(link => {
+            if (link.dataset.langCode === detectedLangCode) {
+                currentLanguageOption = link;
+                link.parentElement.style.display = 'none'; 
+            } else {
+                link.parentElement.style.display = ''; 
+            }
+        });
+
+        if (currentLanguageOption) {
+            const flagImg = currentLanguageOption.querySelector('img');
+            if (flagImg) {
+                let altText = flagImg.alt; 
+                let suffix = ' Selected'; 
+                // Define flag words and suffixes for each language
+                const langSpecifics = {
+                    'de': { suffix: ' Ausgewählt', flagWord: ' Flagge' },
+                    'el': { suffix: ' Επιλεγμένη', flagWord: ' Σημαία' },
+                    'tr': { suffix: ' Seçili', flagWord: ' Bayrağı' },
+                    'fr': { suffix: ' Sélectionné', flagWord: ' Drapeau' },
+                    'es': { suffix: ' Seleccionado', flagWord: ' Bandera' },
+                    'nl': { suffix: ' Geselecteerd', flagWord: ' Vlag' }, // Assuming Dutch might be present
+                    'en': { suffix: ' Selected', flagWord: ' Flag' }   // English as default
+                };
+
+                let currentLangSpec = langSpecifics[document.documentElement.lang] || langSpecifics['en'];
+                suffix = currentLangSpec.suffix;
+                
+                let baseAltText = altText;
+                // Remove any known "flag" word from any language to get the base name
+                for (const langCode in langSpecifics) {
+                    if (langSpecifics[langCode].flagWord) {
+                         const regex = new RegExp(langSpecifics[langCode].flagWord.trim(), 'gi');
+                         baseAltText = baseAltText.replace(regex, '');
+                    }
+                }
+                altText = baseAltText.trim() + suffix;
+                selectedDisplay.innerHTML = `<img src="${flagImg.src}" alt="${altText}">`;
+
+            } else {
+                selectedDisplay.textContent = detectedLangCode.toUpperCase(); 
+            }
+        } else if (optionLinks.length > 0) {
+            const enOption = Array.from(optionLinks).find(link => link.dataset.langCode === 'en') || optionLinks[0];
+            if (enOption) {
+                 const flagImg = enOption.querySelector('img');
+                 let altText = "English Selected"; 
+                 if (flagImg) {
+                    const langSpecifics = {
+                        'de': { suffix: ' Ausgewählt', flagWord: ' Flagge' },
+                        'el': { suffix: ' Επιλεγμένη', flagWord: ' Σημαία' },
+                        'tr': { suffix: ' Seçili', flagWord: ' Bayrağı' },
+                        'fr': { suffix: ' Sélectionné', flagWord: ' Drapeau' },
+                        'es': { suffix: ' Seleccionado', flagWord: ' Bandera' },
+                        'nl': { suffix: ' Geselecteerd', flagWord: ' Vlag' },
+                        'en': { suffix: ' Selected', flagWord: ' Flag' }
+                    };
+                    let baseAltText = flagImg.alt;
+                    for (const langCode in langSpecifics) {
+                        if (langSpecifics[langCode].flagWord) {
+                            const regex = new RegExp(langSpecifics[langCode].flagWord.trim(), 'gi');
+                            baseAltText = baseAltText.replace(regex, '');
+                        }
+                    }
+                    
+                    let currentLangSpec = langSpecifics[document.documentElement.lang] || langSpecifics['en'];
+                    let suffix = currentLangSpec.suffix;
+
+                    altText = baseAltText.trim() + suffix;
+                    selectedDisplay.innerHTML = `<img src="${flagImg.src}" alt="${altText}">`;
+                 }
+                 enOption.parentElement.style.display = 'none';
+            }
+        }
+
+
+        selectedDisplay.addEventListener('click', function (event) {
+            event.stopPropagation(); 
+            switcherContainer.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (switcherContainer && !switcherContainer.contains(event.target) && switcherContainer.classList.contains('open')) {
+                switcherContainer.classList.remove('open');
+            }
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="el" class=""> <!-- Changed lang to "el" for Greek -->
+  <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1T20957YE"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-F1T20957YE');
+        </script>
+    <!-- ========= META & TITLE ================================================= -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Συχνές Ερωτήσεις · petrADI</title> <!-- Translated title -->
+
+    <!-- ========= ICON ======================================================== -->
+    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
+
+    <!-- ========= GOOGLE FONTS & FONT-AWESOME ================================= -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- ========= TAILWIND CDN (with custom colors) =========================== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "ui-sans-serif", "system-ui"],
+            },
+            colors: {
+              primary: {
+                50: "#ecf9ff",
+                100: "#d6f3ff",
+                200: "#ade7ff",
+                300: "#7ad9ff",
+                400: "#44c8ff",
+                500: "#14b4ff",
+                600: "#0096e6",
+                700: "#0073b3",
+                800: "#005480",
+                900: "#00344d",
+              },
+            },
+          },
+        },
+        darkMode: "class", // Important for JS toggle
+      };
+    </script>
+
+    <!-- ========= PAGE SPECIFIC CSS =========================================== -->
+    <style>
+      /* Card lift / glass effect */
+      .glass-card {
+        backdrop-filter: blur(14px) saturate(160%);
+        -webkit-backdrop-filter: blur(14px) saturate(160%);
+        background: rgba(255, 255, 255, 0.65);
+      }
+      /* Removed @media prefers-color-scheme for glass-card here if fully relying on Tailwind dark class.
+         Alternatively, keep it if you want OS preference to also affect this specific element independently.
+         For consistency with Tailwind's dark:class, it's often better to style the dark version
+         using Tailwind's dark prefix or a .dark .glass-card rule.
+         Let's assume Tailwind dark class will handle this:
+      */
+      .dark .glass-card { /* Style for glass-card when dark mode is active via class */
+        background: rgba(31, 41, 55, 0.55);
+      }
+
+      /* Basic Styles for Nav Interactivity (customize as needed) */
+      .nav-links {
+        transition: transform 0.3s ease-out;
+      }
+      /* Mobile Nav: Hidden by default, shown by .nav-active */
+      @media (max-width: 767px) { /* md breakpoint in Tailwind is 768px */
+        .nav-links {
+          position: absolute;
+          right: 0;
+          top: 60px; /* Adjust based on your nav height */
+          background-color: white; /* Light mode background */
+          /* dark:bg-gray-800 needs to be applied via JS or by Tailwind if nav-links is a Tailwind component */
+          flex-direction: column;
+          align-items: center;
+          width: 60%; /* Or some other width */
+          transform: translateX(100%);
+          box-shadow: -5px 5px 15px rgba(0,0,0,0.1);
+          padding: 1rem 0;
+        }
+        .nav-links.nav-active {
+          transform: translateX(0%);
+        }
+        .dark .nav-links { /* Dark mode background for mobile menu */
+            background-color: #1f2937; /* gray-800 */
+        }
+        .nav-links li {
+          padding: 0.5rem 0;
+          width: 100%;
+          text-align: center;
+        }
+        .nav-links li a {
+          display: block;
+          width: 100%;
+        }
+
+        /* === FIX FOR MOBILE DROPDOWN POSITIONING === */
+        #customDropdown .options-container { /* Targeting options-container within customDropdown */
+          left: 0; /* Align left edge of dropdown with left edge of #customDropdown */
+          right: auto; /* Remove the 'right: 0' alignment */
+        }
+        /* ========================================== */
+
+
+      }
+
+      .burger div {
+        transition: all 0.3s ease;
+      }
+      .burger.toggle .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+      .burger.toggle .line2 {
+        opacity: 0;
+      }
+      .burger.toggle .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      .options-container {
+        display: none; /* Hidden by default */
+        position: absolute;
+        top: calc(100% + 8px); /* Position below the flag icon */
+        right: 0;
+        background-color: white; /* Light mode */
+        border: 1px solid #e5e7eb; /* gray-200 */
+        border-radius: 0.375rem; /* rounded-md */
+        box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06); /* shadow-lg */
+        z-index: 50;
+        min-width: 120px; /* Adjust as needed */
+      }
+      .dark .options-container { /* Dark mode for dropdown */
+        background-color: #374151; /* gray-700 */
+        border-color: #4b5563; /* gray-600 */
+      }
+      .options-container.active {
+        display: block; /* Shown when active */
+      }
+      .dropdown-option {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 0.75rem; /* py-2 px-3 */
+        font-size: 0.875rem; /* text-sm */
+        /* text-gray-700 dark:text-gray-200 (apply to text inside) */
+      }
+      .dark .dropdown-option {
+        /* color: #d1d5db; /* gray-300 */
+      }
+      .dropdown-option:hover {
+        background-color: #f3f4f6; /* gray-100 */
+      }
+      .dark .dropdown-option:hover {
+        background-color: #4b5563; /* gray-600 */
+      }
+      .dropdown-option img {
+        width: 20px;
+        height: auto;
+        margin-right: 0.5rem; /* mr-2 */
+      }
+    </style>
+  </head>
+
+  <body
+    class="flex min-h-screen flex-col bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-900 dark:to-gray-800 text-gray-800 dark:text-gray-100"
+  >
+    <!-- ********************************************************************* -->
+    <!--  NAV  (Kept identical as requested - HTML structure)                  -->
+    <!-- ********************************************************************* -->
+    <header class="sticky top-0 z-40 bg-white/70 dark:bg-gray-800/70 backdrop-blur-md shadow-sm">
+      <nav class="container mx-auto flex items-center justify-between p-4 h-16 relative">
+        <!-- Added Tailwind classes for basic layout and sticky behavior -->
+        <!-- <a href="./" class="text-xl font-bold text-primary-600 dark:text-primary-400">petrADI</a> -->
+
+        <div class="flex items-center space-x-4">
+            <!-- Desktop Nav Links -->
+            <ul class="nav-links hidden md:flex space-x-4 items-center">
+              <li>
+                <a href="./" class="hover:text-primary-600 dark:hover:text-primary-400">Αρχική</a> <!-- Translated Home -->
+              </li>
+              <!-- Add other desktop nav links here if any -->
+            </ul>
+
+            <!-- Language Dropdown -->
+            <div id="customDropdown" class="custom-dropdown relative">
+              <div id="selectedLang" class="selected-lang cursor-pointer">
+                <!-- Changed to Greek flag and alt text -->
+                <img src="../assets/images/el_flag.png" alt="" class="w-6 h-auto" />
+              </div>
+              <div class="options-container">
+                <!-- Changed first option to English, pointing to an assumed English version path -->
+                <a class="dropdown-option hover:bg-gray-100 dark:hover:bg-gray-700" href="../faq"> <!-- Assuming original English was faq -->
+                  <img src="../assets/images/en_flag.png" alt="" /> 
+                </a>
+                <a class="dropdown-option hover:bg-gray-100 dark:hover:bg-gray-700" href="../tr/faq">
+                  <img src="../assets/images/tr_flag.png" alt="" /> 
+                </a>
+                <a class="dropdown-option hover:bg-gray-100 dark:hover:bg-gray-700" href="../de/faq">
+                  <img src="../assets/images/de_flag.png" alt="" /> 
+                </a>
+                <a class="dropdown-option hover:bg-gray-100 dark:hover:bg-gray-700" href="../nl/faq">
+                  <img src="../assets/images/nl_flag.png" alt="" /> 
+                </a>
+                <a class="dropdown-option hover:bg-gray-100 dark:hover:bg-gray-700" href="../fr/faq">
+                  <img src="../assets/images/fr_flag2.png" alt="" /> 
+                </a>
+                <a class="dropdown-option hover:bg-gray-100 dark:hover:bg-gray-700" href="../es/faq">
+                  <img src="../assets/images/es_flag.png" alt="" /> 
+                </a>
+              </div>
+            </div>
+
+            <!-- Dark Mode Toggle Button -->
+            <button id="darkModeToggle" aria-label="Εναλλαγή σκοτεινής λειτουργίας" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300"> <!-- Translated aria-label -->
+              <i class="fa-solid fa-moon text-lg" id="darkModeIconMoon"></i>
+              <i class="fa-solid fa-sun text-lg hidden" id="darkModeIconSun"></i>
+            </button>
+
+            <!-- Burger Menu (for mobile) -->
+            <div class="burger md:hidden cursor-pointer ml-2"> <!-- Show only on mobile (md:hidden) -->
+              <div class="line1 h-0.5 w-6 bg-gray-700 dark:bg-gray-200 my-1"></div>
+              <div class="line2 h-0.5 w-6 bg-gray-700 dark:bg-gray-200 my-1"></div>
+              <div class="line3 h-0.5 w-6 bg-gray-700 dark:bg-gray-200 my-1"></div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Links Container (pulled out for easier absolute positioning) -->
+        <ul class="nav-links md:hidden fixed right-0 top-16 h-[calc(100vh-4rem)] w-3/5 max-w-xs
+                   bg-white dark:bg-gray-800 shadow-xl p-6 space-y-4
+                   transform translate-x-full transition-transform duration-300 ease-in-out z-30">
+            <li>
+                <a href="./" class="block py-2 text-gray-700 dark:text-gray-200 hover:text-primary-600 dark:hover:text-primary-400">Αρχική</a> <!-- Translated Home -->
+            </li>
+            <!-- Add other mobile nav links here if any -->
+            <!-- You might want to move/duplicate the language dropdown here for mobile too -->
+        </ul>
+
+      </nav>
+    </header>
+
+    <!-- ********************************************************************* -->
+    <!--  HERO / INTRO                                                         -->
+    <!-- ********************************************************************* -->
+    <section class="relative w-full overflow-hidden py-24 sm:py-32">
+      <div
+        class="absolute inset-0 -z-10 bg-[url('./assets/images/hero_pattern.svg')] opacity-20 dark:opacity-10"
+      ></div>
+      <div class="container mx-auto px-6 text-center">
+        <h1
+          class="mx-auto mb-6 max-w-3xl bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-5xl font-extrabold leading-tight text-transparent sm:text-6xl"
+        >
+          Εξερευνήστε Περισσότερα ... <!-- Translated H1 -->
+        </h1>
+        <p class="mx-auto max-w-xl text-lg text-gray-700 dark:text-gray-300">
+          Προσεκτικά επιλεγμένες τοπικές εμπειρίες, πρακτικές ανέσεις και επιμελημένες συμβουλές για να σας βοηθήσουν κατά τη διαμονή σας μαζί μας. <!-- Translated paragraph -->
+        </p>
+      </div>
+    </section>
+
+    <!-- ********************************************************************* -->
+    <!--  MAIN CONTENT – GLASS CARDS                                           -->
+    <!-- ********************************************************************* -->
+    <main class="container mx-auto flex-1 px-6 pb-24">
+      <div
+        class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10"
+      >
+        <!-- Card Component (re-usable) -->
+        <a href="./TavernRecommendations" class="group">
+          <div
+            class="glass-card relative overflow-hidden rounded-3xl border border-white/40 p-10 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-white/10"
+          >
+            <i
+              class="fa-solid fa-utensils absolute right-6 top-6 text-4xl text-primary-300 opacity-20 group-hover:opacity-30"
+            ></i>
+            <h2 class="mb-3 flex items-center text-xl font-semibold">
+              <i class="fa-solid fa-utensils mr-3 text-primary-500"></i>
+              Προτεινόμενες Ταβέρνες <!-- Translated -->
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Μια σύντομη λίστα με τις αγαπημένες μας τοπικές ταβέρνες και εστιατόρια. <!-- Translated -->
+            </p>
+            <span
+              class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400"
+            >
+              Ανακαλύψτε <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i> <!-- Translated -->
+            </span>
+          </div>
+        </a>
+
+        <!-- Beaches -->
+        <a href="./LocalBeaches" class="group">
+          <div
+            class="glass-card relative overflow-hidden rounded-3xl border border-white/40 p-10 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-white/10"
+          >
+            <i
+              class="fa-solid fa-water absolute right-6 top-6 text-4xl text-primary-300 opacity-20 group-hover:opacity-30"
+            ></i>
+            <h2 class="mb-3 flex items-center text-xl font-semibold">
+              <i class="fa-solid fa-water mr-3 text-primary-500"></i>
+              Παραλίες Κοντά στο petrADI <!-- Translated -->
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Ζωντανές συνθήκες ανέμου, κρυμμένοι όρμοι και ένα μυστικό διαμάντι μία ώρα μακριά. <!-- Translated -->
+            </p>
+            <span
+              class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400"
+            >
+              Βουτήξτε <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i> <!-- Translated -->
+            </span>
+          </div>
+        </a>
+
+        <!-- Hotel Facilities -->
+        <a href="./HotelAmenities" class="group">
+          <div
+            class="glass-card relative overflow-hidden rounded-3xl border border-white/40 p-10 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-white/10"
+          >
+            <i
+              class="fa-solid fa-hotel absolute right-6 top-6 text-4xl text-primary-300 opacity-20 group-hover:opacity-30"
+            ></i>
+            <h2 class="mb-3 flex items-center text-xl font-semibold">
+              <i class="fa-solid fa-hotel mr-3 text-primary-500"></i>
+              Παροχές Ξενοδοχείου <!-- Translated -->
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Όλα όσα περιλαμβάνει η διαμονή σας (και τα λίγα που δεν περιλαμβάνει!). <!-- Translated -->
+            </p>
+            <span
+              class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400"
+            >
+              Δείτε όλες <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i> <!-- Translated -->
+            </span>
+          </div>
+        </a>
+
+        <!-- Guest Support (Greek) -->
+        <div
+          class="glass-card relative overflow-hidden rounded-3xl border border-white/40 p-10 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-white/10"
+        >
+          <i
+            class="fa-solid fa-comments absolute right-6 top-6 text-4xl text-primary-300 opacity-20"
+          ></i>
+          <h2 class="mb-3 flex items-center text-xl font-semibold text-gray-700 dark:text-gray-200">
+            <i class="fa-solid fa-comments mr-3 text-gray-500"></i>
+            Επικοινωνία
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            <a href="https://wa.me/306979066541" target="_blank" rel="noopener noreferrer" class="inline-flex items-center hover:underline">
+              <i class="fa-brands fa-whatsapp mr-2 text-green-500"></i>Whatsapp: 0030 697906 6541
+            </a><br />
+            <a href="viber://chat?number=%2B306979066541" class="inline-flex items-center hover:underline">
+              <i class="fa-brands fa-viber mr-2 text-purple-600"></i>Viber: 0030 697906 6541
+            </a><br />
+            <a href="mailto:petradi.lesvos@gmail.com" class="inline-flex items-center hover:underline">
+              <i class="fa-solid fa-envelope mr-2 text-gray-700 dark:text-gray-300"></i>Email: petradi.lesvos@gmail.com
+            </a><br />
+            <a href="tel:+306942997376" class="inline-flex items-center hover:underline">
+              <i class="fa-solid fa-phone mr-2 text-blue-500"></i>Δευτερεύον τηλέφωνο: 0030 6942997376
+            </a>
+          </p>
+        </div>
+
+                <!-- Google My Maps -->
+        <a href="https://www.google.com/maps/d/viewer?hl=el&ll=39.30214362331294%2C26.12667918718958&z=14&mid=10P-xixgcvZSXjLFcDHzS6R2ZsDYKOOE" class="group"> <!-- Changed hl=en to hl=el in map link -->
+          <div
+            class="glass-card relative overflow-hidden rounded-3xl border border-white/40 p-10 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-white/10"
+          >
+            <i
+              class="fa-solid fa-map-location absolute right-6 top-6 text-4xl text-primary-300 opacity-20 group-hover:opacity-30"
+            ></i>
+            <h2 class="mb-3 flex items-center text-xl font-semibold">
+              <i class="fa-solid fa-map-location mr-3 text-primary-500"></i>
+              Σημεία Ενδιαφέροντος σε Χάρτη <!-- Translated -->
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Θα έχουμε μια επιμελημένη λίστα σημείων ενδιαφέροντος στους χάρτες Google (Εργασία σε εξέλιξη) <!-- Translated -->
+            </p>
+            <span
+              class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400"
+            >
+              Στην άκρη των δακτύλων σας <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i> <!-- Translated -->
+            </span>
+          </div>
+        </a>
+
+        <!-- Local Transport -->
+        <a href="./LocalTransport" class="group">
+          <div
+            class="glass-card relative overflow-hidden rounded-3xl border border-white/40 p-10 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-white/10"
+          >
+            <i
+              class="fa-solid fa-bus absolute right-6 top-6 text-4xl text-primary-300 opacity-20 group-hover:opacity-30"
+            ></i>
+            <h2 class="mb-3 flex items-center text-xl font-semibold">
+              <i class="fa-solid fa-bus mr-3 text-primary-500"></i>
+              Τοπικές Συγκοινωνίες <!-- Translated -->
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Δρομολόγια, τιμές και διαδρομές για τα υπεραστικά λεωφορεία ΚΤΕΛ της Λέσβου. <!-- Translated -->
+            </p>
+            <span
+              class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400"
+            >
+              Σχεδιάστε το ταξίδι <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i> <!-- Translated -->
+            </span>
+          </div>
+        </a>
+
+        <a href="./pharmacy" class="group">
+          <div
+            class="glass-card relative overflow-hidden rounded-3xl border border-white/40 p-10 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-white/10"
+          >
+            <i
+              class="fa-solid fa-pills absolute right-6 top-6 text-4xl text-primary-300 opacity-20 group-hover:opacity-30"
+            ></i>
+            <h2 class="mb-3 flex items-center text-xl font-semibold">
+              <i class="fa-solid fa-briefcase-medical mr-3 text-primary-500"></i>
+              Φαρμακεία & Υγεία
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Πληροφορίες για τοπικά φαρμακεία, ιατρεία στην περιοχή της Πέτρας, και άλλα χρήσιμα λινκς.
+            </p>
+            <span
+              class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400"
+            >
+              Βρείτε υπηρεσίες υγείας <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i>
+            </span>
+          </div>
+        </a>
+
+        <!-- Laundry Services -->
+        <a href="./LocalLaundryServices" class="group">
+          <div
+            class="glass-card relative overflow-hidden rounded-3xl border border-white/40 p-10 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl dark:border-white/10"
+          >
+            <i
+              class="fa-solid fa-broom absolute right-6 top-6 text-4xl text-primary-300 opacity-20 group-hover:opacity-30"
+            ></i>
+            <h2 class="mb-3 flex items-center text-xl font-semibold">
+              <i class="fa-solid fa-broom mr-3 text-primary-500"></i>
+              Υπηρεσίες Πλυντηρίου <!-- Translated -->
+            </h2>
+            <p class="text-gray-600 dark:text-gray-400">
+              Εγκατάσταση αυτοεξυπηρέτησης σε μικρή απόσταση με τα πόδια – ανοιχτά καθημερινά. <!-- Translated -->
+            </p>
+            <span
+              class="mt-6 inline-flex items-center gap-2 text-sm font-medium text-primary-600 dark:text-primary-400"
+            >
+              Φρέσκα ρούχα <i class="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"></i> <!-- Translated -->
+            </span>
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <!-- ********************************************************************* -->
+    <!--  FOOTER                                                               -->
+    <!-- ********************************************************************* -->
+    <footer
+      class="mt-auto bg-gray-800/90 px-6 py-8 text-center text-sm text-gray-300 backdrop-blur lg:text-base"
+    >
+      © 2025 petrADI • Φτιαγμένο με 🩵 στη Λέσβο <!-- Translated -->
+    </footer>
+
+    <!-- ========= OPTIONAL – SCROLL REVEAL ANIMATIONS ======================== -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/aos@2.3.4/dist/aos.css"
+    />
+    <script>
+      AOS.init({ duration: 600, once: true });
+    </script>
+
+    <!-- ========= CUSTOM JAVASCRIPT FOR INTERACTIVITY ======================= -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // --- Burger Menu Functionality ---
+        const burger = document.querySelector('.burger');
+        const navLinks = document.querySelector('ul.nav-links.md\\:hidden'); // Target the mobile nav UL
+
+        if (burger && navLinks) {
+          burger.addEventListener('click', () => {
+            navLinks.classList.toggle('translate-x-full'); // Toggles visibility based on transform
+            navLinks.classList.toggle('nav-active'); // Compatibility for CSS if you prefer .nav-active selector
+            burger.classList.toggle('toggle'); // For burger animation
+          });
+        }
+
+        // --- Language Dropdown Functionality ---
+        const selectedLang = document.getElementById('selectedLang');
+        const optionsContainer = document.querySelector('#customDropdown .options-container');
+
+        if (selectedLang && optionsContainer) {
+          selectedLang.addEventListener('click', (event) => {
+            event.stopPropagation(); // Prevent click from bubbling to document
+            optionsContainer.classList.toggle('active');
+          });
+
+          // Close dropdown if clicked outside
+          document.addEventListener('click', (event) => {
+            if (!selectedLang.contains(event.target) && !optionsContainer.contains(event.target)) {
+              optionsContainer.classList.remove('active');
+            }
+          });
+        }
+
+        // --- Dark Mode Toggle Functionality ---
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const htmlElement = document.documentElement; // Target <html> tag
+        const moonIcon = document.getElementById('darkModeIconMoon');
+        const sunIcon = document.getElementById('darkModeIconSun');
+
+        // Function to apply theme and update icon
+        function applyTheme(isDark) {
+          if (isDark) {
+            htmlElement.classList.add('dark');
+            if(moonIcon) moonIcon.classList.add('hidden');
+            if(sunIcon) sunIcon.classList.remove('hidden');
+          } else {
+            htmlElement.classList.remove('dark');
+            if(moonIcon) moonIcon.classList.remove('hidden');
+            if(sunIcon) sunIcon.classList.add('hidden');
+          }
+        }
+
+        // Check for saved theme preference or OS preference
+        let isDarkMode = localStorage.getItem('theme') === 'dark' ||
+                         (localStorage.getItem('theme') === null && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        applyTheme(isDarkMode);
+
+        if (darkModeToggle) {
+          darkModeToggle.addEventListener('click', () => {
+            isDarkMode = !htmlElement.classList.contains('dark');
+            applyTheme(isDarkMode);
+            localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+          });
+        }
+
+        // Listen for OS theme changes (optional, if you want it to auto-update)
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (localStorage.getItem('theme') === null) { // Only if no explicit user choice
+                isDarkMode = e.matches;
+                applyTheme(isDarkMode);
+            }
+        });
+
+      });
+    </script>
+  </body>
+</html>

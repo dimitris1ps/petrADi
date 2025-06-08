@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="tr"> <!-- Ensure this is set correctly for each page, or JS will try to set it -->
+    <head>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F1T20957YE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-F1T20957YE');
+  </script>
+
+        <script>
+            !(function (d, s, id) {
+                var js,
+                    fjs = d.getElementsByTagName(s)[0];
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = 'https://weatherwidget.io/js/widget.min.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            })(document, 'script', 'weatherwidget-io-js');
+        </script>
+
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>petrADI</title>
+        <link rel="stylesheet" href="../assets/css/button.css" />
+        <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon" />
+        <link rel="stylesheet" href="../assets/css/slick.css" />
+        <link rel="stylesheet" href="../assets/css/slick-theme.css" />
+        <link rel="stylesheet" href="../assets/css/styles.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              inter: ['Inter', 'sans-serif'],
+            },
+          }
+        }
+      }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        html {
+            font-size: 100%;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem; /* Base font size */
+            line-height: 1.6;
+        }
+
+        /* Removed .info-card styles as they are handled by Tailwind on RestaurantCard directly */
+
+        header nav .nav-links li a {
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95) translateY(-10px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        .modal-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .modal-scrollbar::-webkit-scrollbar-track {
+            background: #e2e8f0; /* slate-200 */
+        }
+        .modal-scrollbar::-webkit-scrollbar-thumb {
+            background: #94a3b8; /* slate-400 */
+            border-radius: 4px;
+        }
+        .modal-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* slate-500 */
+        }
+
+        /* Styles for the NEW Language Switcher (Unchanged) */
+        .lang-switcher-container {
+            position: relative;
+            display: inline-block;
+            margin-left: 15px;
+        }
+        .lang-switcher-selected {
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+        .lang-switcher-selected:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        .lang-switcher-selected img {
+            width: 30px;
+            height: auto;
+            border-radius: 3px;
+        }
+        .lang-switcher-options {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.25);
+            z-index: 1050;
+            min-width: 160px;
+            border-radius: 4px;
+            margin-top: 5px;
+            padding: 5px 0;
+            list-style: none;
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .lang-switcher-container.open .lang-switcher-options {
+            display: block;
+        }
+        .lang-switcher-options li a {
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+        .lang-switcher-options li a:hover {
+            background-color: #f0f0f0;
+        }
+        .lang-switcher-options li a img {
+            width: 24px;
+            height: auto;
+            border-radius: 2px;
+        }
+        .lang-switcher-options li a span {
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gradient-to-br from-sky-50 via-slate-50 to-sky-100 font-inter text-slate-800">
+  <header class="bg-black shadow-lg sticky top-0 z-50">
+    <nav>
+        <ul class="nav-links">
+            <li>
+                <a href="./">Ana Sayfa</a>
+            </li>
+            <li>
+                <a href="./faq">Sıkça Sorulan Sorular</a>
+            </li>
+        </ul>
+
+        <div class="lang-switcher-container" id="languageSwitcherContainer">
+            <div class="lang-switcher-selected" id="languageSwitcherSelectedDisplay">
+                <!-- Content generated by JS -->
+            </div>
+            <ul class="lang-switcher-options" id="languageSwitcherOptionsList">
+                <li><a href="../el/TavernRecommendations" data-lang-code="el"><img src="../assets/images/el_flag.png" alt="Yunanistan Bayrağı"> </a></li>
+                <li><a href="../TavernRecommendations" data-lang-code="en"><img src="../assets/images/en_flag.png" alt="İngiltere Bayrağı"> </a></li>
+                <li><a href="../tr/TavernRecommendations" data-lang-code="tr"><img src="../assets/images/tr_flag.png" alt="Türkiye Bayrağı"> </a></li>
+                <li><a href="../de/TavernRecommendations" data-lang-code="de"><img src="../assets/images/de_flag.png" alt="Almanya Bayrağı"> </a></li>
+                <li><a href="../nl/TavernRecommendations" data-lang-code="nl"><img src="../assets/images/nl_flag.png" alt="Hollanda Bayrağı"> </a></li>
+                <li><a href="../fr/TavernRecommendations" data-lang-code="fr"><img src="../assets/images/fr_flag2.png" alt="Fransa Bayrağı"> </a></li>
+                <li><a href="../es/TavernRecommendations" data-lang-code="es"><img src="../assets/images/es_flag.png" alt="İspanya Bayrağı"> </a></li>
+            </ul>
+        </div>
+
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+  </header>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo, useRef } = React;
+
+        const initialRestaurantData = [
+            {
+                id: 1,
+                name: "Kaminia",
+                mapLink: "https://maps.app.goo.gl/eH49tApi3RMoqvJZ7",
+                price: "€15–20",
+                priceNumeric: 17.5,
+                phone: "0030 2253092400",
+                menuLink: null,
+                distance: "11.5 km",
+                distanceNumeric: 11.5,
+                imagePlaceholder: "../assets/images/food/Kaminia.png",
+                reviewSummary: [
+                    "Taze, iyi pişmiş yemekler: 'Mükemmel' deniz ürünleri ve geleneksel yemekleri için övgü alıyor; cömert porsiyonlar, 'dürüst', 'basit' ve 'lezzetli' tatlar.",
+                    "Mükemmel değer: Turistik fiyat artışları olmadan 'çok iyi' veya 'tamamen normal' fiyatlar.",
+                    "Sahilde konum: Deniz ve Molyvos manzaralı kıyıda masalar. Yakında ücretsiz şezlong ve şemsiyeler.",
+                    "Rahat, rustik atmosfer: Sakin, huzurlu, 'basit' ve 'aile dostu', çoğunlukla yerel müşterilerle.",
+                    "Samimi, sıcak servis: Sahibi ve personel 'güleryüzlü', 'nazik', 'ilgili' ve 'misafirperver' olarak tanımlanıyor."
+                ],
+                issuesSummary: [
+                    "Ara sıra servis sorunları: Bir müşteri servise 1/5 puan verdi, bir diğeri balık siparişi verirken karışıklık yaşadı. Başka bir müşteri (çok) genç personelin daha fazla eğitime ihtiyacı olduğunu düşündü.",
+                    "Sınırlı kapasite / civardaki tek mekan: Bir yorumcu 'bölgedeki tek yer' olduğunu belirtiyor, bu nedenle seçenek sınırlı ve taverna kalabalık olabilir.",
+                    "'Gizli tutun' zihniyeti: Birçok yerli, başkalarını mekanı tanıtmamaya teşvik ediyor—atmosfer için harika, ancak minimum pazarlama ve yoğun zamanlarda muhtemelen daha uzun beklemeler anlamına gelebilir."
+                ],
+                additionalInfo: {
+                    payments: "Mobil NFC ödemeleri, Kredi kartları, Nakit.",
+                    parking: "Evet"
+                },
+                overallSummary: "Eğer kumların üzerinde, sakin bir ortamda, makul fiyatlı, basit, geleneksel deniz ürünleri arıyorsanız—ve samimi ama bazen yoğun olabilen bir servis istiyorsanız—bu taverna sürekli olarak bir mücevher olarak tanımlanıyor."
+            },
+            {
+                id: 2,
+                name: "Petra Kadın Kooperatifi",
+                mapLink: "https://maps.app.goo.gl/sNUh7YWMAjvpqFgP7",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253041238",
+                menuLink: "https://www.google.com/maps/place/Women's+Cooperative+of+Petra/@39.3277466,26.1752349,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgIDO-_WjjgE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4noXVBtxrm5dxvsMXsSlyz8UW1n_Nhk4JXODMdKKt3K39Lwnb_OqLeM0cP5n093seqF7bsnOiL4-zFJWQ4SLSRBP7iJM9Jpmp0Libt6QYBWMhwSR92_GEAh3YW1iQRSSV4ERJc4ulg%3Dw203-h270-k-no!7i3024!8i4032!4m9!3m8!1s0x14ba908277a8c923:0x30d8ea64a2bffb58!8m2!3d39.3277466!4d26.1752349!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11c42g104p?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "700 m",
+                distanceNumeric: 0.7,
+                imagePlaceholder: "../assets/images/food/Cooperative.png",
+                reviewSummary: [
+                    "Otantik, 'anne eli değmiş gibi' mutfak: Yorumcular 'Midilli'deki en iyi yemeklerden biri' olarak bahsediyor, yemekleri ev yapımı, hafif ama lezzet dolu, hatta 'büyükanneninkinden daha iyi' olarak nitelendiriyor. Özel lezzetler: kızarmış kabak çiçeği, karides veya kerevit saganaki, şaraplı ahtapot, çeşitli mezeler, dolma sebzeler ve günün tencere yemekleri.",
+                    "Deniz manzaralı ortam & gün batımları: Bir teras/balkon, tam Petra plajı ve iskelesinin üzerinde manzaraya sahip—gün batımları 'muhteşem', 'cennet gibi' ve 'rezervasyon yapmaya değer' olarak tanımlanıyor.",
+                    "Paranın karşılığı: Çoğu müşteri, özellikle porsiyonların büyüklüğü (genellikle cömert olarak tanımlanır) ve ücretsiz ikramlar (mekanın tatlısı, şarap veya uzo) göz önüne alındığında, fiyatları 'çok uygun' veya 'normal taverna fiyatları' olarak buluyor.",
+                    "Sıcak, aile/kooperatif atmosferi: Taverna bir kadın kooperatifi olarak başladı ve hala aile ruhuyla işletiliyor; garsonlar 'nazik', 'güleryüzlü', 'deneyimli ve iyi' olarak övülüyor. Birçok müşteri konaklamaları sırasında defalarca geri geliyor.",
+                    "Hız—doğru çalıştığında: Birkaç gönderi, kalabalığa rağmen 'hızlı servis' olduğunu ve yemeğin daha sakin günlerde sıcak ve iyi zamanlanmış olarak geldiğini belirtiyor."
+                ],
+                issuesSummary: [
+                    "Kalabalık & kapasite: Yoğun sezon dışında bile mekan hızla doluyor; rezervasyonsuz müşteriler bekliyor, içeride oturuyor ('sıkışık, nefes almak zor' olarak tanımlanıyor) veya balkon masalarını kaçırıyor.",
+                    "Baskı altında serviste gecikmeler: Yoğun akşamlarda siparişler 60-90 dakika sürebiliyor, mezeler ve ana yemekler sırasız gelebiliyor veya personel sipariş almayı tamamen unutabiliyor.",
+                    "Masa yönetimi sorunları: Bir saat sonra ayrılma talebi veya uyarı yapılmadan 'rezerve edilmiş' bir masadan taşınma hakkında birkaç rapor; bir müşteri yaklaşımı 'kabul edilemez' olarak nitelendirdi.",
+                    "Tutarsız porsiyonlar / yemekler: Çoğu porsiyon büyük olsa da, sardalya ve bazı makarnalar küçük göründü; dana yemekleri yağlı veya lezzetsiz olarak belirtildi ve bir müşteri genel pişirmeyi 'vasat & pahalı' olarak nitelendirdi.",
+                    "Stoklar tükeniyor: Geç gelen müşteriler bazen günün birçok yemeğinin zaten bittiğini görüyor.",
+                    "Bulması zor: Giriş, sahildeki bir kafenin üzerinde işaretsiz bir kapı—yaya yolunda gözden kaçırmak kolay."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı",
+                    diningOptions: "Öğle Yemeği, Akşam Yemeği, Tatlı, Oturma Alanı",
+                    planning: "Rezervasyon gerekli, Rezervasyon kabul edilir",
+                    parking: "Ücretsiz cadde üzeri otopark"
+                },
+                overallSummary: "Zengin, geleneksel Midilli yemeklerinin, özel deniz ürünlerinin ve samimi bir karşılamanın tadını uygun fiyatlarla çıkarmak istiyorsanız önceden rezervasyon yapın—tercihen gün batımı saatinde balkon masası için. Ancak, küçük yemek salonu dolduğunda olası beklemelere ve biraz organize kaosa hazırlıklı olun."
+            },
+            {
+                id: 3,
+                name: "THALASSA / Deniz RESTORANI",
+                mapLink: "https://maps.app.goo.gl/QX275dy7NLP6gMFq5",
+                price: "€15–20",
+                priceNumeric: 17.5,
+                phone: "0030 2253041366",
+                menuLink: "https://www.google.com/maps/place/THALASSA+%2F+The+sea+RESTAURANT/@39.3309771,26.1792797,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICH2Km55AE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4noJkW-q7UYreHxU2igeDxwIUdY9oerujBguTY3AnsZppMANgVBhj840XZ4k1-KAUCEzpB0Z3X2wu5jpjiC8ltmeV3TlSmu5jsYS28RwN1ZcDcfAZMsc5Uj2Ett0joMsJe0Sgrdu%3Dw203-h270-k-no!7i3000!8i4000!4m9!3m8!1s0x14ba9a7e916c7885:0x1b1c2ad1a63b8da2!8m2!3d39.3309771!4d26.1792797!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11_r19d4b?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "1.2 km",
+                distanceNumeric: 1.2,
+                imagePlaceholder: "../assets/images/food/THALASSA.png",
+                reviewSummary: [
+                    "Taze, lezzetli deniz ürünleri & Yunan spesiyalleri: Dolma veya ızgara kalamar, sardalya, ahtapot, karides saganaki, dolmadakia, lahana dolması, kuzu kleftiko, briam ve günün tencere yemekleri sürekli olumlu yorumlar alıyor. Birçok kişi Petra'da buldukları en lezzetli yemek olduğunu söylüyor—iyi vejetaryen çeşitleri de mevcut.",
+                    "Bütçe dostu sahil paketi: Ana yemekler genellikle €10-25 arasında değişiyor ve ücretsiz ikramlar—mekanın tatlısı, karpuz, uzo—ve ön taraftaki şezlonglar için ücret alınmıyor. Müşteriler şezlonglarından içecek sipariş etmeyi ve sonra gün batımında akşam yemeği için on metre yürümeyi seviyor.",
+                    "Gün batımı ortamı & rahat atmosfer: Masalar kumda veya batıya doğru panoramik manzaralı sakin bir yan sokakta bulunuyor; gün batımları 'efsanevi' ve atmosfer turistik bir kulüpten ziyade 'sıcak'. Çoğu gece konuşmak için yeterince sessiz.",
+                    "Aile sıcaklığı: Sahipleri Maria & Nikos (ve geniş aileleri) 'büyüleyici', 'yardımsever' ve Türkçe ile Hollandaca dahil birçok dilde sohbet edebilen kişiler olarak övülüyor. Düzenli müşteriler, karşılama için her yıl geri dönüyor.",
+                    "Çeşitlilik ve esneklik: Menü deniz ürünleri, etler ve birçok mezeyi kapsıyor; vejetaryenler veya glutensiz müşteriler birçok seçenek olduğunu belirtiyor. Çiftler, aileler, büyük gruplar için uygun—yorumcular aynı konaklama sırasında burada birçok kez yemek yemiş."
+                ],
+                issuesSummary: [
+                    "Mekan dolduğunda servis yavaşlıyor: Yoğun saatlerde müşteriler 30-90 dakika bekleme, mezelerin/ana yemeklerin birlikte gelmesi veya personelin tabakları toplamayı unutması gibi durumlar bildiriyor. Bir masa dört yemek için iki saat bekledi.",
+                    "Rezervasyon önerilir: Sezon dışı bile akşamları doluyor; rezervasyonsuz olarak sıkışık iç mekan masalarına kalabilir, sırada bekleyebilir veya istediğiniz deniz manzaralı yeri kaçırabilirsiniz.",
+                    "Kalabalık düzen: Bazıları masaları 'birbirine çok yakın' buluyor, tepsiler başların üzerinden geçiyor, sahil platformunda dirsek alanı sınırlı.",
+                    "Başarısı şüpheli yemekler: Bir azınlık pişirmeyi 'sıradan' olarak nitelendiriyor: sert kalamar, fazla kızarmış kabak çiçeği, tuzlu gyros, lezzetsiz vejetaryen tabağı, fazla pişmiş ızgara etler. Karidesler bazen temizlenmemiş servis ediliyor.",
+                    "Tutarsız porsiyon/değer eğrisi: Çoğu porsiyon cömert görünüyor, ancak birkaçı sardalya, makarna veya günün yemeklerinin fiyata göre küçük olduğunu söylüyor; diğerleri habersiz ekmek ücretlerinden şaşırmış.",
+                    "Yavaş veya ani anlar: Bir avuç kişi ilgisiz garsonlar, çok yavaş içecek yenileme veya yemeğin ortasında 'rezerve edilmiş' bir masayı boşaltma talebi bildiriyor."
+                ],
+                additionalInfo: {
+                    diningOptions: "Kahvaltı, Öğle Yemeği, Akşam Yemeği, Tatlı, Oturma Alanı",
+                    planning: "Rezervasyon kabul edilir",
+                    payments: "Banka kartları, Mobil NFC ödemeleri, Kredi kartları, Nakit",
+                    parking: "Evet"
+                },
+                overallSummary: "Makul fiyatlarla klasik Yunan deniz ürünleri ve ev yapımı ana yemekler istiyorsanız, tam Petra sahilinde kartpostallık bir gün batımıyla, önceden rezervasyon yapın ve fazladan zaman tanıyın—kalabalık geldiğinde servis aksayabilir, ancak çoğu müşteri memnun ayrılıyor (ve genellikle ertesi gece geri dönüyor)."
+            },
+            {
+                id: 4,
+                name: "KALDERIMI",
+                mapLink: "https://maps.app.goo.gl/SwQvdnU3R9j6fSwT8",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253041234",
+                menuLink: null,
+                distance: "700 m",
+                distanceNumeric: 0.7,
+                imagePlaceholder: "../assets/images/food/KALDERIMI.png",
+                reviewSummary: [
+                    "'Petra'daki en iyi gyros': Domuz veya tavuk gyros (artı kebaplar, köfteler & pide dürümler) sürekli olarak sulu, cömertçe doldurulmuş ve ucuz olarak tanımlanıyor. Birçok ziyaretçi seyahatlerinin her günü bir tane alıyor.",
+                    "Büyük tabaklar, küçük hesap: Bir pide dürüm için €4-5, bir ızgara tabağı için €10-12; porsiyonlar 'devasa' ve sonunda genellikle ücretsiz bir tatlı geliyor. Craft bira listesi ve hafif ev yapımı roze şarap da övgü alıyor.",
+                    "Gölgeli avlu vahası: Sokak cephesi bir kantin gibi görünüyor, ancak muz ağaçları, ışıklar ve Yunan müziğiyle dolu yemyeşil bir arka bahçeye geçin—pastoral ve aile dostu olarak tanımlanıyor.",
+                    "Hızlı dönüş, yavaş öğle yemeği seçeneği: Saat 13:00 civarında açılıyor ve akşama kadar servis yapıyor; çoğu yemek kalabalığa rağmen çabuk geliyor. Her sahil tavernasının deniz ürünlerine ağırlık verdiği zamanlarda harika bir alternatif.",
+                    "Sahiplerinden sıcaklık: Chrysa ve personel, gülümsemeleri, dil esneklikleri (Yunanca, İngilizce, Türkçe, Fransızca) ve kayıp güneş gözlüklerini veya özel biraları bulmalarıyla sürekli olarak takdir ediliyor."
+                ],
+                issuesSummary: [
+                    "Servis ruh halindeki değişiklikler: Çoğu personel övülürken, bir avuç kişi 'kibirli' veya ani bir garson, masaya fırlatılan tabaklar veya asla gelmeyen talepler (buz, hardal) bildiriyor.",
+                    "Yoğun saatlerde sıkışıklık: Avlu kapılar açılır açılmaz doluyor; dışarıda sıra beklemeyi, masaları paylaşmayı veya bir sonraki grubun oturması için acele ettirildiğinizi hissetmeyi bekleyin.",
+                    "Izgarada tutarsızlık: Bir azınlık pişmemiş souvlaki, sert pirzola, soğuk patates veya ıslak patatesle servis edilen pideler bildiriyor; lezzet 'mükemmel baharatlı'dan 'biraz yavan'a kadar değişebilir.",
+                    "Fiyatlar artıyor: Yerliler gyros pidenin €4.20-4.50'ye yükseldiğini belirtiyor; birkaçı fiyatlar artarken porsiyonların küçüldüğünü söylüyor. Diğerleri hala ucuz buluyor, bu nedenle değer algıları değişiyor.",
+                    "Deniz manzarası arayanlar için değil: Çarşının arka tarafında yer alıyor—gölge için harika, ancak sahil tavernaları gibi panoramik gün batımı manzarası yok."
+                ],
+                additionalInfo: {
+                    highlights: "Harika tatlı, Teras oturma alanı",
+                    diningOptions: "Öğle Yemeği, Akşam Yemeği, Catering, Tezgahta servis, Tatlı, Oturma Alanı",
+                    planning: "Rezervasyon kabul etmiyor",
+                    payments: "Kredi kartları, Banka kartları, Mobil NFC ödemeleri, Nakit",
+                    parking: "Evet"
+                },
+                overallSummary: "Kalderimi Grill, Petra'nın etobur mekanı ve bize göre adanın en iyilerinden biri: paket servis tezgahının arkasına gizlenmiş yemyeşil bir avlu, burada lezzetli bir gyros yiyebilir, bir craft IPA ile eşleştirebilir ve tatlı için paranız kalabilir. Aceleden kaçınmak için erken (veya geç) gelin, ara sıra servis sorunları için beklentilerinizi yönetin ve tok, gülümseyerek ayrılacaksınız—ve muhtemelen yarının tekrarını planlayarak."
+            },
+            {
+                id: 5,
+                name: "O Gavrilos",
+                mapLink: "https://maps.app.goo.gl/anPwbZywjrXwn8Et9",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253091500",
+                menuLink: "https://www.google.com/maps/place/%CE%9F+%CE%93%CE%B1%CE%B2%CF%81%CE%AF%CE%BB%CE%BF%CF%82+-+O+Gavrilos/@39.298312,26.193082,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipOH_8lyXgRsABXJaj-JjXWEdbMPdud4dhOKEEEh!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipOH_8lyXgRsABXJaj-JjXWEdbMPdud4dhOKEEEh%3Dw203-h143-k-no!7i1587!8i1122!4m9!3m8!1s0x14ba905b6c40f51b:0x6b8831cb9203c36f!8m2!3d39.2984834!4d26.1930902!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11bbrj6bvm?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "5.6 km",
+                distanceNumeric: 5.6,
+                imagePlaceholder: "../assets/images/food/Gavrilos.png",
+                reviewSummary: [
+                    "'Bu pirzolalar!': Kömürde pişirilmiş kuzu/koyun pirzolaları tartışmasız yıldız—sulu, dumanlı ve kilosu €24-28 veya porsiyonu yaklaşık €15. Dana rib-eye, domuz souvlaki, ev yapımı sosisler ve beyaz peynirli pastırmalı pide hemen arkasından geliyor.",
+                    "Virajlara değecek manzara: Petra'nın üzerinde yer alan teras, zeytinliklere ve Ege'ye bakıyor; gün batımları alkış topluyor (ve Instagram'ı dolduruyor). Sürekli bir esinti yaz sıcağını uzak tutuyor.",
+                    "Menüde az ama öz: Sıkı bir ızgara et listesi artı bir düzine meze—pancar & fava, acılı peynir ezmesi, dolmadakia—'tek bir zayıf yemek olmadan' hazırlanmış. Vejetaryenler hala mezelerle bir masa oluşturabilir.",
+                    "Ev yapımı şarap + craft seçenekler: Sahibinin ailesi tarafından yapılan rustik roze ve hafif kırmızı şaraplar ucuz bir listede öne çıkıyor; yerliler ayrıca küçük ama akıllı şişe koleksiyonunu da övüyor.",
+                    "Aile sıcaklığı: Dimitris salonda çalışırken baba Gavrilos kapıda karşılıyor. Kayıp cüzdanlar iade ediliyor, gün batımı masaları tutuluyor, çocuklarla ilgileniliyor—misafirperverlik tekrarlanan bir hikaye.",
+                    "Bütçe dostu: Çoğu grup kişi başı €15-20 (mezeler, ana yemek, şarap) bildiriyor ve burayı 'Midilli'deki en iyi değer' olarak adlandırıyor. Sadece nakit, bu yüzden euro getirin."
+                ],
+                issuesSummary: [
+                    "Rezervasyon (neredeyse) zorunlu: Yaklaşık 12 teras masası genellikle 18:00-20:30 arası tamamen rezerve edilmiş; rezervasyonsuz gelenler genellikle 20-30 dakika bekliyor veya sınırlı bir süre için oturuyor.",
+                    "Sadece et odaklı: Deniz ürünü yok ve pirzolalar kasıtlı olarak yağlı—bir veya iki müşteri onları 'çok yağlı' veya yavan bulmuş.",
+                    "Kasada sadece nakit: Kart makineleri dağa ulaşmamış.",
+                    "Böcekler & esinti: Öğleden sonra eşekarıları getiriyor; akşam rüzgarları güçlü olabilir—hafif bir giysi alın.",
+                    "Servis hızı = ızgara hızı: Her şey sipariş üzerine pişiriliyor; çoğu kişi açıklamayı seviyor, birkaçı beklemeyi 'uzun' olarak nitelendiriyor. Çok nadir ani bir garson şikayeti."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı, İçeride yemek",
+                    diningOptions: "Öğle Yemeği, Akşam Yemeği, Tatlı, Oturma Alanı",
+                    planning: "Akşam yemeği için rezervasyon önerilir, Rezervasyon kabul edilir",
+                    payments: "Sadece nakit",
+                    parking: "Evet",
+                    pets: "Dışarıda köpeklere izin verilir"
+                },
+                overallSummary: "Gavrilos, adanın etoburlarının hac yeri: uçurumun tepesindeki bir taverna, burada yağlı pirzolalar, soğuk ev yapımı roze şarap sürahileri ve Petra'nın muhteşem panoramik manzarası enflasyon öncesi gibi görünen fiyatlarla buluşuyor. Önceden rezervasyon yapın, nakit bulundurun ve aç gelin—ızgara kokusuyla ve hafta bitmeden bir dönüş planlayarak ayrılacaksınız."
+            },
+            {
+                id: 6,
+                name: "RAMA",
+                mapLink: "https://maps.app.goo.gl/YuqBttzBXKu9ekPw9",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253041085",
+                menuLink: null,
+                distance: "1.2 km",
+                distanceNumeric: 1.2,
+                imagePlaceholder: "../assets/images/food/RAMA.png",
+                reviewSummary: [
+                    "İnce hamurlu, odun fırınında pişmiş pizzalar: 'Midilli'deki en iyi pizza', 'anneninki gibi çıtır', iki boyutta (küçük olanı zaten çoğu tabağı dolduruyor). En iyi seçenekler: Horiatiki (Yunan), Rama özel, başlangıç için sarımsaklı pide.",
+                    "Pizza ötesi: Pirzola, şnitzel, bolognese, dolma kabak çiçeği ve birkaç deniz ürünü yemeği, pizza sevmeyenlere de bir yuva sunuyor.",
+                    "Sahil ortamı: Masalar, Petra kumsalının hemen üzerindeki palmiye ağaçlı bir bahçeye yayılıyor; ev yapımı şezlonglar ve gün boyu içecek servisi, akşam yemeğinde gün batımları.",
+                    "Aile sıcaklığı: Anne hamurda, baba fırında, oğul Timos salonda—müşteriler isimleriyle anılıyor, ücretsiz dondurma veya meyve ikram ediliyor ve sık sık sohbet için kalıyorlar.",
+                    "Temiz & iyi fiyat-performans oranı: Mutfak 'tertemiz' olarak tanımlanıyor, çoğu yemek kişi başı €10-15 civarında (büyük pizza + içecek). Siparişle birlikte ücretsiz şezlonglar.",
+                    "Hızlı servis: Yemekler çabuk geliyor; teslimat/paket servis 'sıcak ve zamanında' olarak övülüyor."
+                ],
+                issuesSummary: [
+                    "Menü basit kalıyor: Pizza, salatalar ve birkaç ızgara için harika; makarnalar & patatesler karışık yorumlar alıyor ('vasat', 'yavan').",
+                    "Yoğun sezon çalışma saatleri: Google'daki saatler her zaman güncel değil; bir yorumcu kapalı bulmuş, bir diğeri fırın saat 23:00'ten biraz önce kapandığında geri çevrilmiş. Geç saatlerdeyseniz önce telefon edin.",
+                    "Lezzet profili: Soslar hafif olma eğiliminde (bazı Kuzey Avrupalılar bunu seviyor, bazı İtalyanlar/Türkler daha fazla yoğunluk istemiş). Baharatlı seviyorsanız daha acı Horiatiki'yi seçin veya acı biber yağı ekleyin.",
+                    "Porsiyon boyutları: Salatalar küçük ve bazılarına göre miktarına göre pahalı—paylaşıyorsanız büyük olanı sipariş edin."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı, Kaldırımdan teslim alma, Temassız teslimat, Teslimat, Paket servis, İçeride yemek",
+                    offerings: "Alkol, Bira, Kahve, Gece geç saat yemeği, Hızlı atıştırmalık, Küçük tabaklar, Alkollü içecekler, Şarap",
+                    diningOptions: "Kahvaltı, Öğle Yemeği, Akşam Yemeği, Tatlı, Oturma Alanı",
+                    planning: "Rezervasyon kabul edilir",
+                    payments: "Kredi kartları, Nakit",
+                    parking: "Evet",
+                    pets: "Köpeklere izin verilir"
+                },
+                overallSummary: "Rama, sahil boyunca sıralanan deniz ürünleri tavernalarına rahat bir alternatif: ince hamurların, soğuk ev yapımı şarabın ve kumların üzerindeki manzaranın kolay bir tatil ritüeli oluşturduğu tertemiz bir aile işletmesi. Gün batımından önce sahil kenarında bir masa kapın, bir Yunan pizzası ve yeşil salata paylaşın ve sahiplerinin çıkışta ücretsiz bir top dondurmayla sizi şımartmasına izin verin."
+            },
+            {
+                id: 7,
+                name: "Caravan by the sea",
+                mapLink: "https://maps.app.goo.gl/Jywfz9opb5ArKTyG6",
+                price: "€15–20",
+                priceNumeric: 17.5,
+                phone: "0030 6938128656",
+                menuLink: "https://www.google.com/maps/place/Caravan+by+the+sea/@39.3231107,26.1579168,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICZ09K2yAE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4npU6d8MXqwqeV5s0OYVB1A16pkCyQbY3akYlvs8TauZBMvCWBLrjzaiKaE_595HRR8HTWcmp-ygrIL44n8fK-cQrN93zaqLTGb1QVrND6RcUClGV4mlKSGc6f7DR-Eg3Nubxt2g%3Dw203-h360-k-no!7i2268!8i4032!4m9!3m8!1s0x14ba90a2c7bb827d:0x4f4500492c2339be!8m2!3d39.3231107!4d26.1579168!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11d_z8ywlk?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "1.9 km",
+                distanceNumeric: 1.9,
+                imagePlaceholder: "../assets/images/food/Caravan.png",
+                reviewSummary: [
+                    "Yunan yemekleri 'bahçeden sofraya': Peynirli kabak çiçeği, karides saganaki, ızgara levrek/çipura, kleftiko ve pancar salatası hepsi 'adanın en iyisi' olarak nitelendiriliyor. Sebzeler ve otlar, terasın yanındaki sahiplerinin bahçesinden doğrudan geliyor.",
+                    "Rüya gibi, gözlerden uzak ortam: Masalar, kelimenin tam anlamıyla suyun kenarındaki badanalı bir platforma yayılıyor; Kuşlar Koyu üzerindeki gün batımı parlıyor ve dalgalar müziği sağlıyor.",
+                    "Sıcak, enerjik sahipler: Stelios karşılıyor, Filio yemek yapıyor, personel isimleri hatırlıyor, menü dışı kokteyller için vermut getiriyor ve sık sık müşterilere tatlı veya dondurma ikram ediyor.",
+                    "Sapa yola değer: Dar bir yoldan (veya Petra'dan sahilde 10 dakikalık bir yürüyüşle) ulaşılıyor; neredeyse her yorumcu 'kesinlikle bulmaya değer' diye bitiriyor.",
+                    "Kaliteye göre iyi değer: Çoğu ana yemek €12-20, ev yapımı şarap övülüyor, cömert meze çeşitleri + balık için tipik hesap kişi başı €25-45."
+                ],
+                issuesSummary: [
+                    "Erken rezervasyon yapın: Su kenarındaki masalar kapışılıyor, özellikle gün batımında; rezervasyonsuz gelenler daha arkada oturuyor.",
+                    "Erişim: Yol dik ve ışıksız; taksi veya sahil yolu geceleri daha kolay (telefon feneri getirin). Otopark sınırlı—deniz kenarına dikkat edin.",
+                    "Hız değişebilir: Teras dolduğunda, yemekler farklı zamanlarda gelebilir; çoğu müşteri rahatsız olmuyor, ancak rahat bir yemek için plan yapın.",
+                    "Oturma: Çakıl üzerindeki sandalyeler biraz batabilir; minderler daha kısa müşterilere yardımcı oluyor."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı, Kaldırımdan teslim alma, Paket servis, İçeride yemek",
+                    offerings: "Alkol, Bira, Şarap",
+                    diningOptions: "Öğle Yemeği, Akşam Yemeği, Tatlı, Oturma Alanı",
+                    parking: "Evet"
+                },
+                overallSummary: "Caravan by the Sea, mükemmel bir ada gecesi sunuyor: ayaklarınızın dibinde çarpan dalgalar, körfezi boyayan gün batımı, birkaç metre ötede yetiştirilen ürünlerle dolu tabaklar ve size eski dostlar gibi davranan ev sahipleri. Su kenarında bir masa ayırtın, dolma kabak çiçeği ve bir sürahi çıtır ev yapımı beyaz şarapla başlayın, günün avının tadını çıkarın—ve tok bir mide ve bir gülümsemeyle o yokuşu tekrar tırmanmayı planlayın."
+            },
+            {
+                id: 8,
+                name: "Tropicana Platanos",
+                mapLink: "https://maps.app.goo.gl/3PNxE5miGCy4gZxs6",
+                price: "€10–20",
+                priceNumeric: 15,
+                phone: "0030 2253071869",
+                menuLink: "https://www.unique-molivos.com/",
+                distance: "6.8 km",
+                distanceNumeric: 6.8,
+                imagePlaceholder: "../assets/images/food/Tropicana.png",
+                reviewSummary: [
+                    "Yaratıcı dokunuşlarla ev yapımı Yunan mutfağı: Erikli kuzu veya dana eti, 'Sihirli' salata, musakka, kabak çiçeği dolması, ladotyri saganaki, stifado ve kahvaltı için ev yapımı koyun yoğurdu, hepsi 'adanın en iyisi' övgüsünü alıyor.",
+                    "Sabahtan akşama kadar uğrak yeri: Omletler, Yunan yoğurdu & taze sıkılmış meyve suyu için açılıyor; akşam meze çeşitleri, deniz ürünleri ve ızgaralara kadar dolu kalıyor.",
+                    "Kişileştirilmiş aile sıcaklığı: Ev sahibesi Taxia (ve oğulları) her masayı selamlıyor, çocuklarla şakalaşıyor, fotoğraf çekiyor, ücretsiz kaşık tatlısı veya tatlı gönderiyor ve geri dönen müşterileri hatırlıyor.",
+                    "Kartpostallık atmosfer: Masalar, taş döşeli bir meydanda asırlık bir çınar ağacının altında toplanıyor; canlı begonviller, fenerler ve yumuşak müzik köy taverna atmosferine katkıda bulunuyor.",
+                    "Vejetaryen & çocuk dostu: Birçok etsiz seçenek (fırında patlıcan, dev fasulye, dolma biber) ve talep üzerine daha küçük porsiyonlar; yerel kediler küçükler için ek eğlence sağlıyor.",
+                    "Yerlilerin desteklediği değer: Akşam yemeğinde kişi başı tipik hesap €15-25; birçok yerli burayı 'gerçek yemek' için mekanları olarak belirtiyor."
+                ],
+                issuesSummary: [
+                    "Rezervasyon yapın, özellikle akşam yemeği için: Sadece yaklaşık on iki masa; akşamları yoğun sezonda günler öncesinden tükeniyor.",
+                    "Hafif bir bekleme bekleyin: Her şey sipariş üzerine pişirildiği için, yemekler hazır olduğunda geliyor; çoğu müşteri 'yavaş yemek' temposunu takdir ediyor.",
+                    "Kediler & bazı sinekler: Açık meydan, dost canlısı kediler ve ara sıra böcekler anlamına geliyor—bazıları için büyüleyici, diğerleri için bir sıkıntı.",
+                    "Bulması biraz zor: Ana turistik caddeden bir blok yukarıda gizlenmiş; kale tabelalarını takip edin, sonra büyük ağacın altındaki kahkahaları dinleyin.",
+                    "Porsiyonlar = cömert: Mezeleri paylaşın veya aç gelin—birçok müşteri kediler için yemek bıraktığını bildiriyor."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı, Paket servis, İçeride yemek",
+                    offerings: "Alkol, Yiyebildiğin kadar, Bira, Braille menüsü, Kokteyller, Kahve, Organik yemekler, Küçük tabaklar, Alkollü içecekler, Vejetaryen seçenekleri, Vegan seçenekleri, Şarap",
+                    diningOptions: "Kahvaltı, Brunch, Öğle Yemeği, Akşam Yemeği, Tatlı, Oturma Alanı",
+                    planning: "Rezervasyon kabul edilir",
+                    payments: "Banka kartları, Mobil NFC ödemeleri, Kredi kartları, Nakit",
+                    parking: "Yer bulmak zor"
+                },
+                overallSummary: "Tropicana, yabancı olarak oturup evlat edinilmiş gibi hissettiğiniz türden bir taverna. Çınar ağacının altında kahvaltı için gelin veya dolma kabak çiçeği, erikli kuzu stifado ve yerel Sedusa birası veya ev yapımı şarap sürahisiyle mum ışığında bir akşam yemeği için önceden rezervasyon yapın. Taxia'ya 'şerefe' deyin, meydan sohbetlerle dolarken oturun—ve neden bu kadar çok ziyaretçinin üst üste üç gece burada yemek yediğini anlayacaksınız."
+            },
+            {
+                id: 9,
+                name: "Eleven Four",
+                mapLink: "https://maps.app.goo.gl/zTZc12toYb2UmrWr7",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 6972182605",
+                menuLink: "https://www.google.com/maps/place/Eleven+Four/@39.3280406,26.1753505,3a,75y,90t/data=!3m8!1e2!3m6!1sAF1QipOMT_eToWte8C2PKlhqju-Kn54bYY984fSClgxa!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fp%2FAF1QipOMT_eToWte8C2PKlhqju-Kn54bYY984fSClgxa%3Dw203-h270-k-no!7i3024!8i4032!4m9!3m8!1s0x14ba9bd37d994e25:0x41b570c8ea3eebbd!8m2!3d39.3279887!4d26.1753971!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11txyyw6qc?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "700 m",
+                distanceNumeric: 0.7,
+                imagePlaceholder: "../assets/images/food/Eleven.png",
+                reviewSummary: [
+                    "Bir taverna denizinde el yapımı pizza & makarna: İnce pideler (sadece hamur iki gün 'dinlendikten' sonra servis edilir), 'İtalya'daki gibi' carbonara, karidesli linguine, acılı 'Mafia' pizzası, risotto ve devasa club sandviçler Yunan yemeği rutinini kırıyor.",
+                    "Gerçekten gün boyu süren gün boyu menü: Sabahları omletler, İngiliz kahvaltıları, avokado-somonlu tost ve taze meyve suları; gün batımı için burgerler, salatalar ve kokteyller; ev yapımı kekler ve dondurma (fıstık & limon en güçlü alkışları alıyor) her zaman.",
+                    "Güleryüzlü servis: Garsonlar—özellikle Theodoros—'hızlı', 'güleryüzlü' ve 'başkalarına ders verebilir' olarak tanımlanıyor. Masaya ücretsiz buzlu su otomatik olarak geliyor; kabuklu karideslerle birlikte parmaklar için sıcak limonlu kaseler beliriyor.",
+                    "Dinlenmek için en iyi yer: Sahil boyunca rahat kanepeler ve normal masalar; müşteriler Molyvos körfezinin arkasında batan güneşi izlerken lounge müzik çalıyor.",
+                    "İyi değer: Kahvaltı için tipik harcama €5-10, pizzalar/makarnalar için €10-18, devasa dondurma topları için €2-3; birçok kişi patates ve dondurmanın 'devasa porsiyonlarını' belirtiyor.",
+                    "Diyet dostu dokunuşlar: Glutensiz makarna seçeneği, geniş salata listesi ve yemekleri uyarlamaya istekli personel."
+                ],
+                issuesSummary: [
+                    "Pizza sadece akşamları: Hamur 48 saat önceden hazırlanır; öğle yemeği ziyaretçileri fırınları kapalı bulabilir.",
+                    "Yoğun saatlerde kalabalıklaşabilir: Dolu olduğunda, küçük bir bekleme veya daha yavaş hesap ödeme olasılığı vardır—hazır olduğunuzda hesabınızı isteyin.",
+                    "Çoğunlukla açık hava: Sahil ortamı ara sıra rüzgar (ekmeğinize sahip çıkın!) ve ara sıra geçen sigara içen anlamına gelir.",
+                    "Kesinlikle Yunan değil: Menü İtalyan/Amerikan eğiliminde; musakka veya kleftiko istiyorsanız başka yere bakın."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı, Paket servis, İçeride yemek",
+                    offerings: "Alkol, Bira, Kokteyller, Kahve",
+                    diningOptions: "Kahvaltı, Öğle Yemeği, Tatlı, Oturma Alanı",
+                    planning: "Rezervasyon kabul edilir",
+                    parking: "Evet"
+                },
+                overallSummary: "İster şafak vakti bir kapuçino, ister devasa bir dondurma, ister gün batımı manzaralı el yapımı bir pizza isteyin, Eleven Four rahat bir tatil ve etkileyici derecede iyi hazırlanmış konfor yemeği sunar. Dost canlısı personel, makul fiyatlar ve Petra sahilinin ön sırasında bir yer, onu kullanışlı bir 'taverna döngüsünden mola' haline getiriyor—ve birçok gezginin üst üste beş gün ziyaret ettiği bir yer."
+            },
+            {
+                id: 10,
+                name: "Ahtapot Restoranı",
+                mapLink: "https://maps.app.goo.gl/AQdLTC21SDmXU7zVA",
+                price: "€15–25",
+                priceNumeric: 20,
+                phone: "0030 2253071317",
+                menuLink: "https://octopusrestaurant.gr/",
+                distance: "6.9 km",
+                distanceNumeric: 6.9,
+                imagePlaceholder: "../assets/images/food/Octopus.png",
+                reviewSummary: [
+                    "Her şekilde ahtapot: Güneşte kurutulmuş & ızgara, kırmızı şarap sirkesinde marine edilmiş veya deniz ürünlü makarnanın içinde—çoğu müşteri 'şimdiye kadar yedikleri en iyisi' olduğunu söylüyor. (Taze balık, kılıç balığı ve jumbo karidesler ikinci sırada geliyor.)",
+                    "Hatırlanacak mezeler: Peynir dolgulu kızarmış kabak çiçeği, ladotyri-saganaki, sarımsaklı-hardallı karides, dolma kalamar ve klasik cacık, bir öğün oluşturmaya yetecek kadar uzun bir meze listesinde başı çekiyor.",
+                    "Liman manzarası ön sırada: Masalar tam su kenarında yer alıyor; gün batımları sallanan teknelerin arkasında alevleniyor. Meltem güçlendiğinde personel battaniye dağıtıyor.",
+                    "İki dilli, misafirperver personel: Yunanca, İngilizce ve Türkçe menüler, bütün bir levreği fileto yapmaya veya artanları paketlemeye istekli garsonlar; hesapla birlikte sık sık ücretsiz helva veya irmik helvası geliyor.",
+                    "İyi bütçe aralığı: Hafif öğle yemeği (mezeler & bira) kişi başı €15-25 • Şaraplı tam deniz ürünleri yemeği kişi başı €35-50 • Harcamak isterseniz ıstakoz ve en iyi Peloponez beyaz şarapları mevcut."
+                ],
+                issuesSummary: [
+                    "Rezervasyon yapın veya sırada bekleyin: Ahtapot, kulaktan kulağa (ve TikTok'ta) yayılan bir isim; saat 19:30'dan sonra rezervasyonsuz gelenler genellikle 20-40 dakika beklemeyle karşılaşıyor.",
+                    "Servis hızı kalabalığı takip ediyor: Erken veya geç rezervasyonlar 'son derece hızlı' teslimatı övüyor; yoğun saatler yemekler arasında 30 dakikalık boşluklar getirebilir.",
+                    "Ahtapot dokusu değişiyor: Bir avuç müşteri ızgara versiyonunu 'lastik gibi' bulmuş—yumuşak tercih ediyorsanız sirkeli marine edilmiş stili sipariş edin.",
+                    "Ekmek & şişelenmiş su ücretsiz değil: Çoğu hesapta kişi başı €1-2'lik tipik bir kuver ücreti görünüyor.",
+                    "Masalar sıkışık: Liman cephesi biraz dirsek alanı anlamına geliyor; bebek arabası için yer veya daha sessiz bir nokta istiyorsanız rezervasyon sırasında belirtin."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı, İçeride yemek",
+                    offerings: "Alkol, Bira, Şarap",
+                    diningOptions: "Öğle Yemeği, Akşam Yemeği, Tatlı, Oturma Alanı",
+                    planning: "Rezervasyon kabul edilir",
+                    parking: "Evet"
+                },
+                overallSummary: "Ahtapot, kartpostallık bir ortamda iddialı ama otantik Midilli deniz ürünleri sunarak, sirkeli dokunaçları servis ettiği kadar ustaca dil değiştiren bir personelle sadık bir müşteri kitlesi kazandı. Kalabalıklar, iç kısımdaki tavernalardan biraz daha yüksek fiyatlar ve ara sıra beklemeler bekleyin—sonra gün batımı (ve o kabak çiçeği tabağı) buna değdiğini kanıtladığında bir kadeh uzo kaldırın."
+            },
+            {
+                id: 11,
+                name: "Chat 'n Chill",
+                mapLink: "https://maps.app.goo.gl/NCFnTEVT7xhqduaf7",
+                price: "€20–25",
+                priceNumeric: 22.5,
+                phone: "0030 6944441408",
+                menuLink: null,
+                distance: "6.3 km",
+                distanceNumeric: 6.3,
+                imagePlaceholder: "../assets/images/food/Chill.png",
+                reviewSummary: [
+                    "Hakim olan kaburgalar: Yavaş pişirilmiş, baharatlı ve ağızda dağılıyor; ağırlığınızı seçin (½ kilo, 'orta ağırlık' veya 1 kiloluk ziyafet). Yanında patates, salata ve iki ev yapımı sos geliyor—çoğu kişi 'baharatı mükemmel' olduğu için bunlara zar zor dokunuyor.",
+                    "Küçük menü, büyük lezzet: Izgara tavuk, sulu burgerler ve vejetaryen bir tortilla kartı tamamlıyor; her şey ev yapımı ve şefin kendisi tarafından servis ediliyor.",
+                    "Teras manzarası: Limanın üzerinde yer alan teras ve çatı katı barı, Petra Koyu üzerindeki gün batımlarını ve alacakaranlıktan sonra kale ışıklarını çerçeveliyor.",
+                    "Hollanda yönetimi, son derece dost canlısı: Sahipleri Paul & personel dilleri değiştiriyor (Hollandaca/İngilizce/Yunanca), düzenli müşterilerin isimlerini hatırlıyor ve ruh halini koruyor—'evinizdeki gibi' bir atmosfer bekleyin.",
+                    "Makul fiyatlar & büyük porsiyonlar: İçecekli akşam yemeği kişi başı yaklaşık €20-30 tutuyor; birkaç müşteri bir kaburga veya tavuk paylaştı ve tok ayrıldı."
+                ],
+                issuesSummary: [
+                    "Dik yaklaşım: Arnavut kaldırımlı yol kısa ama dik—çoğu kişi için yürüyerek iyi, ancak tepeler veya topuklu ayakkabılar sorunsa taksiye binin.",
+                    "Saat 19:00'da açılıyor, çabuk doluyor: Sadece yaklaşık 30 koltuk; erken gelenler pencere kenarındaki masaları kapıyor, geç kalanlar bazen üst katta bir birayla bekliyor.",
+                    "Kaburgaların zamana ihtiyacı var: Yoğun zamanlarda, mutfak büyük kaburgalar için 30-40 dakika bildiriyor. Onlar tütsülenirken çatı katındaki barda bir kokteyl alın.",
+                    "Yunan tavernası değil: Burada musakka veya deniz ürünü yok—etobur konfor yemeği ve ada mezelerinden bir değişiklik için gelin."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Kaldırımdan teslim alma, Paket servis, İçeride yemek, Teslimat",
+                    offerings: "Alkol, Bira, Kahve, Yemek, Barda yemek, Küçük tabaklar, Alkollü içecekler, Vejetaryen seçenekleri, Şarap",
+                },
+                overallSummary: "Chat ’n Chill, Hollanda misafirperverliği ve parmak yalatan Amerikan barbeküsünün, Midilli'nin en güzel panoramasıyla servis edildiği havadar bir kombinasyon. Mükemmel pişmiş kaburgalar, buz gibi içecekler ve yokuşa değecek bir gün batımı özlemi çekiyorsanız, burası tam size göre—sadece rezervasyon yapın veya erken gelin ve belki de yüksek topuklu ayakkabılarınızı otelde bırakın."
+            },
+            {
+                id: 12,
+                name: "Sarandos",
+                mapLink: "https://maps.app.goo.gl/4gN2ZVrrP8xF4WJZ6",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253041449",
+                menuLink: "https://www.google.com/maps/place/Sarandos/@39.3164705,26.150383,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgIDEusuXCA!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4nrZvUMQAJmoklkk3QqtqqSV-iDnVdte_5LCWTnGtBICOr7syn0Rgr2lnDiKFvAcjWoV7sochfe_V54w8Orjc-SxaqXwJmDvPpyOe924mOf-IDRZ6fnj5S2yS93RgzX9lgKy0KUa%3Dw203-h360-k-no!7i1080!8i1920!4m9!3m8!1s0x14ba90b85714569f:0x91097981e65d711!8m2!3d39.3164705!4d26.150383!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11c4pcgnzn?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "2.1 km",
+                distanceNumeric: 2.1,
+                imagePlaceholder: "../assets/images/food/Sarandos.png",
+                reviewSummary: [
+                    "Ev yapımı Yunan klasikleri: Yavaş pişirilmiş kuzu 'a la Sarandos' & kleftiko, ağızda dağılan dana stifado, devasa dolma domates/biberler ve bira hamurlu çıtır patlıcan 'cipsleri'.",
+                    "Cömert porsiyonlar, küçük fiyatlar: Et çeşitleri €13, yarım litrelik biralar €3, ana yemekler genellikle €9-14 – ve çoğu yemek iki kişiyi doyuruyor, sonunda ücretsiz mini tatlı veya meyve ile.",
+                    "Aile sıcaklığı: Üçüncü nesil sahipleri Babis & Stratos sizi kuzenler gibi karşılıyor, yarım düzine dilde şakalaşıyor ve uzo (ve otlu yağlı ücretsiz ekmek) getirmeye devam ediyor.",
+                    "Otantik atmosfer: Anaxos'un ana caddesinin hemen dışında gizlenmiş masalar, sahil kalabalığı yerine ağustosböcekleri ve ince Yunan müziği; rustik ahşap dekor ve her sezon el yazısı menü.",
+                    "Güvenilir kalabalık favorileri: Sarımsak dolu cacık, beyaz peynir dolgulu pastırmalı börekler, ızgara sardalya & ahtapot, artı musakka ve mantar saganaki gibi vejetaryen hitleri."
+                ],
+                issuesSummary: [
+                    "Popüler: Saat 20:00'den sonra kuyruklar oluşuyor; erken gelin veya bir içkiyle bekleyin.",
+                    "Servis hızı = Yunan hızı: Bir şef, bir ızgara: yemekler yoğun zamanlarda 30-40 dakika sürebilir. Çoğu müşteri beklemeye değer olduğunu söylüyor.",
+                    "Nakit kral kalıyor: Kart makinesi hassas – euro getirin.",
+                    "İştahlılar hoş geldiniz: Birçok çift bir ana yemeği paylaşıyor; tek başına gelen müşteriler sık sık yarım porsiyon istiyor.",
+                    "Konum: Sahilde değil – mini marketin karşısındaki köy yolundaki mavi tabelayı arayın."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı, Temassız teslimat, Teslimat, Paket servis, İçeride yemek",
+                    popularFor: "Öğle Yemeği, Akşam Yemeği, Yalnız müşteriler",
+                    offerings: "Alkol, Bira, Kokteyller, Kahve, Helal yiyecek, Gece geç saat yemeği, Hızlı atıştırmalık, Küçük tabaklar, Alkollü içecekler, Vegan seçenekleri, Vejetaryen seçenekleri, Şarap",
+                    diningOptions: "Kahvaltı, Brunch, Öğle Yemeği, Akşam Yemeği, Catering, Tatlı, Oturma Alanı",
+                    amenities: "İçeride bar, Cinsiyet ayrımı gözetmeyen tuvaletler, Tuvalet, Wi-Fi, Ücretsiz Wi-Fi",
+                    planning: "Akşam yemeği için rezervasyon önerilir, Rezervasyon kabul edilir",
+                    payments: "Kredi kartları, Banka kartları, Nakit",
+                    parking: "Evet",
+                    pets: "Köpeklere izin verilir"
+                },
+                overallSummary: "Sarandos, sadece yerlilerle arkadaş olduktan sonra bulacağınızı hayal ettiğiniz türden bir köy tavernası: dört nesillik tarifler, dost canlısı fiyatlar ve 'ikramımız' karpuz sunan personel. Turistik cadde manzarası yerine gerçek Midilli konfor yemeği peşindeyseniz, bir masa kapın, yavaş pişirilmiş bir şeyler sipariş edin ve rahat, kahkaha dolu bir akşam için yerleşin."
+            },
+            {
+                id: 13,
+                name: "I Mouria tou Mirivili",
+                mapLink: "https://maps.app.goo.gl/FZcKZFq5hqr2m78F6",
+                price: "€10–15",
+                priceNumeric: 12.5,
+                phone: "0030 2253055319",
+                menuLink: "https://www.google.com/maps/place/I+Mouria+tou+Mirivili/@39.3733809,26.3031001,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgIDH0N3A4gE!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4noLCqMJS9krZ6uMUAx5RjnwJnqxQY-oTd93yV5h0_848NUvd_5f1OhLLuUoAVTtkfwcedDAvD02kc675zwwWAQqDQi3Fo1JXSVJP30Dkx-9WZwPckW6Gp-Oc0hchR8v4fFKeIwDQA%3Dw203-h270-k-no!7i3024!8i4032!4m9!3m8!1s0x14ba840a90fb8ec9:0x16a519ad4d243623!8m2!3d39.3733809!4d26.3031001!10e5!14m1!1BCgIYIQ!16s%2Fg%2F11bw3z1qq7?authuser=0&entry=ttu&g_ep=EgoyMDI1MDUxNS4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D",
+                distance: "28.4 km",
+                distanceNumeric: 28.4,
+                imagePlaceholder: "../assets/images/food/Mirivili.png",
+                reviewSummary: [
+                    "Liman önü cazibesi: Masalar, küçük balıkçı iskelesinin hemen üzerindeki bir dut ağacının altına yayılıyor, sallanan kayıklara ve dalgakıran üzerindeki kartpostallık Panagia şapeline bakıyor.",
+                    "Midilli'nin en taze avı: Yerel 'evli' sardalyalar, narin barbunya, dolma kalamar, şaraplı ahtapot ve kült bir ıstakozlu makarna veya ıstakozlu arpa şehriye, hepsi köyün teknelerinden doğrudan geliyor.",
+                    "Cömertlik & ikramlar: Zeytinyağı & kekikle ıslatılmış kızarmış köy ekmeği, ikram edilen zeytinler ve vişne reçelli irmik helvası artı sıcak çay ile ritüel bir bitiş.",
+                    "Meraklıları ödüllendiren menü: Hayranlar balık pastırmasını, çeşitli turşu deniz ürünleri mezelerini ve karides saganakiyi öne çıkarıyor — Midilli dışında nadiren görülen yemekler.",
+                    "Bütçe dostu deniz ürünleri: Çoğu meze €6-9; ana balık yemekleri €11-18; ıstakozlu makarna iki kişiyi ~€40'ya doyuruyor. Son hesaplar: bira ile 4 kişi için €70 veya öğle yemeği için kişi başı €15-25."
+                ],
+                issuesSummary: [
+                    "Bir hac noktası: Yaz öğlenleri & gün batımı hızla doluyor; erken gelin veya rezervasyon yapın, özellikle rağbet gören kenar masaları için.",
+                    "Servis hızı ≈ ada hızı: Küçük bir mutfakla, yemekler pişirildikçe geliyor; çoğu müşteri uzo ile rahatlıyor ve rahatsız olmuyor, ancak rahat bir yemek için plan yapın.",
+                    "Limanın kedileri & çocukları: Tüylü yerliler sardalya artıkları umuduyla devriye geziyor — çoğu için büyüleyici, bazı alerjisi olanlar için bir sıkıntı.",
+                    "Nakit daha güvenli: Kart makinesi hassas olabilir ve bir avuç yorumcu ara sıra para üstüyle ilgili karışıklık bildiriyor; ayrılmadan önce sayın.",
+                    "Erişim: Son birkaç kilometre limana doğru iniyor; iskelenin yanında otopark sınırlı, bu yüzden 2-3 dakika yürümeye hazır olun."
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı, Paket servis, İçeride yemek",
+                    popularFor: "Öğle Yemeği, Akşam Yemeği, Yalnız müşteriler",
+                    offerings: "Alkol, Bira, Kahve, Gece geç saat yemeği, Hızlı atıştırmalık, Küçük tabaklar, Alkollü içecekler, Şarap",
+                    diningOptions: "Öğle Yemeği, Akşam Yemeği, Tatlı, Oturma Alanı",
+                    planning: "Rezervasyon kabul edilir",
+                    payments: "Kredi kartları, Nakit",
+                    parking: "Evet",
+                    pets: "Köpeklere izin verilir"
+                },
+                overallSummary: "I Mouria tou Mirivili, mükemmel bir Yunan sahil tavernasıdır: saçlarınızda deniz meltemi, asırlık bir dut ağacının gölgelediği bir masa, yeşil Midilli zeytinyağıyla gezdirilmiş taptaze balık tabakları ve komşu masalardaki yerlilerin ve Türk günübirlikçilerin uzo kadehlerinin çınlaması. Liman büyüsü için gelin ve ücretsiz helva için yeterince kalın — insanların sadece akşam yemeği için bu küçük köyü güzergahlarına neden eklediğini anlayacaksınız."
+            },
+            {
+                id: 14,
+                name: "Dalga Taverna (Το Κύμα)",
+                mapLink: "https://maps.app.goo.gl/fjJnoUFEsC1maB2C7",
+                price: "€15–20",
+                priceNumeric: 17.5,
+                phone: "0030 6944866508",
+                menuLink: "https://www.google.com/maps/place/Wave+Taverna/@39.3751604,26.2925417,3a,75y,90t/data=!3m8!1e2!3m6!1sCIHM0ogKEICAgICn3uKIPQ!2e10!3e12!6shttps:%2F%2Flh3.googleusercontent.com%2Fgps-cs-s%2FAC9h4npQZl290-UWwKAowwGuqbBnpVsQkJVs7LZuJqqsZZAHlygH90mRyRRJe4m8TJZutIhzp0hJFKWaWdOlCa5fx2ClDPPHPEY2E4t2ayo3hauccWJl1NFxFd0hYMfvk49AzTtD2O8n%3Dw195-h123-k-no!7i1932!8i1221!4m12!1m3!2m2!1sRestaurants!6e5!3m7!1s0x14ba840a94e3497f:0x4eca823cea7ae6d7!8m2!3d39.3749169!4d26.2923597!10e9!15sCgtSZXN0YXVyYW50c1oNIgtyZXN0YXVyYW50c5IBCnJlc3RhdXJhbnSqAUQQASoPIgtyZXN0YXVyYW50cygAMh4QASIa4iedZWtQTBEhPBWiwUE7GKzd5slXHymgamgyDxACIgtyZXN0YXVyYW50c-ABAA!16s%2Fg%2F11hbvzbrr9?entry=ttu&g_ep=EgoyMDI1MDYwMi4wIKXMDSoASAFQAw%3D%3D",
+                distance: "25.4 km",
+                distanceNumeric: 25.4,
+                imagePlaceholder: "../assets/images/food/Wave.png",
+                reviewSummary: [
+                    "Konum: Denizin hemen yanında, sakin atmosfer, ağaç gölgesi, harika manzara",
+                    "Yemek Kalitesi: Olağanüstü taze deniz ürünleri, cömert porsiyonlar, geleneksel Yunan lezzetleri",
+                    "Öne Çıkan Yemekler: Dolma kabak çiçeği, ızgara ahtapot, karides saganaki, barbunya",
+                    "Misafirperverlik: Sıcak, aile işletmesi, dost canlısı ve konuksever personel (özellikle sahibi Paris)",
+                    "Paranın Karşılığı: Uygun fiyatlar (kişi başı €10–25), genellikle ücretsiz tatlı/meyve ikram edilir",
+                    "Atmosfer: Sakin, deniz kenarı atmosferi, arka planda Yunan müziği, rahatlatıcı yemekler için ideal",
+                    "Çocuk Dostu: Çocuk oyun alanı ve çocuklu aileler için güvenli bir alan mevcut",
+                    "Temizlik: Temiz yemek alanı, düzenli çevre, özenli sunum"
+                ],
+                issuesSummary: [
+                    "Yazın Eşekarısı: Birçok müşteri Ağustos ayında yemeklerini rahatsız eden eşekarılarından bahsetti",
+                    "Yavaş Servis: Küçük mutfak nedeniyle yemekler farklı zamanlarda gelebilir — aceleniz varsa ideal değil",
+                    "Kartlı Ödeme Sorunları: POS cihazıyla veya doğru para üstüyle ilgili ara sıra sorunlar",
+                    "Erişim Yolu: Taverna'ya son 500 metre toprak yoldur (ancak idare edilebilir)",
+                    "Yoğun Saatlerde Kalabalık: Özellikle Ağustos ayında yerler çabuk dolar — rezervasyon önerilir"
+                ],
+                additionalInfo: {
+                    serviceOptions: "Açık havada oturma alanı, Paket servis, İçeride yemek",
+                    popularFor: "Öğle Yemeği, Akşam Yemeği, Yalnız müşteriler",
+                    diningOptions: "Kahvaltı, Brunch, Öğle Yemeği, Akşam Yemeği, Catering, Tezgahta servis, Tatlı, Oturma Alanı",
+                    planning: "Rezervasyon kabul edilir",
+                    payments: "Nakit, Banka kartları, Mobil NFC ödemeleri, Kredi kartları",
+                    parking: "Bol otopark alanı",
+                    pets: "Köpeklere izin verilir"
+                },
+                overallSummary: "Dalga Taverna (Το Κύμα), zamanın daha yavaş aktığı kartpostallık bir Yunan sahil tavernasıdır. Masalar, ızgara ahtapot ve kızarmış kabak çiçeği kokusu havada süzülürken, ılgın ağaçlarının gölgelediği dalgaların hemen yanında yer alır. Yerliler, günübirlikçiler ve sadık müdavimler sadece dürüst, lezzetli yemekler için değil, aynı zamanda her müşteriye aileden biri gibi davranan Paris ve ekibinin sıcaklığı için de gelirler. Dolma çiçekler için gelin ve deniz meltemi, uzo kadeh tokuşturmaları ve sonda ikram edilen ücretsiz meyve için kalın — daha ayrılmadan geri dönmek isteyeceğiniz türden bir yer."
+            }
+        ];
+
+        // Generic SVG Icon component (for CheckCircle, XCircle, Close)
+        const SvgIcon = ({ path, path2, className = "w-5 h-5 inline-block" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className={className} aria-hidden="true">
+                <path fillRule="evenodd" d={path} clipRule="evenodd" />
+                {path2 && <path d={path2} />}
+            </svg>
+        );
+
+        // Font Awesome Icon component
+        const FaIcon = ({ iconClass, className = "w-4 h-4", ariaHidden = true }) => (
+            <i className={`${iconClass} ${className}`} aria-hidden={ariaHidden}></i>
+        );
+
+        // Specific Icons using FontAwesome
+        const PhoneActionIcon = ({className}) => <FaIcon iconClass="fas fa-phone" className={className} />;
+        const MapLinkIcon = ({className}) => <FaIcon iconClass="fas fa-map-marker-alt" className={className} />;
+        const MenuLinkIcon = ({className}) => <FaIcon iconClass="fas fa-book-open" className={className} />;
+        const PriceDisplayIcon = ({className}) => <FaIcon iconClass="fas fa-credit-card-alt" className={className} />; // Or fas fa-euro-sign
+        const DistanceDisplayIcon = ({className}) => <FaIcon iconClass="fas fa-route" className={className} />;
+
+        // Specific Icons using SVG
+        const CheckCircleIcon = () => <SvgIcon path="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" className="w-5 h-5 inline-block mr-1.5 text-green-600" />;
+        const XCircleIcon = () => <SvgIcon path="M10 18a8 8 0 100-16 8 8 0 000 16z" path2="M13.414 12l2.293-2.293a1 1 0 00-1.414-1.414L12 10.586l-2.293-2.293a1 1 0 00-1.414 1.414L10.586 12l-2.293 2.293a1 1 0 001.414 1.414L12 13.414l2.293 2.293a1 1 0 001.414-1.414L13.414 12z" className="w-5 h-5 inline-block mr-1.5 text-red-600" />;
+        const CloseIcon = () => <SvgIcon path="M6.293 6.293a1 1 0 011.414 0L10 8.586l2.293-2.293a1 1 0 111.414 1.414L11.414 10l2.293 2.293a1 1 0 01-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 01-1.414-1.414L8.586 10 6.293 7.707a1 1 0 010-1.414z" className="w-5 h-5"/>;
+
+
+        const RestaurantDetailModal = ({ restaurant, onClose }) => {
+            if (!restaurant) return null;
+
+            useEffect(() => {
+                const handleEsc = (event) => {
+                    if (event.keyCode === 27) {
+                        onClose();
+                    }
+                };
+                window.addEventListener('keydown', handleEsc);
+                document.body.style.overflow = 'hidden';
+                return () => {
+                    window.removeEventListener('keydown', handleEsc);
+                    document.body.style.overflow = '';
+                };
+            }, [onClose]);
+
+            // Helper to translate keys from additionalInfo
+            const translateKey = (key) => {
+                const translations = {
+                    payments: "Ödemeler",
+                    parking: "Otopark",
+                    serviceOptions: "Servis Seçenekleri",
+                    diningOptions: "Yemek Seçenekleri",
+                    planning: "Planlama",
+                    pets: "Evcil Hayvanlar",
+                    highlights: "Öne Çıkanlar",
+                    offerings: "Sunulanlar",
+                    popularFor: "Popüler Olduğu Alanlar",
+                    amenities: "İmkanlar"
+                };
+                return translations[key] || key.replace(/([A-Z])/g, ' $1').trim();
+            };
+
+            return (
+                <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-[100] transition-opacity duration-300 ease-in-out animate-fadeIn">
+                    <div className="bg-slate-50 rounded-lg shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 md:p-8 relative modal-scrollbar">
+                        <button
+                            onClick={onClose}
+                            className="absolute top-3 right-3 text-slate-500 hover:text-sky-600 transition-colors p-1 rounded-full hover:bg-slate-200"
+                            aria-label="Pencereyi kapat"
+                        >
+                            <CloseIcon />
+                        </button>
+
+                        <div className="flex flex-col sm:flex-row gap-6 mb-6">
+                            <img src={restaurant.imagePlaceholder} alt={restaurant.name} className="w-full sm:w-1/3 h-auto object-cover rounded-lg shadow-md" />
+                            <div className="flex-grow">
+                                <h2 className="text-3xl font-bold text-sky-800 mb-1">{restaurant.name}</h2>
+                                <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-600 mb-4">
+                                    <span className="flex items-center"><PriceDisplayIcon className="w-4 h-4 mr-1 text-slate-700" /> Fiyat: {restaurant.price}</span>
+                                    <span className="flex items-center"><DistanceDisplayIcon className="w-4 h-4 mr-1 text-slate-700" /> {restaurant.distance} Petradi'den</span>
+                                </div>
+                                <div className="flex flex-wrap gap-2 mt-3">
+                                    {restaurant.phone && <a href={`tel:${restaurant.phone}`} className="bg-sky-500 hover:bg-sky-600 text-white text-xs font-semibold py-2 px-3 rounded-md transition-colors duration-200 flex items-center gap-1.5 shadow-sm hover:shadow-md"><PhoneActionIcon className="w-3.5 h-3.5" />Ara</a>}
+                                    <a href={restaurant.mapLink} target="_blank" rel="noopener noreferrer" className="bg-teal-500 hover:bg-teal-600 text-white text-xs font-semibold py-2 px-3 rounded-md transition-colors duration-200 flex items-center gap-1.5 shadow-sm hover:shadow-md"><MapLinkIcon className="w-3.5 h-3.5" />Harita</a>
+                                    {restaurant.menuLink && <a href={restaurant.menuLink} target="_blank" rel="noopener noreferrer" className="bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold py-2 px-3 rounded-md transition-colors duration-200 flex items-center gap-1.5 shadow-sm hover:shadow-md"><MenuLinkIcon className="w-3.5 h-3.5" />Menü</a>}
+                                </div>
+                            </div>
+                        </div>
+
+                        <p className="text-slate-700 italic text-base my-6 border-b border-slate-200 pb-4">{restaurant.overallSummary}</p>
+
+                        <div className="space-y-5">
+                            <div>
+                                <h3 className="text-xl font-semibold text-sky-700 mb-2.5">Yorumlar Ne Diyor:</h3>
+                                <ul className="list-none space-y-1.5">
+                                    {restaurant.reviewSummary.map((item, index) => (
+                                        <li key={`pro-modal-${restaurant.id}-${index}`} className="text-sm text-slate-600 flex items-start">
+                                            <CheckCircleIcon /> <span>{item}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                            {restaurant.issuesSummary && restaurant.issuesSummary.length > 0 && (
+                                <div>
+                                    <h3 className="text-xl font-semibold text-sky-700 mb-2.5">Bildirilen Sorunlar:</h3>
+                                    <ul className="list-none space-y-1.5">
+                                        {restaurant.issuesSummary.map((item, index) => (
+                                            <li key={`con-modal-${restaurant.id}-${index}`} className="text-sm text-slate-600 flex items-start">
+                                                <XCircleIcon /> <span>{item}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            )}
+                        </div>
+
+                        {restaurant.additionalInfo && Object.keys(restaurant.additionalInfo).length > 0 && (
+                            <div className="mt-6 border-t border-slate-200 pt-5">
+                                <h3 className="text-xl font-semibold text-sky-700 mb-3">Ek Bilgiler:</h3>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                                {Object.entries(restaurant.additionalInfo).map(([key, value]) => (
+                                    <div key={`${key}-${restaurant.id}`} className="text-sm text-slate-600">
+                                        <strong className="font-medium text-slate-700 capitalize">{translateKey(key)}:</strong> {value}
+                                    </div>
+                                ))}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            );
+        };
+
+        const RestaurantCard = ({ restaurant, onOpenModal }) => {
+            return (
+                <div className="bg-white shadow-xl rounded-xl overflow-hidden transform hover:shadow-sky-600/30 hover:scale-[1.03] transition-all duration-300 ease-in-out flex flex-col">
+                    <img src={restaurant.imagePlaceholder} alt={restaurant.name} className="w-full h-52 object-cover" />
+                    <div className="p-5 flex flex-col flex-grow">
+                        <h2 className="text-xl font-semibold text-sky-800 mb-1.5">{restaurant.name}</h2>
+                        <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-500 mb-3">
+                            <span className="flex items-center"><PriceDisplayIcon className="w-3.5 h-3.5 mr-1" /> {restaurant.price}</span>
+                            <span className="flex items-center"><DistanceDisplayIcon className="w-3.5 h-3.5 mr-1" /> {restaurant.distance} Petradi'den</span>
+                        </div>
+                        <p className="text-sm text-gray-600 italic mb-4 flex-grow line-clamp-3">{restaurant.overallSummary}</p>
+
+                        <button
+                            onClick={() => onOpenModal(restaurant)}
+                            className="mt-auto bg-black hover:bg-gray-800 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200 text-sm focus:outline-none focus:ring-2 focus:ring-gray-600"
+                        >
+                            Detayları Gör
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const FilterControls = ({ onFilterChange, onSortChange, currentSort, currentPriceFilter }) => {
+            // Dynamically generate price options from the data
+            const uniquePriceRanges = useMemo(() => {
+                const prices = new Set(initialRestaurantData.map(r => r.price));
+                return Array.from(prices).sort((a,b) => {
+                    const numA = parseFloat(a.replace('€','').split('–')[0]);
+                    const numB = parseFloat(b.replace('€','').split('–')[0]);
+                    return numA - numB;
+                });
+            }, []);
+
+            return (
+                <div className="mb-10 p-5 bg-white/80 backdrop-blur-md rounded-xl shadow-lg">
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 items-end">
+                        <div>
+                            <label htmlFor="sortBy" className="block text-xs font-medium text-slate-700 mb-1">Sırala:</label>
+                            <select
+                                id="sortBy"
+                                name="sortBy"
+                                className="mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm transition-colors"
+                                onChange={(e) => onSortChange(e.target.value)}
+                                value={currentSort}
+                            >
+                                <option value="name_asc">Ad (A-Z)</option>
+                                <option value="name_desc">Ad (Z-A)</option>
+                                <option value="price_asc">Fiyat (Düşükten Yükseğe)</option>
+                                <option value="price_desc">Fiyat (Yüksekten Düşüğe)</option>
+                                <option value="distance_asc">Mesafe (En Yakın)</option>
+                                <option value="distance_desc">Mesafe (En Uzak)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label htmlFor="priceFilter" className="block text-xs font-medium text-slate-700 mb-1">Fiyata Göre Filtrele:</label>
+                            <select
+                                id="priceFilter"
+                                name="priceFilter"
+                                className="mt-1 block w-full py-2 px-3 border border-slate-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm transition-colors"
+                                onChange={(e) => onFilterChange('price', e.target.value)}
+                                value={currentPriceFilter}
+                            >
+                                <option value="all">Tüm Fiyatlar</option>
+                                {uniquePriceRanges.map(price => (
+                                    <option key={price} value={price}>{price}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <button
+                            onClick={() => {
+                                onSortChange('name_asc');
+                                onFilterChange('price', 'all');
+                            }}
+                            className="bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium py-2.5 px-4 rounded-md text-sm sm:col-span-2 md:col-span-1 transition-colors"
+                        >
+                            Filtreleri Sıfırla
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const App = () => {
+            const [sortCriteria, setSortCriteria] = useState('name_asc');
+            const [priceFilter, setPriceFilter] = useState('all');
+            const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+
+            const handleOpenModal = (restaurant) => {
+                setSelectedRestaurant(restaurant);
+            };
+
+            const handleCloseModal = () => {
+                setSelectedRestaurant(null);
+            };
+
+            const handleFilterChange = (type, value) => {
+                if (type === 'price') {
+                    setPriceFilter(value);
+                }
+            };
+
+            const handleSortChange = (criteria) => {
+                setSortCriteria(criteria);
+            };
+
+            const filteredAndSortedRestaurants = useMemo(() => {
+                let processedRestaurants = [...initialRestaurantData];
+                if (priceFilter !== 'all') {
+                    processedRestaurants = processedRestaurants.filter(r => r.price === priceFilter);
+                }
+                processedRestaurants.sort((a, b) => {
+                    const [field, order] = sortCriteria.split('_');
+                    let comparison = 0;
+                    let valA = a[field === 'price' ? 'priceNumeric' : (field === 'distance' ? 'distanceNumeric' : field)];
+                    let valB = b[field === 'price' ? 'priceNumeric' : (field === 'distance' ? 'distanceNumeric' : field)];
+
+                    if (field === 'name' && typeof valA === 'string' && typeof valB === 'string') {
+                        valA = valA.toLowerCase();
+                        valB = valB.toLowerCase();
+                    }
+                    
+                    if (valA > valB) comparison = 1;
+                    else if (valA < valB) comparison = -1;
+                    return order === 'desc' ? comparison * -1 : comparison;
+                });
+                return processedRestaurants;
+            }, [sortCriteria, priceFilter]);
+
+            return (
+                <React.Fragment>
+                    <div className="container mx-auto px-6 py-8 text-center">
+                        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-sky-900">Restoran Keşfi</h1>
+                        <p className="mt-3 text-lg text-slate-700">
+                            Yerel mutfağı, lezzetli balık lokantalarını ve adanın en iyi kebaplarından birini keşfetmeniz için restoran önerilerimiz.
+                        </p>
+                    </div>
+
+                    <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                        <FilterControls
+                            onFilterChange={handleFilterChange}
+                            onSortChange={handleSortChange}
+                            currentSort={sortCriteria}
+                            currentPriceFilter={priceFilter}
+                        />
+                        {filteredAndSortedRestaurants.length > 0 ? (
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                                {filteredAndSortedRestaurants.map(restaurant => (
+                                    <RestaurantCard key={restaurant.id} restaurant={restaurant} onOpenModal={handleOpenModal} />
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-center py-16">
+                                <img src="https://placehold.co/180x135/CBD5E0/718096?text=Bulunamad%C4%B1" alt="Sonuç bulunamadı" className="mx-auto mb-6 rounded-lg shadow-md opacity-80"/>
+                                <h3 className="text-xl font-semibold text-slate-700 mb-1.5">Filtrelerinize Uygun Restoran Bulunamadı</h3>
+                                <p className="text-slate-500">Fiyat veya sıralama seçeneklerinizi değiştirmeyi deneyin.</p>
+                            </div>
+                        )}
+                    </main>
+
+                    {selectedRestaurant && (
+                        <RestaurantDetailModal restaurant={selectedRestaurant} onClose={handleCloseModal} />
+                    )}
+
+                    <footer className="bg-black text-gray-200 py-8 mt-16">
+                        <div className="container mx-auto px-6 text-center">
+                            <p className="text-base">© {new Date().getFullYear()} petrADi.</p>
+                            <p className="text-sm mt-1">Midilli'nin lezzetlerinin tadını çıkarın!</p>
+                        </div>
+                    </footer>
+                </React.Fragment>
+            );
+        };
+
+        const container = document.getElementById('root');
+        const root = ReactDOM.createRoot(container);
+        root.render(<App />);
+    </script>
+
+  <!-- SCRIPTS (jQuery, Slick, Parallax) (Unchanged) -->
+  <script src="../assets/js/jquery-3.6.0.min.js"></script>
+  <script src="../assets/js/slick.min.js"></script>
+  <script src="../assets/js/parallax.min.js"></script>
+
+  <!-- General Site Scripts (e.g., for burger menu if not handled by React) (Unchanged) -->
+  <script src="../assets/js/scripts.js"></script>
+
+  <!-- NEW Language Switcher SCRIPT (Unchanged logic, but alt text for selected flag will use translated source) -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const switcherContainer = document.getElementById('languageSwitcherContainer');
+        const selectedDisplay = document.getElementById('languageSwitcherSelectedDisplay');
+        const optionsList = document.getElementById('languageSwitcherOptionsList');
+
+        if (!switcherContainer || !selectedDisplay || !optionsList) {
+            console.warn('Language switcher HTML elements not found. Switcher will not initialize.');
+            return;
+        }
+
+        const optionLinks = optionsList.querySelectorAll('li a');
+
+        // Determine current language from HTML lang attribute or path
+        let detectedLangCode = document.documentElement.lang || 'en'; // Default to 'en'
+
+        const pathParts = window.location.pathname.split('/').filter(part => part.length > 0);
+        if (pathParts.length > 0) {
+            const firstPathPart = pathParts[0];
+            // Check if the first path part is a known language code from our switcher
+            const isKnownLangDir = Array.from(optionLinks).some(link => link.dataset.langCode === firstPathPart);
+            if (isKnownLangDir) {
+                detectedLangCode = firstPathPart;
+            } else if (!document.documentElement.lang) {
+                 // If not a known lang dir AND html lang is not set, default to 'en'
+                 // This covers cases where path might be /blog/article but site is english
+                 detectedLangCode = 'en';
+            }
+        }
+        // Ensure lang is set on HTML element for CSS and JS hooks if needed elsewhere
+        if (detectedLangCode) {
+            document.documentElement.lang = detectedLangCode;
+        }
+
+
+        let currentLanguageOption = null;
+        optionLinks.forEach(link => {
+            if (link.dataset.langCode === detectedLangCode) {
+                currentLanguageOption = link;
+                link.parentElement.style.display = 'none'; // Hide current language from dropdown
+            } else {
+                link.parentElement.style.display = ''; // Show other languages
+            }
+        });
+
+        // Update the selected display
+        if (currentLanguageOption) {
+            const flagImg = currentLanguageOption.querySelector('img');
+            if (flagImg) {
+                let altText = flagImg.alt; // Already translated like "Türkiye Bayrağı"
+                if (altText.includes("Bayrağı")) { // Turkish check
+                    altText = altText.replace(' Bayrağı', '') + ' Seçili';
+                } else if (altText.includes("Flag")) { // English check for fallback
+                    altText = altText.replace(' Flag', '') + ' Selected'; // Fallback for non-Turkish current page
+                } else { // Generic fallback
+                    altText = detectedLangCode.toUpperCase() + (document.documentElement.lang === 'tr' ? ' Seçili' : ' Selected');
+                }
+                selectedDisplay.innerHTML = `<img src="${flagImg.src}" alt="${altText}">`;
+            } else {
+                selectedDisplay.textContent = detectedLangCode.toUpperCase(); // Fallback to text if no image
+            }
+        } else if (optionLinks.length > 0) {
+            // Fallback if detectedLangCode doesn't match any option
+            const enOption = Array.from(optionLinks).find(link => link.dataset.langCode === 'en') || optionLinks[0];
+            if (enOption) {
+                 const flagImg = enOption.querySelector('img');
+                 let altText = "English Selected"; // Default
+                 if (flagImg) {
+                    // Use flag's alt, remove "Bayrağı" or "Flag", append appropriate "Selected"
+                    altText = flagImg.alt.replace(' Bayrağı', '').replace(' Flag', '') + (document.documentElement.lang === 'tr' ? ' Seçili' : ' Selected');
+                    selectedDisplay.innerHTML = `<img src="${flagImg.src}" alt="${altText}">`;
+                 }
+                 enOption.parentElement.style.display = 'none';
+            }
+        }
+
+
+        selectedDisplay.addEventListener('click', function (event) {
+            event.stopPropagation(); 
+            switcherContainer.classList.toggle('open');
+        });
+
+        document.addEventListener('click', function (event) {
+            if (switcherContainer && !switcherContainer.contains(event.target) && switcherContainer.classList.contains('open')) {
+                switcherContainer.classList.remove('open');
+            }
+        });
+    });
+  </script>
+</body>
+</html>
